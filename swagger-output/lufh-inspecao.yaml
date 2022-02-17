@@ -1,9 +1,8 @@
 {
-  "swagger" : "2.0",
+  "openapi" : "3.0.0",
   "info" : {
-    "description" : "API responsável por gerenciar a avaliação de usabilidade a partir do método por inspeção a padrões.",
-    "version" : "1.0.0",
     "title" : "Lufh Inspeção API",
+    "description" : "API responsável por gerenciar a avaliação de usabilidade a partir do método por inspeção a padrões.",
     "contact" : {
       "url" : "https://www.linkedin.com/in/pablo-monteiro-santos/",
       "email" : "paablomt@gmail.com"
@@ -11,59 +10,44 @@
     "license" : {
       "name" : "MIT License",
       "url" : "http://choosealicense.com/licenses/mit/"
-    }
+    },
+    "version" : "1.0.0-oas3"
   },
-  "host" : "virtserver.swaggerhub.com",
-  "basePath" : "/pablo.santos/LufhInspecao/1.0.0",
+  "servers" : [ {
+    "url" : "https://virtserver.swaggerhub.com/pablo.santos/LufhInspecao/1.0.0"
+  } ],
   "tags" : [ {
     "name" : "question",
     "description" : "Representa as questões do formulário"
   }, {
     "name" : "user",
     "description" : "Operations about user"
+  }, {
+    "name" : "questionnaire",
+    "description" : "Representa o formulário"
   } ],
-  "schemes" : [ "https", "http" ],
   "paths" : {
     "/question" : {
-      "post" : {
-        "tags" : [ "question" ],
-        "summary" : "Add a new question",
-        "operationId" : "addQuestion",
-        "consumes" : [ "application/json", "application/xml" ],
-        "produces" : [ "application/json", "application/xml" ],
-        "parameters" : [ {
-          "in" : "body",
-          "name" : "body",
-          "description" : "Question object that needs to be added to the form",
-          "required" : true,
-          "schema" : {
-            "$ref" : "#/definitions/Question"
-          }
-        } ],
-        "responses" : {
-          "405" : {
-            "description" : "Invalid input"
-          }
-        },
-        "security" : [ {
-          "petstore_auth" : [ "write:pets", "read:pets" ]
-        } ]
-      },
       "put" : {
         "tags" : [ "question" ],
         "summary" : "Update an existing question",
         "operationId" : "updatePet",
-        "consumes" : [ "application/json", "application/xml" ],
-        "produces" : [ "application/json", "application/xml" ],
-        "parameters" : [ {
-          "in" : "body",
-          "name" : "body",
+        "requestBody" : {
           "description" : "Question object that needs to be added to the form",
-          "required" : true,
-          "schema" : {
-            "$ref" : "#/definitions/Question"
-          }
-        } ],
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Question"
+              }
+            },
+            "application/xml" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Question"
+              }
+            }
+          },
+          "required" : true
+        },
         "responses" : {
           "400" : {
             "description" : "Invalid ID supplied"
@@ -78,6 +62,30 @@
         "security" : [ {
           "petstore_auth" : [ "write:pets", "read:pets" ]
         } ]
+      },
+      "post" : {
+        "tags" : [ "question" ],
+        "summary" : "Add a new question",
+        "operationId" : "addQuestion",
+        "requestBody" : {
+          "description" : "Question object that needs to be added to the form",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Question"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "405" : {
+            "description" : "Invalid input"
+          }
+        },
+        "security" : [ {
+          "petstore_auth" : [ "write:pets", "read:pets" ]
+        } ]
       }
     },
     "/question/findByClass" : {
@@ -86,27 +94,41 @@
         "summary" : "Finds Questions by class",
         "description" : "Multiple status values can be provided with comma separated strings",
         "operationId" : "findQuestionsByClass",
-        "produces" : [ "application/json", "application/xml" ],
         "parameters" : [ {
           "name" : "status",
           "in" : "query",
           "description" : "Class values that need to be considered for filter",
           "required" : true,
-          "type" : "array",
-          "items" : {
-            "type" : "string",
-            "default" : "available",
-            "enum" : [ "available", "pending", "sold" ]
-          },
-          "collectionFormat" : "multi"
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string",
+              "default" : "available",
+              "enum" : [ "available", "pending", "sold" ]
+            }
+          }
         } ],
         "responses" : {
           "200" : {
             "description" : "successful operation",
-            "schema" : {
-              "type" : "array",
-              "items" : {
-                "$ref" : "#/definitions/Question"
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Question"
+                  }
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Question"
+                  }
+                }
               }
             }
           },
@@ -125,20 +147,32 @@
         "summary" : "Find question by ID",
         "description" : "Returns a single question",
         "operationId" : "getQuestionById",
-        "produces" : [ "application/json", "application/xml" ],
         "parameters" : [ {
           "name" : "questionId",
           "in" : "path",
           "description" : "ID of question to return",
           "required" : true,
-          "type" : "integer",
-          "format" : "int64"
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
         } ],
         "responses" : {
           "200" : {
             "description" : "successful operation",
-            "schema" : {
-              "$ref" : "#/definitions/Question"
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Question"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Question"
+                }
+              }
             }
           },
           "400" : {
@@ -156,19 +190,26 @@
         "tags" : [ "question" ],
         "summary" : "Deletes a question",
         "operationId" : "deleteQuestion",
-        "produces" : [ "application/json", "application/xml" ],
         "parameters" : [ {
           "name" : "api_key",
           "in" : "header",
           "required" : false,
-          "type" : "string"
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
         }, {
           "name" : "questionId",
           "in" : "path",
           "description" : "Question id to delete",
           "required" : true,
-          "type" : "integer",
-          "format" : "int64"
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
         } ],
         "responses" : {
           "400" : {
@@ -189,18 +230,19 @@
         "summary" : "Create user",
         "description" : "This can only be done by the logged in user.",
         "operationId" : "createUser",
-        "produces" : [ "application/json", "application/xml" ],
-        "parameters" : [ {
-          "in" : "body",
-          "name" : "body",
+        "requestBody" : {
           "description" : "Created user object",
-          "required" : true,
-          "schema" : {
-            "$ref" : "#/definitions/User"
-          }
-        } ],
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/User"
+              }
+            }
+          },
+          "required" : true
+        },
         "responses" : {
-          "default" : {
+          "200" : {
             "description" : "successful operation"
           }
         }
@@ -211,44 +253,9 @@
         "tags" : [ "user" ],
         "summary" : "Creates list of users with given input array",
         "operationId" : "createUsersWithArrayInput",
-        "produces" : [ "application/json", "application/xml" ],
-        "parameters" : [ {
-          "in" : "body",
-          "name" : "body",
-          "description" : "List of user object",
-          "required" : true,
-          "schema" : {
-            "type" : "array",
-            "items" : {
-              "$ref" : "#/definitions/User"
-            }
-          }
-        } ],
-        "responses" : {
-          "default" : {
-            "description" : "successful operation"
-          }
-        }
-      }
-    },
-    "/user/createWithList" : {
-      "post" : {
-        "tags" : [ "user" ],
-        "summary" : "Creates list of users with given input array",
-        "operationId" : "createUsersWithListInput",
-        "produces" : [ "application/json", "application/xml" ],
-        "parameters" : [ {
-          "in" : "body",
-          "name" : "body",
-          "description" : "List of user object",
-          "required" : true,
-          "schema" : {
-            "type" : "array",
-            "items" : {
-              "$ref" : "#/definitions/User"
-            }
-          }
-        } ],
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/UserArray"
+        },
         "responses" : {
           "default" : {
             "description" : "successful operation"
@@ -261,37 +268,61 @@
         "tags" : [ "user" ],
         "summary" : "Logs user into the system",
         "operationId" : "loginUser",
-        "produces" : [ "application/json", "application/xml" ],
         "parameters" : [ {
           "name" : "username",
           "in" : "query",
           "description" : "The user name for login",
           "required" : true,
-          "type" : "string"
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
+          }
         }, {
           "name" : "password",
           "in" : "query",
           "description" : "The password for login in clear text",
           "required" : true,
-          "type" : "string"
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
+          }
         } ],
         "responses" : {
           "200" : {
             "description" : "successful operation",
             "headers" : {
               "X-Rate-Limit" : {
-                "type" : "integer",
-                "format" : "int32",
-                "description" : "calls per hour allowed by the user"
+                "description" : "calls per hour allowed by the user",
+                "style" : "simple",
+                "explode" : false,
+                "schema" : {
+                  "type" : "integer",
+                  "format" : "int32"
+                }
               },
               "X-Expires-After" : {
-                "type" : "string",
-                "format" : "date-time",
-                "description" : "date in UTC when token expires"
+                "description" : "date in UTC when token expires",
+                "style" : "simple",
+                "explode" : false,
+                "schema" : {
+                  "type" : "string",
+                  "format" : "date-time"
+                }
               }
             },
-            "schema" : {
-              "type" : "string"
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              }
             }
           },
           "400" : {
@@ -305,8 +336,6 @@
         "tags" : [ "user" ],
         "summary" : "Logs out current logged in user session",
         "operationId" : "logoutUser",
-        "produces" : [ "application/json", "application/xml" ],
-        "parameters" : [ ],
         "responses" : {
           "default" : {
             "description" : "successful operation"
@@ -319,19 +348,31 @@
         "tags" : [ "user" ],
         "summary" : "Get user by user name",
         "operationId" : "getUserByName",
-        "produces" : [ "application/json", "application/xml" ],
         "parameters" : [ {
           "name" : "username",
           "in" : "path",
           "description" : "The name that needs to be fetched. Use user1 for testing.",
           "required" : true,
-          "type" : "string"
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
         } ],
         "responses" : {
           "200" : {
             "description" : "successful operation",
-            "schema" : {
-              "$ref" : "#/definitions/User"
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/User"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/User"
+                }
+              }
             }
           },
           "400" : {
@@ -347,22 +388,28 @@
         "summary" : "Updated user",
         "description" : "This can only be done by the logged in user.",
         "operationId" : "updateUser",
-        "produces" : [ "application/json", "application/xml" ],
         "parameters" : [ {
           "name" : "username",
           "in" : "path",
           "description" : "name that need to be updated",
           "required" : true,
-          "type" : "string"
-        }, {
-          "in" : "body",
-          "name" : "body",
-          "description" : "Updated user object",
-          "required" : true,
+          "style" : "simple",
+          "explode" : false,
           "schema" : {
-            "$ref" : "#/definitions/User"
+            "type" : "string"
           }
         } ],
+        "requestBody" : {
+          "description" : "Updated user object",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/User"
+              }
+            }
+          },
+          "required" : true
+        },
         "responses" : {
           "400" : {
             "description" : "Invalid user supplied"
@@ -377,13 +424,16 @@
         "summary" : "Delete user",
         "description" : "This can only be done by the logged in user.",
         "operationId" : "deleteUser",
-        "produces" : [ "application/json", "application/xml" ],
         "parameters" : [ {
           "name" : "username",
           "in" : "path",
           "description" : "The name that needs to be deleted",
           "required" : true,
-          "type" : "string"
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
         } ],
         "responses" : {
           "400" : {
@@ -396,93 +446,270 @@
       }
     }
   },
-  "securityDefinitions" : {
-    "petstore_auth" : {
-      "type" : "oauth2",
-      "authorizationUrl" : "http://petstore.swagger.io/oauth/dialog",
-      "flow" : "implicit",
-      "scopes" : {
-        "write:pets" : "modify pets in your account",
-        "read:pets" : "read your pets"
-      }
-    },
-    "api_key" : {
-      "type" : "apiKey",
-      "name" : "api_key",
-      "in" : "header"
-    }
-  },
-  "definitions" : {
-    "User" : {
-      "type" : "object",
-      "properties" : {
-        "id" : {
-          "type" : "integer",
-          "format" : "int64"
+  "components" : {
+    "schemas" : {
+      "User" : {
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "username" : {
+            "type" : "string"
+          },
+          "firstName" : {
+            "type" : "string"
+          },
+          "lastName" : {
+            "type" : "string"
+          },
+          "email" : {
+            "type" : "string"
+          },
+          "password" : {
+            "type" : "string"
+          },
+          "phone" : {
+            "type" : "string"
+          },
+          "userStatus" : {
+            "type" : "integer",
+            "description" : "User Status",
+            "format" : "int32"
+          }
         },
-        "username" : {
-          "type" : "string"
-        },
-        "firstName" : {
-          "type" : "string"
-        },
-        "lastName" : {
-          "type" : "string"
-        },
-        "email" : {
-          "type" : "string"
-        },
-        "password" : {
-          "type" : "string"
-        },
-        "phone" : {
-          "type" : "string"
-        },
-        "userStatus" : {
-          "type" : "integer",
-          "format" : "int32",
-          "description" : "User Status"
+        "xml" : {
+          "name" : "User"
         }
       },
-      "xml" : {
-        "name" : "User"
-      }
-    },
-    "Question" : {
-      "type" : "object",
-      "required" : [ "description" ],
-      "properties" : {
-        "id" : {
-          "type" : "integer",
-          "format" : "int64"
+      "Product" : {
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "productName" : {
+            "type" : "string",
+            "example" : "Iphone X"
+          },
+          "manufacterName" : {
+            "type" : "string",
+            "example" : "Apple"
+          },
+          "productType" : {
+            "$ref" : "#/components/schemas/ProductType"
+          },
+          "productClass" : {
+            "type" : "string",
+            "example" : "Class I"
+          },
+          "completionLevel" : {
+            "type" : "string",
+            "example" : "Alfa Test, Beta Test"
+          }
         },
-        "description" : {
-          "type" : "string",
-          "example" : "Does material for training exist?"
+        "description" : "Representa um produto a ser avaliado"
+      },
+      "ProductType" : {
+        "properties" : {
+          "id" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "productTypeName" : {
+            "type" : "string",
+            "example" : "Medical Device"
+          }
         },
-        "class" : {
-          "type" : "string",
-          "description" : "class of question",
-          "enum" : [ "specification", "V&V", "Visibility of System Status" ]
+        "description" : "Representa o tipo do produto"
+      },
+      "Question" : {
+        "required" : [ "description" ],
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "class" : {
+            "type" : "string",
+            "description" : "Each class of a question is a Nilsen heuristic",
+            "enum" : [ "Aesthetic and minimalist design", "Consistency and standards", "Error prevention", "Flexibility and efficiency of use", "Help and documentation", "Help users recognize, diagnose, and recover from errors", "Match between system and the real world", "Recognition rather than recall", "User control and freedom", "Visibility of system status", "Privacy & Security" ]
+          },
+          "productType" : {
+            "type" : "string",
+            "enum" : [ "Software", "Hardware", "Hardware/Software" ]
+          },
+          "baseQuestion" : {
+            "type" : "string",
+            "example" : "Is it designed minimal?"
+          },
+          "detailedQuestion" : {
+            "type" : "string",
+            "example" : "Is only (and all) information, essential to decision making, displayed on the screen?"
+          },
+          "reference" : {
+            "$ref" : "#/components/schemas/Reference"
+          },
+          "possibleAnswers" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          },
+          "choosenAnswer" : {
+            "type" : "string"
+          },
+          "severity" : {
+            "type" : "string",
+            "enum" : [ "0 Not a usability problem at all", "1 Cosmetic problem only. Need not be fixed unless extra time is available", "2 Minor usability problem. Fixing this should be given low priority", "3 Major usability problem. Important to fix. Should be given high priority", "4 Usability catastrophe. Imperative to fix this before product can be released" ]
+          },
+          "weight" : {
+            "type" : "string",
+            "enum" : [ "0 Necessary for every System", "1 Necessary for Systems without more than one Dialog", "2 Necessary for Simple Systems without data have to be entered or with strict guidance throughout the usage process", "3 Necessary for Complex Systems with data have to be entered on several dialogs" ]
+          }
+        },
+        "description" : "Representa uma questão",
+        "xml" : {
+          "name" : "Question"
         }
       },
-      "xml" : {
-        "name" : "Question"
+      "Reference" : {
+        "type" : "object",
+        "properties" : {
+          "type" : {
+            "type" : "string",
+            "description" : "type of reference",
+            "enum" : [ "Article", "Book", "eDocument", "Standard" ]
+          },
+          "bibliography" : {
+            "type" : "string"
+          }
+        }
+      },
+      "Questionnaire" : {
+        "properties" : {
+          "id" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "questions" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Question"
+            }
+          }
+        },
+        "description" : "Representa um agrupamento de questões que devem ser respondidas no momento da análise de um produto."
+      },
+      "ProductEvaluation" : {
+        "properties" : {
+          "id" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "product" : {
+            "$ref" : "#/components/schemas/Product"
+          },
+          "customer" : {
+            "$ref" : "#/components/schemas/Customer"
+          },
+          "startDate" : {
+            "type" : "string",
+            "description" : "Data de entrada no lufh",
+            "format" : "date-time"
+          },
+          "endDate" : {
+            "type" : "string",
+            "description" : "Data de saída planejada do lufh",
+            "format" : "date-time"
+          },
+          "urgency" : {
+            "type" : "boolean"
+          },
+          "testType" : {
+            "type" : "string",
+            "description" : "Tipo de teste contratado",
+            "enum" : [ "compliance inspection", "performance measurement", "heuristic evaluation", "user opinion" ]
+          },
+          "coverage" : {
+            "type" : "string",
+            "description" : "Abrangência contratada"
+          }
+        },
+        "description" : "Representa uma solicitaçao de avaliação de um produto."
+      },
+      "Customer" : {
+        "properties" : {
+          "id" : {
+            "type" : "integer"
+          },
+          "customerName" : {
+            "type" : "string"
+          },
+          "cpfCnpj" : {
+            "type" : "string"
+          },
+          "email" : {
+            "type" : "string"
+          },
+          "phoneNumber" : {
+            "type" : "string"
+          }
+        },
+        "description" : "Representa um cliente que solicitou a avaliação de um produto"
+      },
+      "ApiResponse" : {
+        "type" : "object",
+        "properties" : {
+          "code" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "type" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          }
+        }
       }
     },
-    "ApiResponse" : {
-      "type" : "object",
-      "properties" : {
-        "code" : {
-          "type" : "integer",
-          "format" : "int32"
+    "requestBodies" : {
+      "UserArray" : {
+        "description" : "List of user object",
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/components/schemas/User"
+              }
+            }
+          }
         },
-        "type" : {
-          "type" : "string"
-        },
-        "message" : {
-          "type" : "string"
+        "required" : true
+      }
+    },
+    "securitySchemes" : {
+      "petstore_auth" : {
+        "type" : "oauth2",
+        "flows" : {
+          "implicit" : {
+            "authorizationUrl" : "http://petstore.swagger.io/oauth/dialog",
+            "scopes" : {
+              "write:pets" : "modify pets in your account",
+              "read:pets" : "read your pets"
+            }
+          }
         }
+      },
+      "api_key" : {
+        "type" : "apiKey",
+        "name" : "api_key",
+        "in" : "header"
       }
     }
   }
