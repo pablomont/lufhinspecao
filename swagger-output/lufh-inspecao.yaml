@@ -631,7 +631,7 @@
           },
           "testType" : {
             "type" : "string",
-            "description" : "Tipo de teste contratado",
+            "description" : "Type of contracted test",
             "enum" : [ "compliance inspection", "performance measurement", "heuristic evaluation", "user opinion" ]
           },
           "coverage" : {
