@@ -618,12 +618,12 @@
           },
           "startDate" : {
             "type" : "string",
-            "description" : "Data de entrada no lufh",
+            "description" : "Entry date into lufh",
             "format" : "date-time"
           },
           "endDate" : {
             "type" : "string",
-            "description" : "Data de saída planejada do lufh",
+            "description" : "Planned departure date from lufh",
             "format" : "date-time"
           },
           "urgency" : {
@@ -636,7 +636,7 @@
           },
           "coverage" : {
             "type" : "string",
-            "description" : "Abrangência contratada"
+            "description" : "Contracted scope"
           }
         },
         "description" : "Representa uma solicitaçao de avaliação de um produto."
