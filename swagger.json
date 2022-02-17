@@ -660,7 +660,7 @@
         }
       },
       "Customer" : {
-        "description" : "Representa um cliente que solicitou a avaliação de um produto ",
+        "description" : "Represents a customer who has requested a product review",
         "properties" : {
           "id" : {
             "type" : "integer"
