@@ -498,7 +498,7 @@
         }
       },
       "Product" : {
-        "description" : "Representa um produto a ser avaliado",
+        "description" : "Represents a product to be evaluated",
         "type" : "object",
         "properties" : {
           "id" : {
@@ -660,7 +660,7 @@
         }
       },
       "Customer" : {
-        "description" : "Representa um cliente que solicitou a avaliação de um produto",
+        "description" : "Representa um cliente que solicitou a avaliação de um produto ",
         "properties" : {
           "id" : {
             "type" : "integer"
