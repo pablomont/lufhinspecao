@@ -638,12 +638,12 @@
           "startDate" : {
             "type" : "string",
             "format" : "date-time",
-            "description" : "Data de entrada no lufh"
+            "description" : "Entry date into lufh"
           },
           "endDate" : {
             "type" : "string",
             "format" : "date-time",
-            "description" : "Data de saída planejada do lufh"
+            "description" : "Planned departure date from lufh"
           },
           "urgency" : {
             "type" : "boolean"
@@ -655,7 +655,7 @@
           },
           "coverage" : {
             "type" : "string",
-            "description" : "Abrangência contratada"
+            "description" : "Contracted scope"
           }
         }
       },
