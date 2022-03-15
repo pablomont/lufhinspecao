@@ -541,7 +541,6 @@
         }
       },
       "Question" : {
-        "description" : "Representa uma questão",
         "type" : "object",
         "required" : [ "description" ],
         "properties" : {
@@ -606,7 +605,7 @@
         }
       },
       "Questionnaire" : {
-        "description" : "Representa um agrupamento de questões que devem ser respondidas no momento da análise de um produto.",
+        "description" : "It represents a grouping of questions that must be answered when analyzing a product.",
         "properties" : {
           "id" : {
             "type" : "integer",
@@ -617,11 +616,17 @@
             "items" : {
               "$ref" : "#/components/schemas/Question"
             }
+          },
+          "evaluator" : {
+            "type" : "string"
+          },
+          "creator" : {
+            "type" : "string"
           }
         }
       },
-      "ProductEvaluation" : {
-        "description" : "Representa uma solicitaçao de avaliação de um produto.",
+      "RequestEvaluation" : {
+        "description" : "Represents a request to evaluate a product.",
         "properties" : {
           "id" : {
             "type" : "integer",
@@ -679,18 +684,16 @@
           }
         }
       },
-      "ApiResponse" : {
-        "type" : "object",
+      "ReportEvaluation" : {
+        "description" : "Represents the result of the evaluation",
         "properties" : {
-          "code" : {
-            "type" : "integer",
-            "format" : "int32"
+          "productEvaluation" : {
+            "type" : "object",
+            "$ref" : "#/components/schemas/RequestEvaluation"
           },
-          "type" : {
-            "type" : "string"
-          },
-          "message" : {
-            "type" : "string"
+          "questionare" : {
+            "type" : "object",
+            "$ref" : "#/components/schemas/Questionnaire"
           }
         }
       }
