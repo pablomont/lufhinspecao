@@ -187,13 +187,6 @@
         "summary" : "Deletes a question",
         "operationId" : "deleteQuestion",
         "parameters" : [ {
-          "name" : "api_key",
-          "in" : "header",
-          "required" : false,
-          "schema" : {
-            "type" : "string"
-          }
-        }, {
           "name" : "questionId",
           "in" : "path",
           "description" : "Question id to delete",
