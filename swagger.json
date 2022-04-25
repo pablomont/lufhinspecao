@@ -18,7 +18,7 @@
     "description" : "Representa uma questão do questionário"
   }, {
     "name" : "questionnaire",
-    "description" : "Representa o formulário"
+    "description" : "Grupo de questões utilizado para avaliar o produto."
   } ],
   "paths" : {
     "/question" : {
@@ -82,25 +82,29 @@
         } ]
       }
     },
-    "/question/findByClass" : {
+    "/questions" : {
       "get" : {
         "tags" : [ "question" ],
-        "summary" : "Finds Questions by class",
-        "description" : "Multiple status values can be provided with comma separated strings",
-        "operationId" : "findQuestionsByClass",
+        "summary" : "Finds all questions",
+        "description" : "Multiple values can be provided with comma separated strings",
+        "operationId" : "findQuestions",
         "parameters" : [ {
-          "name" : "status",
+          "name" : "class",
           "in" : "query",
-          "description" : "Class values that need to be considered for filter",
-          "required" : true,
-          "explode" : true,
+          "description" : "Class values that can be considered for filter",
+          "required" : false,
           "schema" : {
-            "type" : "array",
-            "items" : {
-              "type" : "string",
-              "enum" : [ "available", "pending", "sold" ],
-              "default" : "available"
-            }
+            "type" : "string",
+            "enum" : [ "Aesthetic and minimalist design", "Consistency and standards", "Error preventio", "Flexibility and efficiency of use", "Help and documentation", "Help users recognize", "diagnose", "and recover from errors", "Match between system and the real world", "Recognition rather than recall", "User control and freedom", "Visibility of system status", "Privacy & Security" ]
+          }
+        }, {
+          "name" : "reference",
+          "in" : "query",
+          "description" : "Reference values that can be considered for filter",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "enum" : [ "Article", "Book", "eDocument", "Standard" ]
           }
         } ],
         "responses" : {
@@ -114,19 +118,11 @@
                     "$ref" : "#/components/schemas/Question"
                   }
                 }
-              },
-              "application/xml" : {
-                "schema" : {
-                  "type" : "array",
-                  "items" : {
-                    "$ref" : "#/components/schemas/Question"
-                  }
-                }
               }
             }
           },
-          "400" : {
-            "description" : "Invalid class value"
+          "404" : {
+            "description" : "Not found"
           }
         },
         "security" : [ {
@@ -288,9 +284,8 @@
             "format" : "int64"
           },
           "class" : {
-            "type" : "string",
-            "description" : "Each class of a question is a Nilsen heuristic",
-            "enum" : [ "Aesthetic and minimalist design", "Consistency and standards", "Error prevention", "Flexibility and efficiency of use", "Help and documentation", "Help users recognize, diagnose, and recover from errors", "Match between system and the real world", "Recognition rather than recall", "User control and freedom", "Visibility of system status", "Privacy & Security" ]
+            "type" : "object",
+            "$ref" : "#/components/schemas/Class"
           },
           "productType" : {
             "type" : "string",
@@ -328,6 +323,16 @@
         },
         "xml" : {
           "name" : "Question"
+        }
+      },
+      "Class" : {
+        "type" : "object",
+        "properties" : {
+          "name" : {
+            "type" : "string",
+            "description" : "Each class of a question is a Nilsen heuristic",
+            "enum" : [ "Aesthetic and minimalist design", "Consistency and standards", "Error prevention", "Flexibility and efficiency of use", "Help and documentation", "Help users recognize, diagnose, and recover from errors", "Match between system and the real world", "Recognition rather than recall", "User control and freedom", "Visibility of system status", "Privacy & Security" ]
+          }
         }
       },
       "Reference" : {
