@@ -95,7 +95,7 @@
           "required" : false,
           "schema" : {
             "type" : "string",
-            "enum" : [ "Aesthetic and minimalist design", "Consistency and standards", "Error preventio", "Flexibility and efficiency of use", "Help and documentation", "Help users recognize", "diagnose", "and recover from errors", "Match between system and the real world", "Recognition rather than recall", "User control and freedom", "Visibility of system status", "Privacy & Security" ]
+            "enum" : [ "Aesthetic and minimalist design", "Consistency and standards", "Error prevention", "Flexibility and efficiency of use", "Help and documentation", "Help users recognize and recover from errors", "Match between system and the real world", "Recognition rather than recall", "User control and freedom", "Visibility of system status", "Privacy & Security" ]
           }
         }, {
           "name" : "reference",
