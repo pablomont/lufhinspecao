@@ -14,73 +14,29 @@
     "description" : "API responsável por gerenciar a avaliação de usabilidade a partir do método por inspeção a padrões."
   },
   "tags" : [ {
-    "name" : "question",
-    "description" : "Representa uma questão do questionário"
+    "name" : "questions",
+    "description" : "Disponibiliza operações sobre as questões."
   }, {
-    "name" : "questionnaire",
-    "description" : "Grupo de questões utilizado para avaliar o produto."
+    "name" : "questionnaires",
+    "description" : "Disponibiliza operações sobre os questionários utilizado para avaliar o produto."
+  }, {
+    "name" : "request-evaluations",
+    "description" : "Disponibiliza operações sobre as requisições de avaliação."
+  }, {
+    "name" : "reports",
+    "description" : "Disponibiliza operações sobre os relatórios de uma avaliação."
+  }, {
+    "name" : "products",
+    "description" : "Disponibiliza operações sobre os produtos a serem avaliados."
+  }, {
+    "name" : "customers",
+    "description" : "Disponibiliza operações sobre os clientes que solicitaram uma avaliação de um determinado produto."
   } ],
   "paths" : {
-    "/question" : {
-      "post" : {
-        "tags" : [ "question" ],
-        "summary" : "Add a new question",
-        "operationId" : "addQuestion",
-        "requestBody" : {
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/Question"
-              }
-            }
-          },
-          "description" : "Question object that needs to be added to the form",
-          "required" : true
-        },
-        "responses" : {
-          "500" : {
-            "description" : "Internal server error"
-          }
-        }
-      },
-      "put" : {
-        "tags" : [ "question" ],
-        "summary" : "Update an existing question",
-        "operationId" : "updateQuestion",
-        "requestBody" : {
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/Question"
-              }
-            },
-            "application/xml" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/Question"
-              }
-            }
-          },
-          "description" : "Question object that needs to be added to the form",
-          "required" : true
-        },
-        "responses" : {
-          "400" : {
-            "description" : "Invalid ID supplied"
-          },
-          "404" : {
-            "description" : "Pet not found"
-          },
-          "405" : {
-            "description" : "Validation exception"
-          }
-        }
-      }
-    },
     "/questions" : {
       "get" : {
-        "tags" : [ "question" ],
+        "tags" : [ "questions" ],
         "summary" : "Finds all questions",
-        "description" : "Multiple values can be provided with comma separated strings",
         "operationId" : "findQuestions",
         "parameters" : [ {
           "name" : "class",
@@ -101,9 +57,9 @@
             "enum" : [ "Article", "Book", "eDocument", "Standard" ]
           }
         }, {
-          "name" : "productType",
+          "name" : "product_type",
           "in" : "query",
-          "description" : "ProductType values that can be considered for filter",
+          "description" : "Product type values that can be considered for filter",
           "required" : false,
           "schema" : {
             "type" : "string",
@@ -131,16 +87,36 @@
         "security" : [ {
           "petstore_auth" : [ "write:pets", "read:pets" ]
         } ]
+      },
+      "post" : {
+        "tags" : [ "questions" ],
+        "summary" : "Add a new question",
+        "operationId" : "createQuestion",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Question"
+              }
+            }
+          },
+          "description" : "Question object that needs to be added to the form",
+          "required" : true
+        },
+        "responses" : {
+          "500" : {
+            "description" : "Internal server error"
+          }
+        }
       }
     },
-    "/question/{questionId}" : {
+    "/questions/{question_id}" : {
       "get" : {
-        "tags" : [ "question" ],
+        "tags" : [ "questions" ],
         "summary" : "Find question by ID",
-        "description" : "Returns a single question",
-        "operationId" : "getQuestionById",
+        "operationId" : "findQuestion",
         "parameters" : [ {
-          "name" : "questionId",
+          "name" : "question_id",
           "in" : "path",
           "description" : "ID of question to return",
           "required" : true,
@@ -169,7 +145,7 @@
             "description" : "Invalid ID supplied"
           },
           "404" : {
-            "description" : "Pet not found"
+            "description" : "Question not found"
           }
         },
         "security" : [ {
@@ -177,11 +153,11 @@
         } ]
       },
       "delete" : {
-        "tags" : [ "question" ],
+        "tags" : [ "questions" ],
         "summary" : "Deletes a question",
         "operationId" : "deleteQuestion",
         "parameters" : [ {
-          "name" : "questionId",
+          "name" : "question_id",
           "in" : "path",
           "description" : "Question id to delete",
           "required" : true,
@@ -201,40 +177,35 @@
         "security" : [ {
           "petstore_auth" : [ "write:pets", "read:pets" ]
         } ]
-      }
-    },
-    "/questionnaire" : {
-      "post" : {
-        "tags" : [ "questionnaire" ],
-        "summary" : "Add a new questionnaire",
-        "operationId" : "addQuestionaire",
-        "requestBody" : {
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/Questionnaire"
-              }
-            }
-          }
-        },
-        "responses" : {
-          "500" : {
-            "description" : "Internal server error"
-          }
-        }
       },
       "put" : {
-        "tags" : [ "questionnaire" ],
-        "summary" : "Update an existing questionnaire",
-        "operationId" : "updateQuestionnaire",
+        "tags" : [ "questions" ],
+        "summary" : "Update an existing question",
+        "operationId" : "updateQuestion",
+        "parameters" : [ {
+          "name" : "question_id",
+          "in" : "path",
+          "description" : "Question id to update",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        } ],
         "requestBody" : {
           "content" : {
             "application/json" : {
               "schema" : {
-                "$ref" : "#/components/schemas/Questionnaire"
+                "$ref" : "#/components/schemas/Question"
+              }
+            },
+            "application/xml" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Question"
               }
             }
           },
+          "description" : "Question object that needs to be added to the form",
           "required" : true
         },
         "responses" : {
@@ -242,7 +213,7 @@
             "description" : "Invalid ID supplied"
           },
           "404" : {
-            "description" : "Questionnaire not found"
+            "description" : "Question not found"
           },
           "405" : {
             "description" : "Validation exception"
@@ -250,75 +221,10 @@
         }
       }
     },
-    "/questionnaire/{questionnaireId}" : {
-      "get" : {
-        "tags" : [ "questionnaire" ],
-        "summary" : "Find questionnaire by ID",
-        "description" : "Returns a single questionnaire",
-        "operationId" : "getQuestionnaireById",
-        "parameters" : [ {
-          "name" : "questionnaireId",
-          "in" : "path",
-          "description" : "ID of question to return",
-          "required" : true,
-          "schema" : {
-            "type" : "integer",
-            "format" : "int64"
-          }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "successful operation",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Questionnaire"
-                }
-              },
-              "application/xml" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Questionnaire"
-                }
-              }
-            }
-          },
-          "400" : {
-            "description" : "Invalid ID supplied"
-          },
-          "404" : {
-            "description" : "Questionnaire not found"
-          }
-        }
-      },
-      "delete" : {
-        "tags" : [ "questionnaire" ],
-        "summary" : "Deletes a questionnaire",
-        "operationId" : "deleteQuestionnaire",
-        "parameters" : [ {
-          "name" : "questionnaireId",
-          "in" : "path",
-          "description" : "Questionnaire id to delete",
-          "required" : true,
-          "schema" : {
-            "type" : "integer",
-            "format" : "int64"
-          }
-        } ],
-        "responses" : {
-          "400" : {
-            "description" : "Invalid ID supplied"
-          },
-          "404" : {
-            "description" : "Questionnaire not found"
-          }
-        }
-      }
-    },
     "/questionnaires" : {
       "get" : {
-        "tags" : [ "questionnaire" ],
+        "tags" : [ "questionnaires" ],
         "summary" : "Finds all questionnaires",
-        "description" : "Multiple values can be provided with comma separated strings",
         "operationId" : "findQuestionnaires",
         "parameters" : [ {
           "name" : "evaluator",
@@ -355,12 +261,815 @@
             "description" : "Not found"
           }
         }
+      },
+      "post" : {
+        "tags" : [ "questionnaires" ],
+        "summary" : "Add a new questionnaire",
+        "operationId" : "createQuestionaire",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Questionnaire"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "500" : {
+            "description" : "Internal server error"
+          }
+        }
+      }
+    },
+    "/questionnaires/{questionnaire_id}" : {
+      "get" : {
+        "tags" : [ "questionnaires" ],
+        "summary" : "Find questionnaire by ID",
+        "operationId" : "findQuestionnaire",
+        "parameters" : [ {
+          "name" : "questionnaire_id",
+          "in" : "path",
+          "description" : "ID of questionnaire to return",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Questionnaire"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Questionnaire"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid ID supplied"
+          },
+          "404" : {
+            "description" : "Questionnaire not found"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "questionnaires" ],
+        "summary" : "Deletes a questionnaire",
+        "operationId" : "deleteQuestionnaire",
+        "parameters" : [ {
+          "name" : "questionnaire_id",
+          "in" : "path",
+          "description" : "Questionnaire id to delete",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        } ],
+        "responses" : {
+          "400" : {
+            "description" : "Invalid ID supplied"
+          },
+          "404" : {
+            "description" : "Questionnaire not found"
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "questionnaires" ],
+        "summary" : "Update an existing questionnaire",
+        "operationId" : "updateQuestionnaire",
+        "parameters" : [ {
+          "name" : "questionnaire_id",
+          "in" : "path",
+          "description" : "Questionnaire id to update",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Questionnaire"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "400" : {
+            "description" : "Invalid ID supplied"
+          },
+          "404" : {
+            "description" : "Questionnaire not found"
+          },
+          "405" : {
+            "description" : "Validation exception"
+          }
+        }
+      }
+    },
+    "/request-evaluations" : {
+      "get" : {
+        "tags" : [ "request-evaluations" ],
+        "summary" : "Finds all request-evaluations",
+        "operationId" : "findRequestEvaluations",
+        "parameters" : [ {
+          "name" : "customer_cpf_cnpj",
+          "in" : "query",
+          "description" : "CPF and CNPJ values that can be considered for filter",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/RequestEvaluation"
+                  }
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "Not found"
+          }
+        },
+        "security" : [ {
+          "petstore_auth" : [ "write:pets", "read:pets" ]
+        } ]
+      },
+      "post" : {
+        "tags" : [ "request-evaluations" ],
+        "summary" : "Add a new request-evaluation",
+        "operationId" : "createRequestEvaluation",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Question"
+              }
+            }
+          },
+          "description" : "Question object that needs to be added to the form",
+          "required" : true
+        },
+        "responses" : {
+          "500" : {
+            "description" : "Internal server error"
+          }
+        }
+      }
+    },
+    "/request-evaluations/{request_evaluation_id}" : {
+      "get" : {
+        "tags" : [ "request-evaluations" ],
+        "summary" : "Find request evaluation by ID",
+        "operationId" : "findRequestEvaluation",
+        "parameters" : [ {
+          "name" : "request_evaluation_id",
+          "in" : "path",
+          "description" : "ID of request evaluation to return",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/RequestEvaluation"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/RequestEvaluation"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid ID supplied"
+          },
+          "404" : {
+            "description" : "Request evaluation not found"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "request-evaluations" ],
+        "summary" : "Deletes a request evaluation",
+        "operationId" : "deleteRequestEvaluation",
+        "parameters" : [ {
+          "name" : "request_evaluation_id",
+          "in" : "path",
+          "description" : "Request Evaluation id to delete",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        } ],
+        "responses" : {
+          "400" : {
+            "description" : "Invalid ID supplied"
+          },
+          "404" : {
+            "description" : "Request Evaluation not found"
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "request-evaluations" ],
+        "summary" : "Update an existing request evaluation",
+        "operationId" : "updateRequestEvaluation",
+        "parameters" : [ {
+          "name" : "request_evaluation_id",
+          "in" : "path",
+          "description" : "Request Evaluation id to update",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/RequestEvaluation"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "400" : {
+            "description" : "Invalid ID supplied"
+          },
+          "404" : {
+            "description" : "Request Evaluation not found"
+          },
+          "405" : {
+            "description" : "Validation exception"
+          }
+        }
+      }
+    },
+    "/reports" : {
+      "get" : {
+        "tags" : [ "reports" ],
+        "summary" : "Finds all reports",
+        "operationId" : "findReports",
+        "parameters" : [ {
+          "name" : "request_evaluation_id",
+          "in" : "query",
+          "description" : "Request evaluation id values that can be considered for filter",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "product_type",
+          "in" : "query",
+          "description" : "Product type values that can be considered for filter",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "enum" : [ "Software", "Hardware", "Hardware/Software" ]
+          }
+        }, {
+          "name" : "report_date",
+          "in" : "query",
+          "description" : "Report date values that can be considered for filter",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Report"
+                  }
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "Not found"
+          }
+        },
+        "security" : [ {
+          "petstore_auth" : [ "write:pets", "read:pets" ]
+        } ]
+      },
+      "post" : {
+        "tags" : [ "reports" ],
+        "summary" : "Add a new report",
+        "operationId" : "createReport",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Report"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "500" : {
+            "description" : "Internal server error"
+          }
+        }
+      }
+    },
+    "/reports/{report_id}" : {
+      "get" : {
+        "tags" : [ "reports" ],
+        "summary" : "Find a report by ID",
+        "operationId" : "findReport",
+        "parameters" : [ {
+          "name" : "report_id",
+          "in" : "path",
+          "description" : "ID of report to return",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Report"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Report"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid ID supplied"
+          },
+          "404" : {
+            "description" : "Report not found"
+          }
+        },
+        "security" : [ {
+          "api_key" : [ ]
+        } ]
+      },
+      "delete" : {
+        "tags" : [ "reports" ],
+        "summary" : "Deletes a report",
+        "operationId" : "deleteReport",
+        "parameters" : [ {
+          "name" : "report_id",
+          "in" : "path",
+          "description" : "Report id to delete",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        } ],
+        "responses" : {
+          "400" : {
+            "description" : "Invalid ID supplied"
+          },
+          "404" : {
+            "description" : "Report not found"
+          }
+        },
+        "security" : [ {
+          "petstore_auth" : [ "write:pets", "read:pets" ]
+        } ]
+      },
+      "put" : {
+        "tags" : [ "reports" ],
+        "summary" : "Update an existing report",
+        "operationId" : "updateReport",
+        "parameters" : [ {
+          "name" : "report_id",
+          "in" : "path",
+          "description" : "Report id to update",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Report"
+              }
+            },
+            "application/xml" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Report"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "400" : {
+            "description" : "Invalid ID supplied"
+          },
+          "404" : {
+            "description" : "Question not found"
+          },
+          "405" : {
+            "description" : "Validation exception"
+          }
+        }
+      }
+    },
+    "/products" : {
+      "get" : {
+        "tags" : [ "products" ],
+        "summary" : "Finds all products",
+        "operationId" : "findProducts",
+        "parameters" : [ {
+          "name" : "product_name",
+          "in" : "query",
+          "description" : "Product name values that can be considered for filter",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "product_type",
+          "in" : "query",
+          "description" : "Product type values that can be considered for filter",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "enum" : [ "Software", "Hardware", "Hardware/Software" ]
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Product"
+                  }
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "Not found"
+          }
+        },
+        "security" : [ {
+          "petstore_auth" : [ "write:pets", "read:pets" ]
+        } ]
+      },
+      "post" : {
+        "tags" : [ "products" ],
+        "summary" : "Add a new product",
+        "operationId" : "createProduct",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Product"
+              }
+            }
+          },
+          "description" : "Product object that needs to be evaluated",
+          "required" : true
+        },
+        "responses" : {
+          "500" : {
+            "description" : "Internal server error"
+          }
+        }
+      }
+    },
+    "/products/{product_id}" : {
+      "get" : {
+        "tags" : [ "products" ],
+        "summary" : "Find product by ID",
+        "operationId" : "findProduct",
+        "parameters" : [ {
+          "name" : "product_id",
+          "in" : "path",
+          "description" : "ID of product to return",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Product"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Product"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid ID supplied"
+          },
+          "404" : {
+            "description" : "Product not found"
+          }
+        },
+        "security" : [ {
+          "api_key" : [ ]
+        } ]
+      },
+      "delete" : {
+        "tags" : [ "products" ],
+        "summary" : "Deletes a product",
+        "operationId" : "deleteProduct",
+        "parameters" : [ {
+          "name" : "product_id",
+          "in" : "path",
+          "description" : "Product id to delete",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        } ],
+        "responses" : {
+          "400" : {
+            "description" : "Invalid ID supplied"
+          },
+          "404" : {
+            "description" : "Product not found"
+          }
+        },
+        "security" : [ {
+          "petstore_auth" : [ "write:pets", "read:pets" ]
+        } ]
+      },
+      "put" : {
+        "tags" : [ "products" ],
+        "summary" : "Update an existing product",
+        "operationId" : "updateProduct",
+        "parameters" : [ {
+          "name" : "product_id",
+          "in" : "path",
+          "description" : "Product id to update",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Product"
+              }
+            },
+            "application/xml" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Product"
+              }
+            }
+          },
+          "description" : "Product object that needs to be evaluated",
+          "required" : true
+        },
+        "responses" : {
+          "400" : {
+            "description" : "Invalid ID supplied"
+          },
+          "404" : {
+            "description" : "Question not found"
+          },
+          "405" : {
+            "description" : "Validation exception"
+          }
+        }
+      }
+    },
+    "/customers" : {
+      "get" : {
+        "tags" : [ "customers" ],
+        "summary" : "Finds all customers",
+        "operationId" : "findCustomers",
+        "parameters" : [ {
+          "name" : "customer_cpf_cnpj",
+          "in" : "query",
+          "description" : "CPF and CNPJ values that can be considered for filter",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Customer"
+                  }
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "Not found"
+          }
+        },
+        "security" : [ {
+          "petstore_auth" : [ "write:pets", "read:pets" ]
+        } ]
+      },
+      "post" : {
+        "tags" : [ "customers" ],
+        "summary" : "Add a new customer",
+        "operationId" : "createCustomer",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Customer"
+              }
+            }
+          },
+          "description" : "Customer object that needs to have a product evaluation",
+          "required" : true
+        },
+        "responses" : {
+          "500" : {
+            "description" : "Internal server error"
+          }
+        }
+      }
+    },
+    "/customers/{customer_cpf_cnpj}" : {
+      "get" : {
+        "tags" : [ "customers" ],
+        "summary" : "Find a customer by ID",
+        "operationId" : "findCustomer",
+        "parameters" : [ {
+          "name" : "customer_cpf_cnpj",
+          "in" : "path",
+          "description" : "CPF or CNPJ of customer to return",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Customer"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Customer"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid ID supplied"
+          },
+          "404" : {
+            "description" : "Customer not found"
+          }
+        },
+        "security" : [ {
+          "api_key" : [ ]
+        } ]
+      },
+      "delete" : {
+        "tags" : [ "customers" ],
+        "summary" : "Deletes a customer",
+        "operationId" : "deleteCustomer",
+        "parameters" : [ {
+          "name" : "customer_cpf_cnpj",
+          "in" : "path",
+          "description" : "Customer id to delete",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        } ],
+        "responses" : {
+          "400" : {
+            "description" : "Invalid ID supplied"
+          },
+          "404" : {
+            "description" : "Customer not found"
+          }
+        },
+        "security" : [ {
+          "petstore_auth" : [ "write:pets", "read:pets" ]
+        } ]
+      },
+      "put" : {
+        "tags" : [ "customers" ],
+        "summary" : "Update an existing customer",
+        "operationId" : "updateCustomer",
+        "parameters" : [ {
+          "name" : "customer_cpf_cnpj",
+          "in" : "path",
+          "description" : "Customer id to update",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Customer"
+              }
+            },
+            "application/xml" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Customer"
+              }
+            }
+          },
+          "description" : "Customer object that needs to have a product evaluation",
+          "required" : true
+        },
+        "responses" : {
+          "400" : {
+            "description" : "Invalid ID supplied"
+          },
+          "404" : {
+            "description" : "Customer not found"
+          },
+          "405" : {
+            "description" : "Validation exception"
+          }
+        }
       }
     }
   },
-  "servers" : [ {
-    "url" : "https://virtserver.swaggerhub.com/pablo.santos/LufhInspecao/1.0.0"
-  } ],
   "components" : {
     "securitySchemes" : {
       "petstore_auth" : {
@@ -536,13 +1245,11 @@
             "type" : "integer",
             "format" : "int64"
           },
-          "product" : {
-            "type" : "object",
-            "$ref" : "#/components/schemas/Product"
+          "productId" : {
+            "type" : "string"
           },
-          "customer" : {
-            "type" : "object",
-            "$ref" : "#/components/schemas/Customer"
+          "customerCpfCnpj" : {
+            "type" : "string"
           },
           "startDate" : {
             "type" : "string",
@@ -588,11 +1295,16 @@
           }
         }
       },
-      "ReportEvaluation" : {
+      "Report" : {
         "description" : "Represents the result of the evaluation",
         "properties" : {
-          "productEvaluationId" : {
+          "requestEvaluationId" : {
             "type" : "integer"
+          },
+          "reportDate" : {
+            "type" : "string",
+            "format" : "date-time",
+            "description" : "date the report was made"
           },
           "questionare" : {
             "type" : "object",
@@ -601,5 +1313,8 @@
         }
       }
     }
-  }
+  },
+  "servers" : [ {
+    "url" : "https://virtserver.swaggerhub.com/pablo.santos/LufhInspecao/1.0.0"
+  } ]
 }
