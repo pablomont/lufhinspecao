@@ -468,6 +468,15 @@
                   "$ref" : "#/components/schemas/RequestEvaluation"
                 }
               }
+            },
+            "links" : {
+              "FindProductByProductId" : {
+                "description" : "The 'productId' value returned in the response can be used as the  'product_id' in 'GET /products/{product_id}\n",
+                "operationId" : "findProduct",
+                "parameters" : {
+                  "product_id" : "$response.body#/productId"
+                }
+              }
             }
           },
           "400" : {
