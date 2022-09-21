@@ -83,10 +83,7 @@
           "404" : {
             "description" : "Not found"
           }
-        },
-        "security" : [ {
-          "petstore_auth" : [ "write:pets", "read:pets" ]
-        } ]
+        }
       },
       "post" : {
         "tags" : [ "questions" ],
@@ -147,10 +144,7 @@
           "404" : {
             "description" : "Question not found"
           }
-        },
-        "security" : [ {
-          "api_key" : [ ]
-        } ]
+        }
       },
       "delete" : {
         "tags" : [ "questions" ],
@@ -173,10 +167,7 @@
           "404" : {
             "description" : "Question not found"
           }
-        },
-        "security" : [ {
-          "petstore_auth" : [ "write:pets", "read:pets" ]
-        } ]
+        }
       },
       "put" : {
         "tags" : [ "questions" ],
@@ -412,10 +403,7 @@
           "404" : {
             "description" : "Not found"
           }
-        },
-        "security" : [ {
-          "petstore_auth" : [ "write:pets", "read:pets" ]
-        } ]
+        }
       },
       "post" : {
         "tags" : [ "request-evaluations" ],
@@ -595,10 +583,7 @@
           "404" : {
             "description" : "Not found"
           }
-        },
-        "security" : [ {
-          "petstore_auth" : [ "write:pets", "read:pets" ]
-        } ]
+        }
       },
       "post" : {
         "tags" : [ "reports" ],
@@ -658,10 +643,7 @@
           "404" : {
             "description" : "Report not found"
           }
-        },
-        "security" : [ {
-          "api_key" : [ ]
-        } ]
+        }
       },
       "delete" : {
         "tags" : [ "reports" ],
@@ -684,10 +666,7 @@
           "404" : {
             "description" : "Report not found"
           }
-        },
-        "security" : [ {
-          "petstore_auth" : [ "write:pets", "read:pets" ]
-        } ]
+        }
       },
       "put" : {
         "tags" : [ "reports" ],
@@ -771,10 +750,7 @@
           "404" : {
             "description" : "Not found"
           }
-        },
-        "security" : [ {
-          "petstore_auth" : [ "write:pets", "read:pets" ]
-        } ]
+        }
       },
       "post" : {
         "tags" : [ "products" ],
@@ -835,10 +811,7 @@
           "404" : {
             "description" : "Product not found"
           }
-        },
-        "security" : [ {
-          "api_key" : [ ]
-        } ]
+        }
       },
       "delete" : {
         "tags" : [ "products" ],
@@ -861,10 +834,7 @@
           "404" : {
             "description" : "Product not found"
           }
-        },
-        "security" : [ {
-          "petstore_auth" : [ "write:pets", "read:pets" ]
-        } ]
+        }
       },
       "put" : {
         "tags" : [ "products" ],
@@ -940,10 +910,7 @@
           "404" : {
             "description" : "Not found"
           }
-        },
-        "security" : [ {
-          "petstore_auth" : [ "write:pets", "read:pets" ]
-        } ]
+        }
       },
       "post" : {
         "tags" : [ "customers" ],
@@ -1004,10 +971,7 @@
           "404" : {
             "description" : "Customer not found"
           }
-        },
-        "security" : [ {
-          "api_key" : [ ]
-        } ]
+        }
       },
       "delete" : {
         "tags" : [ "customers" ],
@@ -1030,10 +994,7 @@
           "404" : {
             "description" : "Customer not found"
           }
-        },
-        "security" : [ {
-          "petstore_auth" : [ "write:pets", "read:pets" ]
-        } ]
+        }
       },
       "put" : {
         "tags" : [ "customers" ],
@@ -1080,25 +1041,6 @@
     }
   },
   "components" : {
-    "securitySchemes" : {
-      "petstore_auth" : {
-        "type" : "oauth2",
-        "flows" : {
-          "implicit" : {
-            "authorizationUrl" : "http://petstore.swagger.io/oauth/dialog",
-            "scopes" : {
-              "write:pets" : "modify pets in your account",
-              "read:pets" : "read your pets"
-            }
-          }
-        }
-      },
-      "api_key" : {
-        "type" : "apiKey",
-        "name" : "api_key",
-        "in" : "header"
-      }
-    },
     "schemas" : {
       "Product" : {
         "description" : "Represents a product to be evaluated",
