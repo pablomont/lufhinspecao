@@ -1041,6 +1041,12 @@
     }
   },
   "components" : {
+    "securitySchemes" : {
+      "basicAuth" : {
+        "type" : "http",
+        "scheme" : "basic"
+      }
+    },
     "schemas" : {
       "Product" : {
         "description" : "Represents a product to be evaluated",
@@ -1265,6 +1271,9 @@
       }
     }
   },
+  "security" : [ {
+    "basicAuth" : [ ]
+  } ],
   "servers" : [ {
     "url" : "https://virtserver.swaggerhub.com/pablo.santos/LufhInspecao/1.0.0"
   } ]
