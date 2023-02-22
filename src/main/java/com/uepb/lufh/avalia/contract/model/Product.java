@@ -1,21 +1,26 @@
-package model;
+package com.uepb.lufh.avalia.contract.model;
 
+import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.uepb.lufh.avalia.contract.model.ProductType;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import model.ProductTypeDto;
 import org.openapitools.jackson.nullable.JsonNullable;
+import java.time.OffsetDateTime;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
+
+
+import java.util.*;
 
 /**
  * Represents a product to be evaluated
  */
 @ApiModel(description = "Represents a product to be evaluated")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-21T22:46:02.357514-03:00[America/Fortaleza]")
-public class ProductDto   {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-22T00:21:14.348877-03:00[America/Fortaleza]")
+public class Product   {
   @JsonProperty("id")
   private Long id;
 
@@ -26,7 +31,7 @@ public class ProductDto   {
   private String manufacterName;
 
   @JsonProperty("productType")
-  private ProductTypeDto productType;
+  private ProductType productType;
 
   @JsonProperty("productClass")
   private String productClass;
@@ -34,7 +39,7 @@ public class ProductDto   {
   @JsonProperty("completionLevel")
   private String completionLevel;
 
-  public ProductDto id(Long id) {
+  public Product id(Long id) {
     this.id = id;
     return this;
   }
@@ -54,7 +59,7 @@ public class ProductDto   {
     this.id = id;
   }
 
-  public ProductDto productName(String productName) {
+  public Product productName(String productName) {
     this.productName = productName;
     return this;
   }
@@ -74,7 +79,7 @@ public class ProductDto   {
     this.productName = productName;
   }
 
-  public ProductDto manufacterName(String manufacterName) {
+  public Product manufacterName(String manufacterName) {
     this.manufacterName = manufacterName;
     return this;
   }
@@ -94,7 +99,7 @@ public class ProductDto   {
     this.manufacterName = manufacterName;
   }
 
-  public ProductDto productType(ProductTypeDto productType) {
+  public Product productType(ProductType productType) {
     this.productType = productType;
     return this;
   }
@@ -107,15 +112,15 @@ public class ProductDto   {
 
   @Valid
 
-  public ProductTypeDto getProductType() {
+  public ProductType getProductType() {
     return productType;
   }
 
-  public void setProductType(ProductTypeDto productType) {
+  public void setProductType(ProductType productType) {
     this.productType = productType;
   }
 
-  public ProductDto productClass(String productClass) {
+  public Product productClass(String productClass) {
     this.productClass = productClass;
     return this;
   }
@@ -135,7 +140,7 @@ public class ProductDto   {
     this.productClass = productClass;
   }
 
-  public ProductDto completionLevel(String completionLevel) {
+  public Product completionLevel(String completionLevel) {
     this.completionLevel = completionLevel;
     return this;
   }
@@ -164,7 +169,7 @@ public class ProductDto   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ProductDto product = (ProductDto) o;
+    Product product = (Product) o;
     return Objects.equals(this.id, product.id) &&
         Objects.equals(this.productName, product.productName) &&
         Objects.equals(this.manufacterName, product.manufacterName) &&
@@ -181,7 +186,7 @@ public class ProductDto   {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ProductDto {\n");
+    sb.append("class Product {\n");
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    productName: ").append(toIndentedString(productName)).append("\n");

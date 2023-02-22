@@ -1,4 +1,4 @@
-package contract;
+package com.uepb.lufh.avalia.contract.api;
 
 import org.springframework.web.context.request.NativeWebRequest;
 

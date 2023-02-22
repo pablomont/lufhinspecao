@@ -1,5 +1,6 @@
-package model;
+package com.uepb.lufh.avalia.contract.model;
 
+import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -8,15 +9,19 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.time.OffsetDateTime;
 import org.openapitools.jackson.nullable.JsonNullable;
+import java.time.OffsetDateTime;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
+
+
+import java.util.*;
 
 /**
  * Represents a request to evaluate a product.
  */
 @ApiModel(description = "Represents a request to evaluate a product.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-21T22:46:02.357514-03:00[America/Fortaleza]")
-public class RequestEvaluationDto   {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-22T00:21:14.348877-03:00[America/Fortaleza]")
+public class RequestEvaluation   {
   @JsonProperty("id")
   private Long id;
 
@@ -82,7 +87,7 @@ public class RequestEvaluationDto   {
   @JsonProperty("coverage")
   private String coverage;
 
-  public RequestEvaluationDto id(Long id) {
+  public RequestEvaluation id(Long id) {
     this.id = id;
     return this;
   }
@@ -102,7 +107,7 @@ public class RequestEvaluationDto   {
     this.id = id;
   }
 
-  public RequestEvaluationDto productId(String productId) {
+  public RequestEvaluation productId(String productId) {
     this.productId = productId;
     return this;
   }
@@ -122,7 +127,7 @@ public class RequestEvaluationDto   {
     this.productId = productId;
   }
 
-  public RequestEvaluationDto customerCpfCnpj(String customerCpfCnpj) {
+  public RequestEvaluation customerCpfCnpj(String customerCpfCnpj) {
     this.customerCpfCnpj = customerCpfCnpj;
     return this;
   }
@@ -142,7 +147,7 @@ public class RequestEvaluationDto   {
     this.customerCpfCnpj = customerCpfCnpj;
   }
 
-  public RequestEvaluationDto startDate(OffsetDateTime startDate) {
+  public RequestEvaluation startDate(OffsetDateTime startDate) {
     this.startDate = startDate;
     return this;
   }
@@ -163,7 +168,7 @@ public class RequestEvaluationDto   {
     this.startDate = startDate;
   }
 
-  public RequestEvaluationDto endDate(OffsetDateTime endDate) {
+  public RequestEvaluation endDate(OffsetDateTime endDate) {
     this.endDate = endDate;
     return this;
   }
@@ -184,7 +189,7 @@ public class RequestEvaluationDto   {
     this.endDate = endDate;
   }
 
-  public RequestEvaluationDto urgency(Boolean urgency) {
+  public RequestEvaluation urgency(Boolean urgency) {
     this.urgency = urgency;
     return this;
   }
@@ -204,7 +209,7 @@ public class RequestEvaluationDto   {
     this.urgency = urgency;
   }
 
-  public RequestEvaluationDto testType(TestTypeEnum testType) {
+  public RequestEvaluation testType(TestTypeEnum testType) {
     this.testType = testType;
     return this;
   }
@@ -224,7 +229,7 @@ public class RequestEvaluationDto   {
     this.testType = testType;
   }
 
-  public RequestEvaluationDto coverage(String coverage) {
+  public RequestEvaluation coverage(String coverage) {
     this.coverage = coverage;
     return this;
   }
@@ -253,7 +258,7 @@ public class RequestEvaluationDto   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    RequestEvaluationDto requestEvaluation = (RequestEvaluationDto) o;
+    RequestEvaluation requestEvaluation = (RequestEvaluation) o;
     return Objects.equals(this.id, requestEvaluation.id) &&
         Objects.equals(this.productId, requestEvaluation.productId) &&
         Objects.equals(this.customerCpfCnpj, requestEvaluation.customerCpfCnpj) &&
@@ -272,7 +277,7 @@ public class RequestEvaluationDto   {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class RequestEvaluationDto {\n");
+    sb.append("class RequestEvaluation {\n");
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    productId: ").append(toIndentedString(productId)).append("\n");

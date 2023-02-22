@@ -1,5 +1,6 @@
-package model;
+package com.uepb.lufh.avalia.contract.model;
 
+import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -9,15 +10,19 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
+import java.time.OffsetDateTime;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
+
+
+import java.util.*;
 
 /**
  * Represents the answer data for the questions
  */
 @ApiModel(description = "Represents the answer data for the questions")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-21T22:46:02.357514-03:00[America/Fortaleza]")
-public class AnswerDto   {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-22T00:21:14.348877-03:00[America/Fortaleza]")
+public class Answer   {
   @JsonProperty("possibleAnswers")
   @Valid
   private List<String> possibleAnswers = null;
@@ -111,12 +116,12 @@ public class AnswerDto   {
   @JsonProperty("weight")
   private WeightEnum weight;
 
-  public AnswerDto possibleAnswers(List<String> possibleAnswers) {
+  public Answer possibleAnswers(List<String> possibleAnswers) {
     this.possibleAnswers = possibleAnswers;
     return this;
   }
 
-  public AnswerDto addPossibleAnswersItem(String possibleAnswersItem) {
+  public Answer addPossibleAnswersItem(String possibleAnswersItem) {
     if (this.possibleAnswers == null) {
       this.possibleAnswers = new ArrayList<>();
     }
@@ -139,7 +144,7 @@ public class AnswerDto   {
     this.possibleAnswers = possibleAnswers;
   }
 
-  public AnswerDto choosenAnswer(String choosenAnswer) {
+  public Answer choosenAnswer(String choosenAnswer) {
     this.choosenAnswer = choosenAnswer;
     return this;
   }
@@ -159,7 +164,7 @@ public class AnswerDto   {
     this.choosenAnswer = choosenAnswer;
   }
 
-  public AnswerDto severity(SeverityEnum severity) {
+  public Answer severity(SeverityEnum severity) {
     this.severity = severity;
     return this;
   }
@@ -179,7 +184,7 @@ public class AnswerDto   {
     this.severity = severity;
   }
 
-  public AnswerDto weight(WeightEnum weight) {
+  public Answer weight(WeightEnum weight) {
     this.weight = weight;
     return this;
   }
@@ -208,7 +213,7 @@ public class AnswerDto   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    AnswerDto answer = (AnswerDto) o;
+    Answer answer = (Answer) o;
     return Objects.equals(this.possibleAnswers, answer.possibleAnswers) &&
         Objects.equals(this.choosenAnswer, answer.choosenAnswer) &&
         Objects.equals(this.severity, answer.severity) &&
@@ -223,7 +228,7 @@ public class AnswerDto   {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class AnswerDto {\n");
+    sb.append("class Answer {\n");
     
     sb.append("    possibleAnswers: ").append(toIndentedString(possibleAnswers)).append("\n");
     sb.append("    choosenAnswer: ").append(toIndentedString(choosenAnswer)).append("\n");

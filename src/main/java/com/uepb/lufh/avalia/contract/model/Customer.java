@@ -1,20 +1,25 @@
-package model;
+package com.uepb.lufh.avalia.contract.model;
 
+import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.jackson.nullable.JsonNullable;
+import java.time.OffsetDateTime;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
+
+
+import java.util.*;
 
 /**
  * Represents a customer who has requested a product review
  */
 @ApiModel(description = "Represents a customer who has requested a product review")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-21T22:46:02.357514-03:00[America/Fortaleza]")
-public class CustomerDto   {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-22T00:21:14.348877-03:00[America/Fortaleza]")
+public class Customer   {
   @JsonProperty("id")
   private Integer id;
 
@@ -30,7 +35,7 @@ public class CustomerDto   {
   @JsonProperty("phoneNumber")
   private String phoneNumber;
 
-  public CustomerDto id(Integer id) {
+  public Customer id(Integer id) {
     this.id = id;
     return this;
   }
@@ -50,7 +55,7 @@ public class CustomerDto   {
     this.id = id;
   }
 
-  public CustomerDto customerName(String customerName) {
+  public Customer customerName(String customerName) {
     this.customerName = customerName;
     return this;
   }
@@ -70,7 +75,7 @@ public class CustomerDto   {
     this.customerName = customerName;
   }
 
-  public CustomerDto cpfCnpj(String cpfCnpj) {
+  public Customer cpfCnpj(String cpfCnpj) {
     this.cpfCnpj = cpfCnpj;
     return this;
   }
@@ -90,7 +95,7 @@ public class CustomerDto   {
     this.cpfCnpj = cpfCnpj;
   }
 
-  public CustomerDto email(String email) {
+  public Customer email(String email) {
     this.email = email;
     return this;
   }
@@ -110,7 +115,7 @@ public class CustomerDto   {
     this.email = email;
   }
 
-  public CustomerDto phoneNumber(String phoneNumber) {
+  public Customer phoneNumber(String phoneNumber) {
     this.phoneNumber = phoneNumber;
     return this;
   }
@@ -139,7 +144,7 @@ public class CustomerDto   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CustomerDto customer = (CustomerDto) o;
+    Customer customer = (Customer) o;
     return Objects.equals(this.id, customer.id) &&
         Objects.equals(this.customerName, customer.customerName) &&
         Objects.equals(this.cpfCnpj, customer.cpfCnpj) &&
@@ -155,7 +160,7 @@ public class CustomerDto   {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CustomerDto {\n");
+    sb.append("class Customer {\n");
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    customerName: ").append(toIndentedString(customerName)).append("\n");

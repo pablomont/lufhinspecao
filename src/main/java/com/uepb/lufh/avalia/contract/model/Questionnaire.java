@@ -1,29 +1,34 @@
-package model;
+package com.uepb.lufh.avalia.contract.model;
 
+import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.uepb.lufh.avalia.contract.model.Question;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
-import model.QuestionDto;
 import org.openapitools.jackson.nullable.JsonNullable;
+import java.time.OffsetDateTime;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
+
+
+import java.util.*;
 
 /**
  * It represents a grouping of questions that must be answered when analyzing a product.
  */
 @ApiModel(description = "It represents a grouping of questions that must be answered when analyzing a product.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-21T22:46:02.357514-03:00[America/Fortaleza]")
-public class QuestionnaireDto   {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-22T00:21:14.348877-03:00[America/Fortaleza]")
+public class Questionnaire   {
   @JsonProperty("id")
   private Long id;
 
   @JsonProperty("questions")
   @Valid
-  private List<QuestionDto> questions = null;
+  private List<Question> questions = null;
 
   @JsonProperty("evaluator")
   private String evaluator;
@@ -31,7 +36,7 @@ public class QuestionnaireDto   {
   @JsonProperty("creator")
   private String creator;
 
-  public QuestionnaireDto id(Long id) {
+  public Questionnaire id(Long id) {
     this.id = id;
     return this;
   }
@@ -51,12 +56,12 @@ public class QuestionnaireDto   {
     this.id = id;
   }
 
-  public QuestionnaireDto questions(List<QuestionDto> questions) {
+  public Questionnaire questions(List<Question> questions) {
     this.questions = questions;
     return this;
   }
 
-  public QuestionnaireDto addQuestionsItem(QuestionDto questionsItem) {
+  public Questionnaire addQuestionsItem(Question questionsItem) {
     if (this.questions == null) {
       this.questions = new ArrayList<>();
     }
@@ -72,15 +77,15 @@ public class QuestionnaireDto   {
 
   @Valid
 
-  public List<QuestionDto> getQuestions() {
+  public List<Question> getQuestions() {
     return questions;
   }
 
-  public void setQuestions(List<QuestionDto> questions) {
+  public void setQuestions(List<Question> questions) {
     this.questions = questions;
   }
 
-  public QuestionnaireDto evaluator(String evaluator) {
+  public Questionnaire evaluator(String evaluator) {
     this.evaluator = evaluator;
     return this;
   }
@@ -100,7 +105,7 @@ public class QuestionnaireDto   {
     this.evaluator = evaluator;
   }
 
-  public QuestionnaireDto creator(String creator) {
+  public Questionnaire creator(String creator) {
     this.creator = creator;
     return this;
   }
@@ -129,7 +134,7 @@ public class QuestionnaireDto   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    QuestionnaireDto questionnaire = (QuestionnaireDto) o;
+    Questionnaire questionnaire = (Questionnaire) o;
     return Objects.equals(this.id, questionnaire.id) &&
         Objects.equals(this.questions, questionnaire.questions) &&
         Objects.equals(this.evaluator, questionnaire.evaluator) &&
@@ -144,7 +149,7 @@ public class QuestionnaireDto   {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class QuestionnaireDto {\n");
+    sb.append("class Questionnaire {\n");
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    questions: ").append(toIndentedString(questions)).append("\n");

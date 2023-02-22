@@ -1,28 +1,33 @@
-package model;
+package com.uepb.lufh.avalia.contract.model;
 
+import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import com.uepb.lufh.avalia.contract.model.Answer;
+import com.uepb.lufh.avalia.contract.model.ModelClass;
+import com.uepb.lufh.avalia.contract.model.Reference;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import model.AnswerDto;
-import model.ClassDto;
-import model.ReferenceDto;
 import org.openapitools.jackson.nullable.JsonNullable;
+import java.time.OffsetDateTime;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
+
+import java.util.*;
+
 /**
- * QuestionDto
+ * Question
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-21T22:46:02.357514-03:00[America/Fortaleza]")
-public class QuestionDto   {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-22T00:21:14.348877-03:00[America/Fortaleza]")
+public class Question   {
   @JsonProperty("id")
   private Long id;
 
   @JsonProperty("class")
-  private ClassDto propertyClass;
+  private ModelClass propertyClass;
 
   /**
    * Gets or Sets productType
@@ -71,12 +76,12 @@ public class QuestionDto   {
   private String detailedQuestion;
 
   @JsonProperty("reference")
-  private ReferenceDto reference;
+  private Reference reference;
 
   @JsonProperty("answer")
-  private AnswerDto answer;
+  private Answer answer;
 
-  public QuestionDto id(Long id) {
+  public Question id(Long id) {
     this.id = id;
     return this;
   }
@@ -96,7 +101,7 @@ public class QuestionDto   {
     this.id = id;
   }
 
-  public QuestionDto propertyClass(ClassDto propertyClass) {
+  public Question propertyClass(ModelClass propertyClass) {
     this.propertyClass = propertyClass;
     return this;
   }
@@ -109,15 +114,15 @@ public class QuestionDto   {
 
   @Valid
 
-  public ClassDto getPropertyClass() {
+  public ModelClass getPropertyClass() {
     return propertyClass;
   }
 
-  public void setPropertyClass(ClassDto propertyClass) {
+  public void setPropertyClass(ModelClass propertyClass) {
     this.propertyClass = propertyClass;
   }
 
-  public QuestionDto productType(ProductTypeEnum productType) {
+  public Question productType(ProductTypeEnum productType) {
     this.productType = productType;
     return this;
   }
@@ -137,7 +142,7 @@ public class QuestionDto   {
     this.productType = productType;
   }
 
-  public QuestionDto baseQuestion(String baseQuestion) {
+  public Question baseQuestion(String baseQuestion) {
     this.baseQuestion = baseQuestion;
     return this;
   }
@@ -157,7 +162,7 @@ public class QuestionDto   {
     this.baseQuestion = baseQuestion;
   }
 
-  public QuestionDto detailedQuestion(String detailedQuestion) {
+  public Question detailedQuestion(String detailedQuestion) {
     this.detailedQuestion = detailedQuestion;
     return this;
   }
@@ -177,7 +182,7 @@ public class QuestionDto   {
     this.detailedQuestion = detailedQuestion;
   }
 
-  public QuestionDto reference(ReferenceDto reference) {
+  public Question reference(Reference reference) {
     this.reference = reference;
     return this;
   }
@@ -190,15 +195,15 @@ public class QuestionDto   {
 
   @Valid
 
-  public ReferenceDto getReference() {
+  public Reference getReference() {
     return reference;
   }
 
-  public void setReference(ReferenceDto reference) {
+  public void setReference(Reference reference) {
     this.reference = reference;
   }
 
-  public QuestionDto answer(AnswerDto answer) {
+  public Question answer(Answer answer) {
     this.answer = answer;
     return this;
   }
@@ -211,11 +216,11 @@ public class QuestionDto   {
 
   @Valid
 
-  public AnswerDto getAnswer() {
+  public Answer getAnswer() {
     return answer;
   }
 
-  public void setAnswer(AnswerDto answer) {
+  public void setAnswer(Answer answer) {
     this.answer = answer;
   }
 
@@ -228,7 +233,7 @@ public class QuestionDto   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    QuestionDto question = (QuestionDto) o;
+    Question question = (Question) o;
     return Objects.equals(this.id, question.id) &&
         Objects.equals(this.propertyClass, question.propertyClass) &&
         Objects.equals(this.productType, question.productType) &&
@@ -246,7 +251,7 @@ public class QuestionDto   {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class QuestionDto {\n");
+    sb.append("class Question {\n");
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    propertyClass: ").append(toIndentedString(propertyClass)).append("\n");

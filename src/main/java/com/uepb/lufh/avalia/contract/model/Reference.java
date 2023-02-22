@@ -1,5 +1,6 @@
-package model;
+package com.uepb.lufh.avalia.contract.model;
 
+import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -7,14 +8,18 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.jackson.nullable.JsonNullable;
+import java.time.OffsetDateTime;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
+
+import java.util.*;
+
 /**
- * ReferenceDto
+ * Reference
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-21T22:46:02.357514-03:00[America/Fortaleza]")
-public class ReferenceDto   {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-22T00:21:14.348877-03:00[America/Fortaleza]")
+public class Reference   {
   /**
    * type of reference
    */
@@ -60,7 +65,7 @@ public class ReferenceDto   {
   @JsonProperty("bibliography")
   private String bibliography;
 
-  public ReferenceDto type(TypeEnum type) {
+  public Reference type(TypeEnum type) {
     this.type = type;
     return this;
   }
@@ -80,7 +85,7 @@ public class ReferenceDto   {
     this.type = type;
   }
 
-  public ReferenceDto bibliography(String bibliography) {
+  public Reference bibliography(String bibliography) {
     this.bibliography = bibliography;
     return this;
   }
@@ -109,7 +114,7 @@ public class ReferenceDto   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ReferenceDto reference = (ReferenceDto) o;
+    Reference reference = (Reference) o;
     return Objects.equals(this.type, reference.type) &&
         Objects.equals(this.bibliography, reference.bibliography);
   }
@@ -122,7 +127,7 @@ public class ReferenceDto   {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ReferenceDto {\n");
+    sb.append("class Reference {\n");
     
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    bibliography: ").append(toIndentedString(bibliography)).append("\n");

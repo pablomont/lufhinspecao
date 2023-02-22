@@ -1,27 +1,32 @@
-package model;
+package com.uepb.lufh.avalia.contract.model;
 
+import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.jackson.nullable.JsonNullable;
+import java.time.OffsetDateTime;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
+
+
+import java.util.*;
 
 /**
  * Representa o tipo do produto
  */
 @ApiModel(description = "Representa o tipo do produto")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-21T22:46:02.357514-03:00[America/Fortaleza]")
-public class ProductTypeDto   {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-22T00:21:14.348877-03:00[America/Fortaleza]")
+public class ProductType   {
   @JsonProperty("id")
   private Long id;
 
   @JsonProperty("productTypeName")
   private String productTypeName;
 
-  public ProductTypeDto id(Long id) {
+  public ProductType id(Long id) {
     this.id = id;
     return this;
   }
@@ -41,7 +46,7 @@ public class ProductTypeDto   {
     this.id = id;
   }
 
-  public ProductTypeDto productTypeName(String productTypeName) {
+  public ProductType productTypeName(String productTypeName) {
     this.productTypeName = productTypeName;
     return this;
   }
@@ -70,7 +75,7 @@ public class ProductTypeDto   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ProductTypeDto productType = (ProductTypeDto) o;
+    ProductType productType = (ProductType) o;
     return Objects.equals(this.id, productType.id) &&
         Objects.equals(this.productTypeName, productType.productTypeName);
   }
@@ -83,7 +88,7 @@ public class ProductTypeDto   {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ProductTypeDto {\n");
+    sb.append("class ProductType {\n");
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    productTypeName: ").append(toIndentedString(productTypeName)).append("\n");

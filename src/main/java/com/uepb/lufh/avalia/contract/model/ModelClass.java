@@ -1,5 +1,6 @@
-package model;
+package com.uepb.lufh.avalia.contract.model;
 
+import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -7,14 +8,18 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.jackson.nullable.JsonNullable;
+import java.time.OffsetDateTime;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
+
+import java.util.*;
+
 /**
- * ClassDto
+ * ModelClass
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-21T22:46:02.357514-03:00[America/Fortaleza]")
-public class ClassDto   {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-22T00:21:14.348877-03:00[America/Fortaleza]")
+public class ModelClass   {
   /**
    * Each class of a question is a Nilsen heuristic
    */
@@ -71,7 +76,7 @@ public class ClassDto   {
   @JsonProperty("name")
   private NameEnum name;
 
-  public ClassDto name(NameEnum name) {
+  public ModelClass name(NameEnum name) {
     this.name = name;
     return this;
   }
@@ -100,7 +105,7 @@ public class ClassDto   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ClassDto propertyClass = (ClassDto) o;
+    ModelClass propertyClass = (ModelClass) o;
     return Objects.equals(this.name, propertyClass.name);
   }
 
@@ -112,7 +117,7 @@ public class ClassDto   {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ClassDto {\n");
+    sb.append("class ModelClass {\n");
     
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("}");

@@ -1,22 +1,27 @@
-package model;
+package com.uepb.lufh.avalia.contract.model;
 
+import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.uepb.lufh.avalia.contract.model.Questionnaire;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.time.OffsetDateTime;
-import model.QuestionnaireDto;
 import org.openapitools.jackson.nullable.JsonNullable;
+import java.time.OffsetDateTime;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
+
+
+import java.util.*;
 
 /**
  * Represents the result of the evaluation
  */
 @ApiModel(description = "Represents the result of the evaluation")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-21T22:46:02.357514-03:00[America/Fortaleza]")
-public class ReportDto   {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-22T00:21:14.348877-03:00[America/Fortaleza]")
+public class Report   {
   @JsonProperty("requestEvaluationId")
   private Integer requestEvaluationId;
 
@@ -25,9 +30,9 @@ public class ReportDto   {
   private OffsetDateTime reportDate;
 
   @JsonProperty("questionare")
-  private QuestionnaireDto questionare;
+  private Questionnaire questionare;
 
-  public ReportDto requestEvaluationId(Integer requestEvaluationId) {
+  public Report requestEvaluationId(Integer requestEvaluationId) {
     this.requestEvaluationId = requestEvaluationId;
     return this;
   }
@@ -47,7 +52,7 @@ public class ReportDto   {
     this.requestEvaluationId = requestEvaluationId;
   }
 
-  public ReportDto reportDate(OffsetDateTime reportDate) {
+  public Report reportDate(OffsetDateTime reportDate) {
     this.reportDate = reportDate;
     return this;
   }
@@ -68,7 +73,7 @@ public class ReportDto   {
     this.reportDate = reportDate;
   }
 
-  public ReportDto questionare(QuestionnaireDto questionare) {
+  public Report questionare(Questionnaire questionare) {
     this.questionare = questionare;
     return this;
   }
@@ -81,11 +86,11 @@ public class ReportDto   {
 
   @Valid
 
-  public QuestionnaireDto getQuestionare() {
+  public Questionnaire getQuestionare() {
     return questionare;
   }
 
-  public void setQuestionare(QuestionnaireDto questionare) {
+  public void setQuestionare(Questionnaire questionare) {
     this.questionare = questionare;
   }
 
@@ -98,7 +103,7 @@ public class ReportDto   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ReportDto report = (ReportDto) o;
+    Report report = (Report) o;
     return Objects.equals(this.requestEvaluationId, report.requestEvaluationId) &&
         Objects.equals(this.reportDate, report.reportDate) &&
         Objects.equals(this.questionare, report.questionare);
@@ -112,7 +117,7 @@ public class ReportDto   {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ReportDto {\n");
+    sb.append("class Report {\n");
     
     sb.append("    requestEvaluationId: ").append(toIndentedString(requestEvaluationId)).append("\n");
     sb.append("    reportDate: ").append(toIndentedString(reportDate)).append("\n");
