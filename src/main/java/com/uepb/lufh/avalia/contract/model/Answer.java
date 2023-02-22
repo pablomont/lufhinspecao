@@ -21,7 +21,7 @@ import java.util.*;
  * Represents the answer data for the questions
  */
 @ApiModel(description = "Represents the answer data for the questions")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-22T00:21:14.348877-03:00[America/Fortaleza]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-22T00:56:03.914173-03:00[America/Fortaleza]")
 public class Answer   {
   @JsonProperty("possibleAnswers")
   @Valid
