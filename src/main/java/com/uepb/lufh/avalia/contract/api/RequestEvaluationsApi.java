@@ -8,22 +8,26 @@ package com.uepb.lufh.avalia.contract.api;
 import com.uepb.lufh.avalia.contract.model.Question;
 import com.uepb.lufh.avalia.contract.model.RequestEvaluation;
 import io.swagger.annotations.*;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-22T00:56:03.914173-03:00[America/Fortaleza]")
+import java.util.Optional;
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-22T02:43:06.822926-03:00[America/Fortaleza]")
 @Validated
 @Api(value = "request-evaluations", description = "the request-evaluations API")
 public interface RequestEvaluationsApi {
 
-    default RequestEvaluationsApiDelegate getDelegate() {
-        return new RequestEvaluationsApiDelegate() {};
+    default Optional<NativeWebRequest> getRequest() {
+        return Optional.empty();
     }
 
     /**
@@ -45,7 +49,8 @@ public interface RequestEvaluationsApi {
     default ResponseEntity<Void> createRequestEvaluation(
 
 @ApiParam(value = "Question object that needs to be added to the form", required = true )   @Valid @RequestBody Question question) {
-        return getDelegate().createRequestEvaluation(question);
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+
     }
 
 
@@ -70,7 +75,8 @@ public interface RequestEvaluationsApi {
     default ResponseEntity<Void> deleteRequestEvaluation(@ApiParam(value = "Request Evaluation id to delete", required = true) @PathVariable("request_evaluation_id") Long requestEvaluationId
 
 ) {
-        return getDelegate().deleteRequestEvaluation(requestEvaluationId);
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+
     }
 
 
@@ -99,7 +105,22 @@ public interface RequestEvaluationsApi {
     default ResponseEntity<RequestEvaluation> findRequestEvaluation(@ApiParam(value = "ID of request evaluation to return", required = true) @PathVariable("request_evaluation_id") Long requestEvaluationId
 
 ) {
-        return getDelegate().findRequestEvaluation(requestEvaluationId);
+        getRequest().ifPresent(request -> {
+            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
+                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
+                    String exampleString = "{ \"coverage\" : \"coverage\", \"productId\" : \"productId\", \"customerCpfCnpj\" : \"customerCpfCnpj\", \"endDate\" : \"2000-01-23T04:56:07.000+00:00\", \"urgency\" : true, \"testType\" : \"compliance inspection\", \"id\" : 0, \"startDate\" : \"2000-01-23T04:56:07.000+00:00\" }";
+                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
+                    break;
+                }
+                if (mediaType.isCompatibleWith(MediaType.valueOf("application/xml"))) {
+                    String exampleString = "<null> <id>123456789</id> <productId>aeiou</productId> <customerCpfCnpj>aeiou</customerCpfCnpj> <startDate>2000-01-23T04:56:07.000Z</startDate> <endDate>2000-01-23T04:56:07.000Z</endDate> <urgency>true</urgency> <testType>aeiou</testType> <coverage>aeiou</coverage> </null>";
+                    ApiUtil.setExampleResponse(request, "application/xml", exampleString);
+                    break;
+                }
+            }
+        });
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+
     }
 
 
@@ -125,7 +146,17 @@ public interface RequestEvaluationsApi {
     default ResponseEntity<List<RequestEvaluation>> findRequestEvaluations(@ApiParam(value = "CPF and CNPJ values that can be considered for filter") @Valid @RequestParam(value = "customer_cpf_cnpj", required = false) String customerCpfCnpj
 
 ) {
-        return getDelegate().findRequestEvaluations(customerCpfCnpj);
+        getRequest().ifPresent(request -> {
+            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
+                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
+                    String exampleString = "{ \"coverage\" : \"coverage\", \"productId\" : \"productId\", \"customerCpfCnpj\" : \"customerCpfCnpj\", \"endDate\" : \"2000-01-23T04:56:07.000+00:00\", \"urgency\" : true, \"testType\" : \"compliance inspection\", \"id\" : 0, \"startDate\" : \"2000-01-23T04:56:07.000+00:00\" }";
+                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
+                    break;
+                }
+            }
+        });
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+
     }
 
 
@@ -157,7 +188,8 @@ public interface RequestEvaluationsApi {
 ,
 
 @ApiParam(value = "", required = true )   @Valid @RequestBody RequestEvaluation requestEvaluation) {
-        return getDelegate().updateRequestEvaluation(requestEvaluationId, requestEvaluation);
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+
     }
 
 }

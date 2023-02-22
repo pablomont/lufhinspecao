@@ -18,7 +18,7 @@ import java.util.*;
  * Representa o tipo do produto
  */
 @ApiModel(description = "Representa o tipo do produto")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-22T00:56:03.914173-03:00[America/Fortaleza]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-22T02:43:06.822926-03:00[America/Fortaleza]")
 public class ProductType   {
   @JsonProperty("id")
   private Long id;

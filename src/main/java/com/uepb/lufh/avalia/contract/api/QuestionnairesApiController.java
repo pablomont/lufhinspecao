@@ -2,21 +2,23 @@ package com.uepb.lufh.avalia.contract.api;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.context.request.NativeWebRequest;
 import java.util.Optional;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-22T00:56:03.914173-03:00[America/Fortaleza]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-22T02:43:06.822926-03:00[America/Fortaleza]")
 @Controller
 @RequestMapping("${openapi.lufhInspeo.base-path:/pablo.santos/LufhInspecao/1.0.0}")
 public class QuestionnairesApiController implements QuestionnairesApi {
 
-    private final QuestionnairesApiDelegate delegate;
+    private final NativeWebRequest request;
 
-    public QuestionnairesApiController(@org.springframework.beans.factory.annotation.Autowired(required = false) QuestionnairesApiDelegate delegate) {
-        this.delegate = Optional.ofNullable(delegate).orElse(new QuestionnairesApiDelegate() {});
+    @org.springframework.beans.factory.annotation.Autowired
+    public QuestionnairesApiController(NativeWebRequest request) {
+        this.request = request;
     }
 
     @Override
-    public QuestionnairesApiDelegate getDelegate() {
-        return delegate;
+    public Optional<NativeWebRequest> getRequest() {
+        return Optional.ofNullable(request);
     }
 
 }

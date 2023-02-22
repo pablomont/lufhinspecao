@@ -7,22 +7,26 @@ package com.uepb.lufh.avalia.contract.api;
 
 import com.uepb.lufh.avalia.contract.model.Product;
 import io.swagger.annotations.*;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-22T00:56:03.914173-03:00[America/Fortaleza]")
+import java.util.Optional;
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-22T02:43:06.822926-03:00[America/Fortaleza]")
 @Validated
 @Api(value = "products", description = "the products API")
 public interface ProductsApi {
 
-    default ProductsApiDelegate getDelegate() {
-        return new ProductsApiDelegate() {};
+    default Optional<NativeWebRequest> getRequest() {
+        return Optional.empty();
     }
 
     /**
@@ -44,7 +48,8 @@ public interface ProductsApi {
     default ResponseEntity<Void> createProduct(
 
 @ApiParam(value = "Product object that needs to be evaluated", required = true )   @Valid @RequestBody Product product) {
-        return getDelegate().createProduct(product);
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+
     }
 
 
@@ -69,7 +74,8 @@ public interface ProductsApi {
     default ResponseEntity<Void> deleteProduct(@ApiParam(value = "Product id to delete", required = true) @PathVariable("product_id") Long productId
 
 ) {
-        return getDelegate().deleteProduct(productId);
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+
     }
 
 
@@ -98,7 +104,22 @@ public interface ProductsApi {
     default ResponseEntity<Product> findProduct(@ApiParam(value = "ID of product to return", required = true) @PathVariable("product_id") Long productId
 
 ) {
-        return getDelegate().findProduct(productId);
+        getRequest().ifPresent(request -> {
+            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
+                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
+                    String exampleString = "{ \"manufacterName\" : \"Apple\", \"productClass\" : \"Class I\", \"completionLevel\" : \"Alfa Test, Beta Test\", \"id\" : 0, \"productName\" : \"Iphone X\", \"productType\" : { \"productTypeName\" : \"Medical Device\", \"id\" : 6 } }";
+                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
+                    break;
+                }
+                if (mediaType.isCompatibleWith(MediaType.valueOf("application/xml"))) {
+                    String exampleString = "<Product> <id>123456789</id> <productName>Iphone X</productName> <manufacterName>Apple</manufacterName> <productClass>Class I</productClass> <completionLevel>Alfa Test, Beta Test</completionLevel> </Product>";
+                    ApiUtil.setExampleResponse(request, "application/xml", exampleString);
+                    break;
+                }
+            }
+        });
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+
     }
 
 
@@ -127,7 +148,17 @@ public interface ProductsApi {
 ,@ApiParam(value = "Product type values that can be considered for filter", allowableValues = "Software, Hardware, Hardware/Software") @Valid @RequestParam(value = "product_type", required = false) String productType
 
 ) {
-        return getDelegate().findProducts(productName, productType);
+        getRequest().ifPresent(request -> {
+            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
+                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
+                    String exampleString = "{ \"manufacterName\" : \"Apple\", \"productClass\" : \"Class I\", \"completionLevel\" : \"Alfa Test, Beta Test\", \"id\" : 0, \"productName\" : \"Iphone X\", \"productType\" : { \"productTypeName\" : \"Medical Device\", \"id\" : 6 } }";
+                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
+                    break;
+                }
+            }
+        });
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+
     }
 
 
@@ -159,7 +190,8 @@ public interface ProductsApi {
 ,
 
 @ApiParam(value = "Product object that needs to be evaluated", required = true )   @Valid @RequestBody Product product) {
-        return getDelegate().updateProduct(productId, product);
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+
     }
 
 }

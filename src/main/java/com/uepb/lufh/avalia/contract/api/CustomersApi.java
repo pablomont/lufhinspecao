@@ -7,22 +7,26 @@ package com.uepb.lufh.avalia.contract.api;
 
 import com.uepb.lufh.avalia.contract.model.Customer;
 import io.swagger.annotations.*;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-22T00:56:03.914173-03:00[America/Fortaleza]")
+import java.util.Optional;
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-22T02:43:06.822926-03:00[America/Fortaleza]")
 @Validated
 @Api(value = "customers", description = "the customers API")
 public interface CustomersApi {
 
-    default CustomersApiDelegate getDelegate() {
-        return new CustomersApiDelegate() {};
+    default Optional<NativeWebRequest> getRequest() {
+        return Optional.empty();
     }
 
     /**
@@ -44,7 +48,8 @@ public interface CustomersApi {
     default ResponseEntity<Void> createCustomer(
 
 @ApiParam(value = "Customer object that needs to have a product evaluation", required = true )   @Valid @RequestBody Customer customer) {
-        return getDelegate().createCustomer(customer);
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+
     }
 
 
@@ -69,7 +74,8 @@ public interface CustomersApi {
     default ResponseEntity<Void> deleteCustomer(@ApiParam(value = "Customer id to delete", required = true) @PathVariable("customer_cpf_cnpj") Long customerCpfCnpj
 
 ) {
-        return getDelegate().deleteCustomer(customerCpfCnpj);
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+
     }
 
 
@@ -98,7 +104,22 @@ public interface CustomersApi {
     default ResponseEntity<Customer> findCustomer(@ApiParam(value = "CPF or CNPJ of customer to return", required = true) @PathVariable("customer_cpf_cnpj") Long customerCpfCnpj
 
 ) {
-        return getDelegate().findCustomer(customerCpfCnpj);
+        getRequest().ifPresent(request -> {
+            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
+                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
+                    String exampleString = "{ \"phoneNumber\" : \"phoneNumber\", \"id\" : 0, \"cpfCnpj\" : \"cpfCnpj\", \"customerName\" : \"customerName\", \"email\" : \"email\" }";
+                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
+                    break;
+                }
+                if (mediaType.isCompatibleWith(MediaType.valueOf("application/xml"))) {
+                    String exampleString = "<Customer> <id>123</id> <customerName>aeiou</customerName> <cpfCnpj>aeiou</cpfCnpj> <email>aeiou</email> <phoneNumber>aeiou</phoneNumber> </Customer>";
+                    ApiUtil.setExampleResponse(request, "application/xml", exampleString);
+                    break;
+                }
+            }
+        });
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+
     }
 
 
@@ -124,7 +145,17 @@ public interface CustomersApi {
     default ResponseEntity<List<Customer>> findCustomers(@ApiParam(value = "CPF and CNPJ values that can be considered for filter") @Valid @RequestParam(value = "customer_cpf_cnpj", required = false) String customerCpfCnpj
 
 ) {
-        return getDelegate().findCustomers(customerCpfCnpj);
+        getRequest().ifPresent(request -> {
+            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
+                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
+                    String exampleString = "{ \"phoneNumber\" : \"phoneNumber\", \"id\" : 0, \"cpfCnpj\" : \"cpfCnpj\", \"customerName\" : \"customerName\", \"email\" : \"email\" }";
+                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
+                    break;
+                }
+            }
+        });
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+
     }
 
 
@@ -156,7 +187,8 @@ public interface CustomersApi {
 ,
 
 @ApiParam(value = "Customer object that needs to have a product evaluation", required = true )   @Valid @RequestBody Customer customer) {
-        return getDelegate().updateCustomer(customerCpfCnpj, customer);
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+
     }
 
 }

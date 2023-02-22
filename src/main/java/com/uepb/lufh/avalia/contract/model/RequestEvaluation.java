@@ -20,7 +20,7 @@ import java.util.*;
  * Represents a request to evaluate a product.
  */
 @ApiModel(description = "Represents a request to evaluate a product.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-22T00:56:03.914173-03:00[America/Fortaleza]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-22T02:43:06.822926-03:00[America/Fortaleza]")
 public class RequestEvaluation   {
   @JsonProperty("id")
   private Long id;
