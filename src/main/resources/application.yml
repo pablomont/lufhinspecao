@@ -1,0 +1,17 @@
+server:
+    port: 8080
+
+management:
+    health:
+        diskspace:
+            enabled: false
+    endpoint:
+        health:
+            show-details: always
+    endpoints:
+        web:
+            exposure:
+                include: prometheus, health, env
+            base-path: '/'
+            path-mapping:
+                prometheus: 'metrics'
