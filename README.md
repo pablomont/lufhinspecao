@@ -35,8 +35,8 @@ Para que o código fonte seja refletido a cada nova alteração no arquivo [lufh
                         </inputSpec>
                         <output>${project.basedir}</output>
                         <generatorName>spring</generatorName>
-                        <apiPackage>com.uepb.lufh.avalia.contract.api</apiPackage>
-                        <modelPackage>com.uepb.lufh.avalia.contract.model</modelPackage>
+                        <apiPackage>com.uepb.lufh.avalia.entrypoint.contract.api</apiPackage>
+                        <modelPackage>com.uepb.lufh.avalia.entrypoint.contract.model</modelPackage>
                         <configOptions>
                             <delegatePattern>true</delegatePattern>
                         </configOptions>
