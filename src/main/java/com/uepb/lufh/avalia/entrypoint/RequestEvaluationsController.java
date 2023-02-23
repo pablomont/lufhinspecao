@@ -1,8 +1,8 @@
 package com.uepb.lufh.avalia.entrypoint;
 
 
-import com.uepb.lufh.avalia.contract.api.RequestEvaluationsApi;
-import com.uepb.lufh.avalia.contract.model.RequestEvaluation;
+import com.uepb.lufh.avalia.entrypoint.contract.api.RequestEvaluationsApi;
+import com.uepb.lufh.avalia.entrypoint.contract.model.RequestEvaluation;
 import org.springframework.http.ResponseEntity;
 
 import org.springframework.web.bind.annotation.RestController;
