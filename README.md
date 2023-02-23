@@ -13,7 +13,7 @@ By using the [OpenAPI-Spec](https://openapis.org), you can easily generate an AP
 This is an example of building API stub interfaces in Java using the Spring framework.
 
 
-## Pugin para gerar código a partir do arquivo de especificação openapi.
+## Pugin para gerar o código fonte a partir do arquivo de especificação openapi.
 
 Para que o código fonte seja refletido a cada nova alteração do arquivo [lufh-avalia-open-api.yaml](src/main/resources/lufh-avalia-open-api.yaml), deve-se sempre adicionar a seguinte configuração no [pom.xml](pom.xml) e depois executar o mvn clean install:
 ```xml
