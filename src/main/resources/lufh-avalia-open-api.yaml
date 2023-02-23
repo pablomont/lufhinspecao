@@ -11,73 +11,73 @@ info:
     url: http://choosealicense.com/licenses/mit/
   version: 1.0.0-oas3
 servers:
-- url: https://virtserver.swaggerhub.com/pablo.santos/LufhInspecao/1.0.0
+  - url: https://virtserver.swaggerhub.com/pablo.santos/LufhInspecao/1.0.0
 tags:
-- name: questions
-  description: Disponibiliza operações sobre as questões.
-- name: questionnaires
-  description: Disponibiliza operações sobre os questionários utilizado para avaliar o produto.
-- name: request-evaluations
-  description: Disponibiliza operações sobre as requisições de avaliação.
-- name: reports
-  description: Disponibiliza operações sobre os relatórios de uma avaliação.
-- name: products
-  description: Disponibiliza operações sobre os produtos a serem avaliados.
-- name: customers
-  description: Disponibiliza operações sobre os clientes que solicitaram uma avaliação de um determinado produto.
+  - name: questions
+    description: Disponibiliza operações sobre as questões.
+  - name: questionnaires
+    description: Disponibiliza operações sobre os questionários utilizado para avaliar o produto.
+  - name: request-evaluations
+    description: Disponibiliza operações sobre as requisições de avaliação.
+  - name: reports
+    description: Disponibiliza operações sobre os relatórios de uma avaliação.
+  - name: products
+    description: Disponibiliza operações sobre os produtos a serem avaliados.
+  - name: customers
+    description: Disponibiliza operações sobre os clientes que solicitaram uma avaliação de um determinado produto.
 paths:
   /questions:
     get:
       tags:
-      - questions
+        - questions
       summary: Finds all questions
       operationId: findQuestions
       parameters:
-      - name: class
-        in: query
-        description: Class values that can be considered for filter
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: string
-          enum:
-          - Aesthetic and minimalist design
-          - Consistency and standards
-          - Error prevention
-          - Flexibility and efficiency of use
-          - Help and documentation
-          - Help users recognize and recover from errors
-          - Match between system and the real world
-          - Recognition rather than recall
-          - User control and freedom
-          - Visibility of system status
-          - Privacy & Security
-      - name: reference
-        in: query
-        description: Reference values that can be considered for filter
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: string
-          enum:
-          - Article
-          - Book
-          - eDocument
-          - Standard
-      - name: product_type
-        in: query
-        description: Product type values that can be considered for filter
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: string
-          enum:
-          - Software
-          - Hardware
-          - Hardware/Software
+        - name: class
+          in: query
+          description: Class values that can be considered for filter
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+            enum:
+              - Aesthetic and minimalist design
+              - Consistency and standards
+              - Error prevention
+              - Flexibility and efficiency of use
+              - Help and documentation
+              - Help users recognize and recover from errors
+              - Match between system and the real world
+              - Recognition rather than recall
+              - User control and freedom
+              - Visibility of system status
+              - Privacy & Security
+        - name: reference
+          in: query
+          description: Reference values that can be considered for filter
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+            enum:
+              - Article
+              - Book
+              - eDocument
+              - Standard
+        - name: product_type
+          in: query
+          description: Product type values that can be considered for filter
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+            enum:
+              - Software
+              - Hardware
+              - Hardware/Software
       responses:
         "200":
           description: successful operation
@@ -91,7 +91,7 @@ paths:
           description: Not found
     post:
       tags:
-      - questions
+        - questions
       summary: Add a new question
       operationId: createQuestion
       requestBody:
@@ -107,19 +107,19 @@ paths:
   /questions/{question_id}:
     get:
       tags:
-      - questions
+        - questions
       summary: Find question by ID
       operationId: findQuestion
       parameters:
-      - name: question_id
-        in: path
-        description: ID of question to return
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: integer
-          format: int64
+        - name: question_id
+          in: path
+          description: ID of question to return
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: integer
+            format: int64
       responses:
         "200":
           description: successful operation
@@ -136,19 +136,19 @@ paths:
           description: Question not found
     put:
       tags:
-      - questions
+        - questions
       summary: Update an existing question
       operationId: updateQuestion
       parameters:
-      - name: question_id
-        in: path
-        description: Question id to update
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: integer
-          format: int64
+        - name: question_id
+          in: path
+          description: Question id to update
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: integer
+            format: int64
       requestBody:
         description: Question object that needs to be added to the form
         content:
@@ -168,19 +168,19 @@ paths:
           description: Validation exception
     delete:
       tags:
-      - questions
+        - questions
       summary: Deletes a question
       operationId: deleteQuestion
       parameters:
-      - name: question_id
-        in: path
-        description: Question id to delete
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: integer
-          format: int64
+        - name: question_id
+          in: path
+          description: Question id to delete
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: integer
+            format: int64
       responses:
         "400":
           description: Invalid ID supplied
@@ -189,26 +189,26 @@ paths:
   /questionnaires:
     get:
       tags:
-      - questionnaires
+        - questionnaires
       summary: Finds all questionnaires
       operationId: findQuestionnaires
       parameters:
-      - name: evaluator
-        in: query
-        description: Evaluator values that can be considered for filter
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: string
-      - name: creator
-        in: query
-        description: Creator values that can be considered for filter
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: string
+        - name: evaluator
+          in: query
+          description: Evaluator values that can be considered for filter
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+        - name: creator
+          in: query
+          description: Creator values that can be considered for filter
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
       responses:
         "200":
           description: successful operation
@@ -222,7 +222,7 @@ paths:
           description: Not found
     post:
       tags:
-      - questionnaires
+        - questionnaires
       summary: Add a new questionnaire
       operationId: createQuestionaire
       requestBody:
@@ -236,19 +236,19 @@ paths:
   /questionnaires/{questionnaire_id}:
     get:
       tags:
-      - questionnaires
+        - questionnaires
       summary: Find questionnaire by ID
       operationId: findQuestionnaire
       parameters:
-      - name: questionnaire_id
-        in: path
-        description: ID of questionnaire to return
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: integer
-          format: int64
+        - name: questionnaire_id
+          in: path
+          description: ID of questionnaire to return
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: integer
+            format: int64
       responses:
         "200":
           description: successful operation
@@ -265,19 +265,19 @@ paths:
           description: Questionnaire not found
     put:
       tags:
-      - questionnaires
+        - questionnaires
       summary: Update an existing questionnaire
       operationId: updateQuestionnaire
       parameters:
-      - name: questionnaire_id
-        in: path
-        description: Questionnaire id to update
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: integer
-          format: int64
+        - name: questionnaire_id
+          in: path
+          description: Questionnaire id to update
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: integer
+            format: int64
       requestBody:
         content:
           application/json:
@@ -293,19 +293,19 @@ paths:
           description: Validation exception
     delete:
       tags:
-      - questionnaires
+        - questionnaires
       summary: Deletes a questionnaire
       operationId: deleteQuestionnaire
       parameters:
-      - name: questionnaire_id
-        in: path
-        description: Questionnaire id to delete
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: integer
-          format: int64
+        - name: questionnaire_id
+          in: path
+          description: Questionnaire id to delete
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: integer
+            format: int64
       responses:
         "400":
           description: Invalid ID supplied
@@ -314,18 +314,18 @@ paths:
   /request-evaluations:
     get:
       tags:
-      - request-evaluations
+        - request-evaluations
       summary: Finds all request-evaluations
       operationId: findRequestEvaluations
       parameters:
-      - name: customer_cpf_cnpj
-        in: query
-        description: CPF and CNPJ values that can be considered for filter
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: string
+        - name: customer_cpf_cnpj
+          in: query
+          description: CPF and CNPJ values that can be considered for filter
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
       responses:
         "200":
           description: successful operation
@@ -334,50 +334,68 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/RequestEvaluation'
+                  $ref: '#/components/schemas/RequestEvaluationOutput'
         "404":
           description: Not found
     post:
       tags:
-      - request-evaluations
+        - request-evaluations
       summary: Add a new request-evaluation
       operationId: createRequestEvaluation
+      parameters:
+        - name: productId
+          in: header
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: customerCpfCnpj
+          in: header
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
       requestBody:
-        description: Question object that needs to be added to the form
+        description: Request evaluation object
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Question'
+              $ref: '#/components/schemas/RequestEvaluationInput'
         required: true
       responses:
+        "200":
+          description: A RequestEvaluationOutput object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RequestEvaluationOutput'
         "500":
           description: Internal server error
   /request-evaluations/{request_evaluation_id}:
     get:
       tags:
-      - request-evaluations
+        - request-evaluations
       summary: Find request evaluation by ID
       operationId: findRequestEvaluation
       parameters:
-      - name: request_evaluation_id
-        in: path
-        description: ID of request evaluation to return
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: integer
-          format: int64
+        - name: request_evaluation_id
+          in: path
+          description: ID of request evaluation to return
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: integer
+            format: int64
       responses:
         "200":
           description: successful operation
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/RequestEvaluation'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/RequestEvaluation'
+                $ref: '#/components/schemas/RequestEvaluationOutput'
           links:
             FindProductByProductId:
               operationId: findProduct
@@ -391,24 +409,24 @@ paths:
           description: Request evaluation not found
     put:
       tags:
-      - request-evaluations
+        - request-evaluations
       summary: Update an existing request evaluation
       operationId: updateRequestEvaluation
       parameters:
-      - name: request_evaluation_id
-        in: path
-        description: Request Evaluation id to update
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: integer
-          format: int64
+        - name: request_evaluation_id
+          in: path
+          description: Request Evaluation id to update
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: integer
+            format: int64
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/RequestEvaluation'
+              $ref: '#/components/schemas/RequestEvaluationInput'
         required: true
       responses:
         "400":
@@ -419,19 +437,19 @@ paths:
           description: Validation exception
     delete:
       tags:
-      - request-evaluations
+        - request-evaluations
       summary: Deletes a request evaluation
       operationId: deleteRequestEvaluation
       parameters:
-      - name: request_evaluation_id
-        in: path
-        description: Request Evaluation id to delete
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: integer
-          format: int64
+        - name: request_evaluation_id
+          in: path
+          description: Request Evaluation id to delete
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: integer
+            format: int64
       responses:
         "400":
           description: Invalid ID supplied
@@ -440,38 +458,38 @@ paths:
   /reports:
     get:
       tags:
-      - reports
+        - reports
       summary: Finds all reports
       operationId: findReports
       parameters:
-      - name: request_evaluation_id
-        in: query
-        description: Request evaluation id values that can be considered for filter
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: string
-      - name: product_type
-        in: query
-        description: Product type values that can be considered for filter
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: string
-          enum:
-          - Software
-          - Hardware
-          - Hardware/Software
-      - name: report_date
-        in: query
-        description: Report date values that can be considered for filter
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: string
+        - name: request_evaluation_id
+          in: query
+          description: Request evaluation id values that can be considered for filter
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+        - name: product_type
+          in: query
+          description: Product type values that can be considered for filter
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+            enum:
+              - Software
+              - Hardware
+              - Hardware/Software
+        - name: report_date
+          in: query
+          description: Report date values that can be considered for filter
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
       responses:
         "200":
           description: successful operation
@@ -485,7 +503,7 @@ paths:
           description: Not found
     post:
       tags:
-      - reports
+        - reports
       summary: Add a new report
       operationId: createReport
       requestBody:
@@ -500,19 +518,19 @@ paths:
   /reports/{report_id}:
     get:
       tags:
-      - reports
+        - reports
       summary: Find a report by ID
       operationId: findReport
       parameters:
-      - name: report_id
-        in: path
-        description: ID of report to return
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: integer
-          format: int64
+        - name: report_id
+          in: path
+          description: ID of report to return
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: integer
+            format: int64
       responses:
         "200":
           description: successful operation
@@ -529,19 +547,19 @@ paths:
           description: Report not found
     put:
       tags:
-      - reports
+        - reports
       summary: Update an existing report
       operationId: updateReport
       parameters:
-      - name: report_id
-        in: path
-        description: Report id to update
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: integer
-          format: int64
+        - name: report_id
+          in: path
+          description: Report id to update
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: integer
+            format: int64
       requestBody:
         content:
           application/json:
@@ -560,19 +578,19 @@ paths:
           description: Validation exception
     delete:
       tags:
-      - reports
+        - reports
       summary: Deletes a report
       operationId: deleteReport
       parameters:
-      - name: report_id
-        in: path
-        description: Report id to delete
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: integer
-          format: int64
+        - name: report_id
+          in: path
+          description: Report id to delete
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: integer
+            format: int64
       responses:
         "400":
           description: Invalid ID supplied
@@ -581,30 +599,30 @@ paths:
   /products:
     get:
       tags:
-      - products
+        - products
       summary: Finds all products
       operationId: findProducts
       parameters:
-      - name: product_name
-        in: query
-        description: Product name values that can be considered for filter
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: string
-      - name: product_type
-        in: query
-        description: Product type values that can be considered for filter
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: string
-          enum:
-          - Software
-          - Hardware
-          - Hardware/Software
+        - name: product_name
+          in: query
+          description: Product name values that can be considered for filter
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+        - name: product_type
+          in: query
+          description: Product type values that can be considered for filter
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+            enum:
+              - Software
+              - Hardware
+              - Hardware/Software
       responses:
         "200":
           description: successful operation
@@ -618,7 +636,7 @@ paths:
           description: Not found
     post:
       tags:
-      - products
+        - products
       summary: Add a new product
       operationId: createProduct
       requestBody:
@@ -634,19 +652,19 @@ paths:
   /products/{product_id}:
     get:
       tags:
-      - products
+        - products
       summary: Find product by ID
       operationId: findProduct
       parameters:
-      - name: product_id
-        in: path
-        description: ID of product to return
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: integer
-          format: int64
+        - name: product_id
+          in: path
+          description: ID of product to return
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: integer
+            format: int64
       responses:
         "200":
           description: successful operation
@@ -663,19 +681,19 @@ paths:
           description: Product not found
     put:
       tags:
-      - products
+        - products
       summary: Update an existing product
       operationId: updateProduct
       parameters:
-      - name: product_id
-        in: path
-        description: Product id to update
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: integer
-          format: int64
+        - name: product_id
+          in: path
+          description: Product id to update
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: integer
+            format: int64
       requestBody:
         description: Product object that needs to be evaluated
         content:
@@ -695,19 +713,19 @@ paths:
           description: Validation exception
     delete:
       tags:
-      - products
+        - products
       summary: Deletes a product
       operationId: deleteProduct
       parameters:
-      - name: product_id
-        in: path
-        description: Product id to delete
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: integer
-          format: int64
+        - name: product_id
+          in: path
+          description: Product id to delete
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: integer
+            format: int64
       responses:
         "400":
           description: Invalid ID supplied
@@ -716,18 +734,18 @@ paths:
   /customers:
     get:
       tags:
-      - customers
+        - customers
       summary: Finds all customers
       operationId: findCustomers
       parameters:
-      - name: customer_cpf_cnpj
-        in: query
-        description: CPF and CNPJ values that can be considered for filter
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: string
+        - name: customer_cpf_cnpj
+          in: query
+          description: CPF and CNPJ values that can be considered for filter
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
       responses:
         "200":
           description: successful operation
@@ -741,7 +759,7 @@ paths:
           description: Not found
     post:
       tags:
-      - customers
+        - customers
       summary: Add a new customer
       operationId: createCustomer
       requestBody:
@@ -757,19 +775,19 @@ paths:
   /customers/{customer_cpf_cnpj}:
     get:
       tags:
-      - customers
+        - customers
       summary: Find a customer by ID
       operationId: findCustomer
       parameters:
-      - name: customer_cpf_cnpj
-        in: path
-        description: CPF or CNPJ of customer to return
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: integer
-          format: int64
+        - name: customer_cpf_cnpj
+          in: path
+          description: CPF or CNPJ of customer to return
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: integer
+            format: int64
       responses:
         "200":
           description: successful operation
@@ -786,19 +804,19 @@ paths:
           description: Customer not found
     put:
       tags:
-      - customers
+        - customers
       summary: Update an existing customer
       operationId: updateCustomer
       parameters:
-      - name: customer_cpf_cnpj
-        in: path
-        description: Customer id to update
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: integer
-          format: int64
+        - name: customer_cpf_cnpj
+          in: path
+          description: Customer id to update
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: integer
+            format: int64
       requestBody:
         description: Customer object that needs to have a product evaluation
         content:
@@ -818,19 +836,19 @@ paths:
           description: Validation exception
     delete:
       tags:
-      - customers
+        - customers
       summary: Deletes a customer
       operationId: deleteCustomer
       parameters:
-      - name: customer_cpf_cnpj
-        in: path
-        description: Customer id to delete
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: integer
-          format: int64
+        - name: customer_cpf_cnpj
+          in: path
+          description: Customer id to delete
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: integer
+            format: int64
       responses:
         "400":
           description: Invalid ID supplied
@@ -870,7 +888,7 @@ components:
       description: Representa o tipo do produto
     Question:
       required:
-      - description
+        - description
       type: object
       properties:
         id:
@@ -881,9 +899,9 @@ components:
         productType:
           type: string
           enum:
-          - Software
-          - Hardware
-          - Hardware/Software
+            - Software
+            - Hardware
+            - Hardware/Software
         baseQuestion:
           type: string
           example: Is it designed minimal?
@@ -903,17 +921,17 @@ components:
           type: string
           description: Each class of a question is a Nilsen heuristic
           enum:
-          - Aesthetic and minimalist design
-          - Consistency and standards
-          - Error prevention
-          - Flexibility and efficiency of use
-          - Help and documentation
-          - Help users recognize, diagnose, and recover from errors
-          - Match between system and the real world
-          - Recognition rather than recall
-          - User control and freedom
-          - Visibility of system status
-          - Privacy & Security
+            - Aesthetic and minimalist design
+            - Consistency and standards
+            - Error prevention
+            - Flexibility and efficiency of use
+            - Help and documentation
+            - Help users recognize, diagnose, and recover from errors
+            - Match between system and the real world
+            - Recognition rather than recall
+            - User control and freedom
+            - Visibility of system status
+            - Privacy & Security
     Reference:
       type: object
       properties:
@@ -921,10 +939,10 @@ components:
           type: string
           description: type of reference
           enum:
-          - Article
-          - Book
-          - eDocument
-          - Standard
+            - Article
+            - Book
+            - eDocument
+            - Standard
         bibliography:
           type: string
     Answer:
@@ -939,18 +957,18 @@ components:
         severity:
           type: string
           enum:
-          - 0 Not a usability problem at all
-          - 1 Cosmetic problem only. Need not be fixed unless extra time is available
-          - 2 Minor usability problem. Fixing this should be given low priority
-          - 3 Major usability problem. Important to fix. Should be given high priority
-          - 4 Usability catastrophe. Imperative to fix this before product can be released
+            - 0 Not a usability problem at all
+            - 1 Cosmetic problem only. Need not be fixed unless extra time is available
+            - 2 Minor usability problem. Fixing this should be given low priority
+            - 3 Major usability problem. Important to fix. Should be given high priority
+            - 4 Usability catastrophe. Imperative to fix this before product can be released
         weight:
           type: string
           enum:
-          - 0 Necessary for every System
-          - 1 Necessary for Systems without more than one Dialog
-          - 2 Necessary for Simple Systems without data have to be entered or with strict guidance throughout the usage process
-          - 3 Necessary for Complex Systems with data have to be entered on several dialogs
+            - 0 Necessary for every System
+            - 1 Necessary for Systems without more than one Dialog
+            - 2 Necessary for Simple Systems without data have to be entered or with strict guidance throughout the usage process
+            - 3 Necessary for Complex Systems with data have to be entered on several dialogs
       description: Represents the answer data for the questions
     Questionnaire:
       properties:
@@ -966,7 +984,7 @@ components:
         creator:
           type: string
       description: It represents a grouping of questions that must be answered when analyzing a product.
-    RequestEvaluation:
+    RequestEvaluationOutput:
       properties:
         id:
           type: integer
@@ -989,14 +1007,38 @@ components:
           type: string
           description: Type of contracted test
           enum:
-          - compliance inspection
-          - performance measurement
-          - heuristic evaluation
-          - user opinion
+            - compliance inspection
+            - performance measurement
+            - heuristic evaluation
+            - user opinion
         coverage:
           type: string
           description: Contracted scope
-      description: Represents a request to evaluate a product.
+      description: Represents the output of a request to evaluate a product.
+    RequestEvaluationInput:
+      properties:
+        startDate:
+          type: string
+          description: Entry date into lufh
+          format: date-time
+        endDate:
+          type: string
+          description: Planned departure date from lufh
+          format: date-time
+        urgency:
+          type: boolean
+        testType:
+          type: string
+          description: Type of contracted test
+          enum:
+            - compliance inspection
+            - performance measurement
+            - heuristic evaluation
+            - user opinion
+        coverage:
+          type: string
+          description: Contracted scope
+      description: Represents the input of a request to evaluate a product.
     Customer:
       properties:
         id:

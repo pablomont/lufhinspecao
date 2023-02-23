@@ -5,8 +5,8 @@
  */
 package com.uepb.lufh.avalia.entrypoint.contract.api;
 
-import com.uepb.lufh.avalia.entrypoint.contract.model.Question;
-import com.uepb.lufh.avalia.entrypoint.contract.model.RequestEvaluation;
+import com.uepb.lufh.avalia.entrypoint.contract.model.RequestEvaluationInput;
+import com.uepb.lufh.avalia.entrypoint.contract.model.RequestEvaluationOutput;
 import io.swagger.annotations.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -14,11 +14,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.NativeWebRequest;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import javax.validation.constraints.*;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-22T02:43:06.822926-03:00[America/Fortaleza]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-23T01:04:23.254661-03:00[America/Fortaleza]")
 @Validated
 @Api(value = "request-evaluations", description = "the request-evaluations API")
 public interface RequestEvaluationsApi {
@@ -30,22 +33,41 @@ public interface RequestEvaluationsApi {
     /**
      * POST /request-evaluations : Add a new request-evaluation
      *
-     * @param question Question object that needs to be added to the form (required)
-     * @return Internal server error (status code 500)
+     * @param productId  (required)
+     * @param customerCpfCnpj  (required)
+     * @param requestEvaluationInput Request evaluation object (required)
+     * @return A RequestEvaluationOutput object (status code 200)
+     *         or Internal server error (status code 500)
      */
 
-    @ApiOperation(value = "Add a new request-evaluation", nickname = "createRequestEvaluation", notes = "", tags={ "request-evaluations", })
+    @ApiOperation(value = "Add a new request-evaluation", nickname = "createRequestEvaluation", notes = "", response = RequestEvaluationOutput.class, tags={ "request-evaluations", })
     @ApiResponses(value = { 
+
+        @ApiResponse(code = 200, message = "A RequestEvaluationOutput object", response = RequestEvaluationOutput.class),
 
         @ApiResponse(code = 500, message = "Internal server error") })
     @RequestMapping(
         method = RequestMethod.POST,
         value = "/request-evaluations",
+        produces = { "application/json" },
         consumes = { "application/json" }
     )
-    default ResponseEntity<Void> createRequestEvaluation(
+    default ResponseEntity<RequestEvaluationOutput> createRequestEvaluation(
+@ApiParam(value = "", required = true) @RequestHeader(value = "productId", required = true) String productId
+,
+@ApiParam(value = "", required = true) @RequestHeader(value = "customerCpfCnpj", required = true) String customerCpfCnpj
+,
 
-@ApiParam(value = "Question object that needs to be added to the form", required = true )   @Valid @RequestBody Question question) {
+@ApiParam(value = "Request evaluation object", required = true )   @Valid @RequestBody RequestEvaluationInput requestEvaluationInput) {
+        getRequest().ifPresent(request -> {
+            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
+                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
+                    String exampleString = "{ \"coverage\" : \"coverage\", \"productId\" : \"productId\", \"customerCpfCnpj\" : \"customerCpfCnpj\", \"endDate\" : \"2000-01-23T04:56:07.000+00:00\", \"urgency\" : true, \"testType\" : \"compliance inspection\", \"id\" : 0, \"startDate\" : \"2000-01-23T04:56:07.000+00:00\" }";
+                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
+                    break;
+                }
+            }
+        });
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }
@@ -86,10 +108,10 @@ public interface RequestEvaluationsApi {
      *         or Request evaluation not found (status code 404)
      */
 
-    @ApiOperation(value = "Find request evaluation by ID", nickname = "findRequestEvaluation", notes = "", response = RequestEvaluation.class, tags={ "request-evaluations", })
+    @ApiOperation(value = "Find request evaluation by ID", nickname = "findRequestEvaluation", notes = "", response = RequestEvaluationOutput.class, tags={ "request-evaluations", })
     @ApiResponses(value = { 
 
-        @ApiResponse(code = 200, message = "successful operation", response = RequestEvaluation.class),
+        @ApiResponse(code = 200, message = "successful operation", response = RequestEvaluationOutput.class),
 
         @ApiResponse(code = 400, message = "Invalid ID supplied"),
 
@@ -97,9 +119,9 @@ public interface RequestEvaluationsApi {
     @RequestMapping(
         method = RequestMethod.GET,
         value = "/request-evaluations/{request_evaluation_id}",
-        produces = { "application/json", "application/xml" }
+        produces = { "application/json" }
     )
-    default ResponseEntity<RequestEvaluation> findRequestEvaluation(@ApiParam(value = "ID of request evaluation to return", required = true) @PathVariable("request_evaluation_id") Long requestEvaluationId
+    default ResponseEntity<RequestEvaluationOutput> findRequestEvaluation(@ApiParam(value = "ID of request evaluation to return", required = true) @PathVariable("request_evaluation_id") Long requestEvaluationId
 
 ) {
         getRequest().ifPresent(request -> {
@@ -107,11 +129,6 @@ public interface RequestEvaluationsApi {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
                     String exampleString = "{ \"coverage\" : \"coverage\", \"productId\" : \"productId\", \"customerCpfCnpj\" : \"customerCpfCnpj\", \"endDate\" : \"2000-01-23T04:56:07.000+00:00\", \"urgency\" : true, \"testType\" : \"compliance inspection\", \"id\" : 0, \"startDate\" : \"2000-01-23T04:56:07.000+00:00\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
-                    break;
-                }
-                if (mediaType.isCompatibleWith(MediaType.valueOf("application/xml"))) {
-                    String exampleString = "<null> <id>123456789</id> <productId>aeiou</productId> <customerCpfCnpj>aeiou</customerCpfCnpj> <startDate>2000-01-23T04:56:07.000Z</startDate> <endDate>2000-01-23T04:56:07.000Z</endDate> <urgency>true</urgency> <testType>aeiou</testType> <coverage>aeiou</coverage> </null>";
-                    ApiUtil.setExampleResponse(request, "application/xml", exampleString);
                     break;
                 }
             }
@@ -129,10 +146,10 @@ public interface RequestEvaluationsApi {
      *         or Not found (status code 404)
      */
 
-    @ApiOperation(value = "Finds all request-evaluations", nickname = "findRequestEvaluations", notes = "", response = RequestEvaluation.class, responseContainer = "List", tags={ "request-evaluations", })
+    @ApiOperation(value = "Finds all request-evaluations", nickname = "findRequestEvaluations", notes = "", response = RequestEvaluationOutput.class, responseContainer = "List", tags={ "request-evaluations", })
     @ApiResponses(value = { 
 
-        @ApiResponse(code = 200, message = "successful operation", response = RequestEvaluation.class, responseContainer = "List"),
+        @ApiResponse(code = 200, message = "successful operation", response = RequestEvaluationOutput.class, responseContainer = "List"),
 
         @ApiResponse(code = 404, message = "Not found") })
     @RequestMapping(
@@ -140,7 +157,7 @@ public interface RequestEvaluationsApi {
         value = "/request-evaluations",
         produces = { "application/json" }
     )
-    default ResponseEntity<List<RequestEvaluation>> findRequestEvaluations(@ApiParam(value = "CPF and CNPJ values that can be considered for filter") @Valid @RequestParam(value = "customer_cpf_cnpj", required = false) String customerCpfCnpj
+    default ResponseEntity<List<RequestEvaluationOutput>> findRequestEvaluations(@ApiParam(value = "CPF and CNPJ values that can be considered for filter") @Valid @RequestParam(value = "customer_cpf_cnpj", required = false) String customerCpfCnpj
 
 ) {
         getRequest().ifPresent(request -> {
@@ -161,7 +178,7 @@ public interface RequestEvaluationsApi {
      * PUT /request-evaluations/{request_evaluation_id} : Update an existing request evaluation
      *
      * @param requestEvaluationId Request Evaluation id to update (required)
-     * @param requestEvaluation  (required)
+     * @param requestEvaluationInput  (required)
      * @return Invalid ID supplied (status code 400)
      *         or Request Evaluation not found (status code 404)
      *         or Validation exception (status code 405)
@@ -184,7 +201,7 @@ public interface RequestEvaluationsApi {
 
 ,
 
-@ApiParam(value = "", required = true )   @Valid @RequestBody RequestEvaluation requestEvaluation) {
+@ApiParam(value = "", required = true )   @Valid @RequestBody RequestEvaluationInput requestEvaluationInput) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }

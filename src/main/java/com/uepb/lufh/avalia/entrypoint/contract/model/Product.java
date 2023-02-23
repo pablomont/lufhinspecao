@@ -1,17 +1,25 @@
 package com.uepb.lufh.avalia.entrypoint.contract.model;
 
+import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.uepb.lufh.avalia.entrypoint.contract.model.ProductType;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.time.OffsetDateTime;
 import javax.validation.Valid;
+import javax.validation.constraints.*;
+
+
+import java.util.*;
 
 /**
  * Represents a product to be evaluated
  */
 @ApiModel(description = "Represents a product to be evaluated")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-22T02:43:06.822926-03:00[America/Fortaleza]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-23T01:04:23.254661-03:00[America/Fortaleza]")
 public class Product   {
   @JsonProperty("id")
   private Long id;
