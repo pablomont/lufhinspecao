@@ -37,10 +37,6 @@ Para que o código fonte seja refletido a cada nova alteração no arquivo [lufh
                         <generatorName>spring</generatorName>
                         <apiPackage>com.uepb.lufh.avalia.entrypoint.contract.api</apiPackage>
                         <modelPackage>com.uepb.lufh.avalia.entrypoint.contract.model</modelPackage>
-                        <configOptions>
-                            <delegatePattern>true</delegatePattern>
-                        </configOptions>
-
                     </configuration>
                 </execution>
             </executions>
