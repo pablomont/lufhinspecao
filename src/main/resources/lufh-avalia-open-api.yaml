@@ -343,14 +343,14 @@ paths:
       summary: Add a new request-evaluation
       operationId: createRequestEvaluation
       parameters:
-        - name: productId
+        - name: product_id
           in: header
           required: true
           style: simple
           explode: false
           schema:
             type: string
-        - name: customerCpfCnpj
+        - name: customer_cpf_cnpj
           in: header
           required: true
           style: simple

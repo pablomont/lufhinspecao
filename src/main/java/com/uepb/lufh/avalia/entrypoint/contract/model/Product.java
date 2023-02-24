@@ -4,7 +4,6 @@ import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.uepb.lufh.avalia.core.domain.ProductDomain;
 import com.uepb.lufh.avalia.entrypoint.contract.model.ProductType;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -20,7 +19,7 @@ import java.util.*;
  * Represents a product to be evaluated
  */
 @ApiModel(description = "Represents a product to be evaluated")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-23T01:04:23.254661-03:00[America/Fortaleza]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-23T22:31:30.722986-03:00[America/Fortaleza]")
 public class Product   {
   @JsonProperty("id")
   private Long id;
@@ -40,7 +39,7 @@ public class Product   {
   @JsonProperty("completionLevel")
   private String completionLevel;
 
-    public Product id(Long id) {
+  public Product id(Long id) {
     this.id = id;
     return this;
   }

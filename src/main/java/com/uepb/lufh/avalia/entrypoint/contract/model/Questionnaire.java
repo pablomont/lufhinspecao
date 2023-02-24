@@ -21,7 +21,7 @@ import java.util.*;
  * It represents a grouping of questions that must be answered when analyzing a product.
  */
 @ApiModel(description = "It represents a grouping of questions that must be answered when analyzing a product.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-23T01:04:23.254661-03:00[America/Fortaleza]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-23T22:31:30.722986-03:00[America/Fortaleza]")
 public class Questionnaire   {
   @JsonProperty("id")
   private Long id;

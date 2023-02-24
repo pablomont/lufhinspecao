@@ -11,7 +11,6 @@ import io.swagger.annotations.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.NativeWebRequest;
@@ -22,7 +21,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-23T01:04:23.254661-03:00[America/Fortaleza]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-23T22:31:30.722986-03:00[America/Fortaleza]")
 @Validated
 @Api(value = "request-evaluations", description = "the request-evaluations API")
 public interface RequestEvaluationsApi {
@@ -54,9 +53,9 @@ public interface RequestEvaluationsApi {
         consumes = { "application/json" }
     )
     default ResponseEntity<RequestEvaluationOutput> createRequestEvaluation(
-@ApiParam(value = "", required = true) @RequestHeader(value = "productId", required = true) String productId
+@ApiParam(value = "", required = true) @RequestHeader(value = "product_id", required = true) String productId
 ,
-@ApiParam(value = "", required = true) @RequestHeader(value = "customerCpfCnpj", required = true) String customerCpfCnpj
+@ApiParam(value = "", required = true) @RequestHeader(value = "customer_cpf_cnpj", required = true) String customerCpfCnpj
 ,
 
 @ApiParam(value = "Request evaluation object", required = true )   @Valid @RequestBody RequestEvaluationInput requestEvaluationInput) {
