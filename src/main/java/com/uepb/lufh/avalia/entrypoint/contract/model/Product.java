@@ -5,22 +5,24 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.uepb.lufh.avalia.entrypoint.contract.model.ProductType;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
+import javax.annotation.Generated;
 
 /**
  * Represents a product to be evaluated
  */
-@ApiModel(description = "Represents a product to be evaluated")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-23T22:31:30.722986-03:00[America/Fortaleza]")
-public class Product   {
+
+@Schema(name = "Product", description = "Represents a product to be evaluated")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-24T00:23:07.669998-03:00[America/Fortaleza]")
+public class Product {
+
   @JsonProperty("id")
   private Long id;
 
@@ -48,9 +50,8 @@ public class Product   {
    * Get id
    * @return id
   */
-  @ApiModelProperty(value = "")
-
-
+  
+  @Schema(name = "id", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public Long getId() {
     return id;
   }
@@ -68,9 +69,8 @@ public class Product   {
    * Get productName
    * @return productName
   */
-  @ApiModelProperty(example = "Iphone X", value = "")
-
-
+  
+  @Schema(name = "productName", example = "Iphone X", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public String getProductName() {
     return productName;
   }
@@ -88,9 +88,8 @@ public class Product   {
    * Get manufacterName
    * @return manufacterName
   */
-  @ApiModelProperty(example = "Apple", value = "")
-
-
+  
+  @Schema(name = "manufacterName", example = "Apple", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public String getManufacterName() {
     return manufacterName;
   }
@@ -108,10 +107,8 @@ public class Product   {
    * Get productType
    * @return productType
   */
-  @ApiModelProperty(value = "")
-
-  @Valid
-
+  @Valid 
+  @Schema(name = "productType", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public ProductType getProductType() {
     return productType;
   }
@@ -129,9 +126,8 @@ public class Product   {
    * Get productClass
    * @return productClass
   */
-  @ApiModelProperty(example = "Class I", value = "")
-
-
+  
+  @Schema(name = "productClass", example = "Class I", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public String getProductClass() {
     return productClass;
   }
@@ -149,9 +145,8 @@ public class Product   {
    * Get completionLevel
    * @return completionLevel
   */
-  @ApiModelProperty(example = "Alfa Test, Beta Test", value = "")
-
-
+  
+  @Schema(name = "completionLevel", example = "Alfa Test, Beta Test", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public String getCompletionLevel() {
     return completionLevel;
   }
@@ -159,7 +154,6 @@ public class Product   {
   public void setCompletionLevel(String completionLevel) {
     this.completionLevel = completionLevel;
   }
-
 
   @Override
   public boolean equals(Object o) {
@@ -187,7 +181,6 @@ public class Product   {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Product {\n");
-    
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    productName: ").append(toIndentedString(productName)).append("\n");
     sb.append("    manufacterName: ").append(toIndentedString(manufacterName)).append("\n");

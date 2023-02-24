@@ -28,3 +28,10 @@ spring:
         show-sql: 'true'
         hibernate:
             ddl-auto: update
+springdoc:
+    packagesToScan: com.uepb.lufh.avalia.entrypoint.contract
+    pathsToMatch: /**
+    swagger-ui:
+        disable-swagger-default-url: true
+        doc-expansion: none
+        tagsSorter: alpha

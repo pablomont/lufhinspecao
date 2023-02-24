@@ -5,24 +5,26 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.uepb.lufh.avalia.entrypoint.contract.model.Question;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
+import javax.annotation.Generated;
 
 /**
  * It represents a grouping of questions that must be answered when analyzing a product.
  */
-@ApiModel(description = "It represents a grouping of questions that must be answered when analyzing a product.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-23T22:31:30.722986-03:00[America/Fortaleza]")
-public class Questionnaire   {
+
+@Schema(name = "Questionnaire", description = "It represents a grouping of questions that must be answered when analyzing a product.")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-24T00:23:07.669998-03:00[America/Fortaleza]")
+public class Questionnaire {
+
   @JsonProperty("id")
   private Long id;
 
@@ -45,9 +47,8 @@ public class Questionnaire   {
    * Get id
    * @return id
   */
-  @ApiModelProperty(value = "")
-
-
+  
+  @Schema(name = "id", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public Long getId() {
     return id;
   }
@@ -73,10 +74,8 @@ public class Questionnaire   {
    * Get questions
    * @return questions
   */
-  @ApiModelProperty(value = "")
-
-  @Valid
-
+  @Valid 
+  @Schema(name = "questions", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public List<Question> getQuestions() {
     return questions;
   }
@@ -94,9 +93,8 @@ public class Questionnaire   {
    * Get evaluator
    * @return evaluator
   */
-  @ApiModelProperty(value = "")
-
-
+  
+  @Schema(name = "evaluator", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public String getEvaluator() {
     return evaluator;
   }
@@ -114,9 +112,8 @@ public class Questionnaire   {
    * Get creator
    * @return creator
   */
-  @ApiModelProperty(value = "")
-
-
+  
+  @Schema(name = "creator", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public String getCreator() {
     return creator;
   }
@@ -124,7 +121,6 @@ public class Questionnaire   {
   public void setCreator(String creator) {
     this.creator = creator;
   }
-
 
   @Override
   public boolean equals(Object o) {
@@ -150,7 +146,6 @@ public class Questionnaire   {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Questionnaire {\n");
-    
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    questions: ").append(toIndentedString(questions)).append("\n");
     sb.append("    evaluator: ").append(toIndentedString(evaluator)).append("\n");

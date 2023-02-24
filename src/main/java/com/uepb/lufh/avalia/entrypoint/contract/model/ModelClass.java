@@ -4,22 +4,26 @@ import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
+import javax.annotation.Generated;
 
 /**
  * ModelClass
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-23T22:31:30.722986-03:00[America/Fortaleza]")
-public class ModelClass   {
+
+@JsonTypeName("Class")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-24T00:23:07.669998-03:00[America/Fortaleza]")
+public class ModelClass {
+
   /**
    * Each class of a question is a Nilsen heuristic
    */
@@ -85,9 +89,8 @@ public class ModelClass   {
    * Each class of a question is a Nilsen heuristic
    * @return name
   */
-  @ApiModelProperty(value = "Each class of a question is a Nilsen heuristic")
-
-
+  
+  @Schema(name = "name", description = "Each class of a question is a Nilsen heuristic", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public NameEnum getName() {
     return name;
   }
@@ -95,7 +98,6 @@ public class ModelClass   {
   public void setName(NameEnum name) {
     this.name = name;
   }
-
 
   @Override
   public boolean equals(Object o) {
@@ -118,7 +120,6 @@ public class ModelClass   {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ModelClass {\n");
-    
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("}");
     return sb.toString();

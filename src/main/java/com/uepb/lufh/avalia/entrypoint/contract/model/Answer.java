@@ -5,24 +5,26 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
+import javax.annotation.Generated;
 
 /**
  * Represents the answer data for the questions
  */
-@ApiModel(description = "Represents the answer data for the questions")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-23T22:31:30.722986-03:00[America/Fortaleza]")
-public class Answer   {
+
+@Schema(name = "Answer", description = "Represents the answer data for the questions")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-24T00:23:07.669998-03:00[America/Fortaleza]")
+public class Answer {
+
   @JsonProperty("possibleAnswers")
   @Valid
   private List<String> possibleAnswers = null;
@@ -133,9 +135,8 @@ public class Answer   {
    * Get possibleAnswers
    * @return possibleAnswers
   */
-  @ApiModelProperty(value = "")
-
-
+  
+  @Schema(name = "possibleAnswers", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public List<String> getPossibleAnswers() {
     return possibleAnswers;
   }
@@ -153,9 +154,8 @@ public class Answer   {
    * Get choosenAnswer
    * @return choosenAnswer
   */
-  @ApiModelProperty(value = "")
-
-
+  
+  @Schema(name = "choosenAnswer", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public String getChoosenAnswer() {
     return choosenAnswer;
   }
@@ -173,9 +173,8 @@ public class Answer   {
    * Get severity
    * @return severity
   */
-  @ApiModelProperty(value = "")
-
-
+  
+  @Schema(name = "severity", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public SeverityEnum getSeverity() {
     return severity;
   }
@@ -193,9 +192,8 @@ public class Answer   {
    * Get weight
    * @return weight
   */
-  @ApiModelProperty(value = "")
-
-
+  
+  @Schema(name = "weight", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public WeightEnum getWeight() {
     return weight;
   }
@@ -203,7 +201,6 @@ public class Answer   {
   public void setWeight(WeightEnum weight) {
     this.weight = weight;
   }
-
 
   @Override
   public boolean equals(Object o) {
@@ -229,7 +226,6 @@ public class Answer   {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Answer {\n");
-    
     sb.append("    possibleAnswers: ").append(toIndentedString(possibleAnswers)).append("\n");
     sb.append("    choosenAnswer: ").append(toIndentedString(choosenAnswer)).append("\n");
     sb.append("    severity: ").append(toIndentedString(severity)).append("\n");

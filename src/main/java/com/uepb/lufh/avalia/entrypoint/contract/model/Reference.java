@@ -5,21 +5,23 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
+import javax.annotation.Generated;
 
 /**
  * Reference
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-23T22:31:30.722986-03:00[America/Fortaleza]")
-public class Reference   {
+
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-24T00:23:07.669998-03:00[America/Fortaleza]")
+public class Reference {
+
   /**
    * type of reference
    */
@@ -74,9 +76,8 @@ public class Reference   {
    * type of reference
    * @return type
   */
-  @ApiModelProperty(value = "type of reference")
-
-
+  
+  @Schema(name = "type", description = "type of reference", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public TypeEnum getType() {
     return type;
   }
@@ -94,9 +95,8 @@ public class Reference   {
    * Get bibliography
    * @return bibliography
   */
-  @ApiModelProperty(value = "")
-
-
+  
+  @Schema(name = "bibliography", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public String getBibliography() {
     return bibliography;
   }
@@ -104,7 +104,6 @@ public class Reference   {
   public void setBibliography(String bibliography) {
     this.bibliography = bibliography;
   }
-
 
   @Override
   public boolean equals(Object o) {
@@ -128,7 +127,6 @@ public class Reference   {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Reference {\n");
-    
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    bibliography: ").append(toIndentedString(bibliography)).append("\n");
     sb.append("}");

@@ -5,28 +5,31 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.uepb.lufh.avalia.entrypoint.contract.model.Questionnaire;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.time.OffsetDateTime;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
+import javax.annotation.Generated;
 
 /**
  * Represents the result of the evaluation
  */
-@ApiModel(description = "Represents the result of the evaluation")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-23T22:31:30.722986-03:00[America/Fortaleza]")
-public class Report   {
+
+@Schema(name = "Report", description = "Represents the result of the evaluation")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-24T00:23:07.669998-03:00[America/Fortaleza]")
+public class Report {
+
   @JsonProperty("requestEvaluationId")
   private Integer requestEvaluationId;
 
   @JsonProperty("reportDate")
-  @org.springframework.format.annotation.DateTimeFormat(iso = org.springframework.format.annotation.DateTimeFormat.ISO.DATE_TIME)
+  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
   private OffsetDateTime reportDate;
 
   @JsonProperty("questionare")
@@ -41,9 +44,8 @@ public class Report   {
    * Get requestEvaluationId
    * @return requestEvaluationId
   */
-  @ApiModelProperty(value = "")
-
-
+  
+  @Schema(name = "requestEvaluationId", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public Integer getRequestEvaluationId() {
     return requestEvaluationId;
   }
@@ -61,10 +63,8 @@ public class Report   {
    * date the report was made
    * @return reportDate
   */
-  @ApiModelProperty(value = "date the report was made")
-
-  @Valid
-
+  @Valid 
+  @Schema(name = "reportDate", description = "date the report was made", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public OffsetDateTime getReportDate() {
     return reportDate;
   }
@@ -82,10 +82,8 @@ public class Report   {
    * Get questionare
    * @return questionare
   */
-  @ApiModelProperty(value = "")
-
-  @Valid
-
+  @Valid 
+  @Schema(name = "questionare", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public Questionnaire getQuestionare() {
     return questionare;
   }
@@ -93,7 +91,6 @@ public class Report   {
   public void setQuestionare(Questionnaire questionare) {
     this.questionare = questionare;
   }
-
 
   @Override
   public boolean equals(Object o) {
@@ -118,7 +115,6 @@ public class Report   {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Report {\n");
-    
     sb.append("    requestEvaluationId: ").append(toIndentedString(requestEvaluationId)).append("\n");
     sb.append("    reportDate: ").append(toIndentedString(reportDate)).append("\n");
     sb.append("    questionare: ").append(toIndentedString(questionare)).append("\n");

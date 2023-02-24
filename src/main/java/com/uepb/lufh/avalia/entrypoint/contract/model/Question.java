@@ -8,21 +8,23 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import com.uepb.lufh.avalia.entrypoint.contract.model.Answer;
 import com.uepb.lufh.avalia.entrypoint.contract.model.ModelClass;
 import com.uepb.lufh.avalia.entrypoint.contract.model.Reference;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
+import javax.annotation.Generated;
 
 /**
  * Question
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-23T22:31:30.722986-03:00[America/Fortaleza]")
-public class Question   {
+
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-24T00:23:07.669998-03:00[America/Fortaleza]")
+public class Question {
+
   @JsonProperty("id")
   private Long id;
 
@@ -90,9 +92,8 @@ public class Question   {
    * Get id
    * @return id
   */
-  @ApiModelProperty(value = "")
-
-
+  
+  @Schema(name = "id", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public Long getId() {
     return id;
   }
@@ -110,10 +111,8 @@ public class Question   {
    * Get propertyClass
    * @return propertyClass
   */
-  @ApiModelProperty(value = "")
-
-  @Valid
-
+  @Valid 
+  @Schema(name = "class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public ModelClass getPropertyClass() {
     return propertyClass;
   }
@@ -131,9 +130,8 @@ public class Question   {
    * Get productType
    * @return productType
   */
-  @ApiModelProperty(value = "")
-
-
+  
+  @Schema(name = "productType", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public ProductTypeEnum getProductType() {
     return productType;
   }
@@ -151,9 +149,8 @@ public class Question   {
    * Get baseQuestion
    * @return baseQuestion
   */
-  @ApiModelProperty(example = "Is it designed minimal?", value = "")
-
-
+  
+  @Schema(name = "baseQuestion", example = "Is it designed minimal?", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public String getBaseQuestion() {
     return baseQuestion;
   }
@@ -171,9 +168,8 @@ public class Question   {
    * Get detailedQuestion
    * @return detailedQuestion
   */
-  @ApiModelProperty(example = "Is only (and all) information, essential to decision making, displayed on the screen?", value = "")
-
-
+  
+  @Schema(name = "detailedQuestion", example = "Is only (and all) information, essential to decision making, displayed on the screen?", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public String getDetailedQuestion() {
     return detailedQuestion;
   }
@@ -191,10 +187,8 @@ public class Question   {
    * Get reference
    * @return reference
   */
-  @ApiModelProperty(value = "")
-
-  @Valid
-
+  @Valid 
+  @Schema(name = "reference", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public Reference getReference() {
     return reference;
   }
@@ -212,10 +206,8 @@ public class Question   {
    * Get answer
    * @return answer
   */
-  @ApiModelProperty(value = "")
-
-  @Valid
-
+  @Valid 
+  @Schema(name = "answer", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public Answer getAnswer() {
     return answer;
   }
@@ -223,7 +215,6 @@ public class Question   {
   public void setAnswer(Answer answer) {
     this.answer = answer;
   }
-
 
   @Override
   public boolean equals(Object o) {
@@ -252,7 +243,6 @@ public class Question   {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Question {\n");
-    
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    propertyClass: ").append(toIndentedString(propertyClass)).append("\n");
     sb.append("    productType: ").append(toIndentedString(productType)).append("\n");

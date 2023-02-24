@@ -5,23 +5,26 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.time.OffsetDateTime;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
+import javax.annotation.Generated;
 
 /**
  * Represents the output of a request to evaluate a product.
  */
-@ApiModel(description = "Represents the output of a request to evaluate a product.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-23T22:31:30.722986-03:00[America/Fortaleza]")
-public class RequestEvaluationOutput   {
+
+@Schema(name = "RequestEvaluationOutput", description = "Represents the output of a request to evaluate a product.")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-24T00:23:07.669998-03:00[America/Fortaleza]")
+public class RequestEvaluationOutput {
+
   @JsonProperty("id")
   private Long id;
 
@@ -32,11 +35,11 @@ public class RequestEvaluationOutput   {
   private String customerCpfCnpj;
 
   @JsonProperty("startDate")
-  @org.springframework.format.annotation.DateTimeFormat(iso = org.springframework.format.annotation.DateTimeFormat.ISO.DATE_TIME)
+  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
   private OffsetDateTime startDate;
 
   @JsonProperty("endDate")
-  @org.springframework.format.annotation.DateTimeFormat(iso = org.springframework.format.annotation.DateTimeFormat.ISO.DATE_TIME)
+  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
   private OffsetDateTime endDate;
 
   @JsonProperty("urgency")
@@ -96,9 +99,8 @@ public class RequestEvaluationOutput   {
    * Get id
    * @return id
   */
-  @ApiModelProperty(value = "")
-
-
+  
+  @Schema(name = "id", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public Long getId() {
     return id;
   }
@@ -116,9 +118,8 @@ public class RequestEvaluationOutput   {
    * Get productId
    * @return productId
   */
-  @ApiModelProperty(value = "")
-
-
+  
+  @Schema(name = "productId", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public String getProductId() {
     return productId;
   }
@@ -136,9 +137,8 @@ public class RequestEvaluationOutput   {
    * Get customerCpfCnpj
    * @return customerCpfCnpj
   */
-  @ApiModelProperty(value = "")
-
-
+  
+  @Schema(name = "customerCpfCnpj", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public String getCustomerCpfCnpj() {
     return customerCpfCnpj;
   }
@@ -156,10 +156,8 @@ public class RequestEvaluationOutput   {
    * Entry date into lufh
    * @return startDate
   */
-  @ApiModelProperty(value = "Entry date into lufh")
-
-  @Valid
-
+  @Valid 
+  @Schema(name = "startDate", description = "Entry date into lufh", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public OffsetDateTime getStartDate() {
     return startDate;
   }
@@ -177,10 +175,8 @@ public class RequestEvaluationOutput   {
    * Planned departure date from lufh
    * @return endDate
   */
-  @ApiModelProperty(value = "Planned departure date from lufh")
-
-  @Valid
-
+  @Valid 
+  @Schema(name = "endDate", description = "Planned departure date from lufh", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public OffsetDateTime getEndDate() {
     return endDate;
   }
@@ -198,9 +194,8 @@ public class RequestEvaluationOutput   {
    * Get urgency
    * @return urgency
   */
-  @ApiModelProperty(value = "")
-
-
+  
+  @Schema(name = "urgency", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public Boolean getUrgency() {
     return urgency;
   }
@@ -218,9 +213,8 @@ public class RequestEvaluationOutput   {
    * Type of contracted test
    * @return testType
   */
-  @ApiModelProperty(value = "Type of contracted test")
-
-
+  
+  @Schema(name = "testType", description = "Type of contracted test", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public TestTypeEnum getTestType() {
     return testType;
   }
@@ -238,9 +232,8 @@ public class RequestEvaluationOutput   {
    * Contracted scope
    * @return coverage
   */
-  @ApiModelProperty(value = "Contracted scope")
-
-
+  
+  @Schema(name = "coverage", description = "Contracted scope", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public String getCoverage() {
     return coverage;
   }
@@ -248,7 +241,6 @@ public class RequestEvaluationOutput   {
   public void setCoverage(String coverage) {
     this.coverage = coverage;
   }
-
 
   @Override
   public boolean equals(Object o) {
@@ -278,7 +270,6 @@ public class RequestEvaluationOutput   {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class RequestEvaluationOutput {\n");
-    
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    productId: ").append(toIndentedString(productId)).append("\n");
     sb.append("    customerCpfCnpj: ").append(toIndentedString(customerCpfCnpj)).append("\n");

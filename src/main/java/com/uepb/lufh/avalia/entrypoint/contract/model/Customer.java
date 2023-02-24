@@ -4,22 +4,24 @@ import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
+import javax.annotation.Generated;
 
 /**
  * Represents a customer who has requested a product review
  */
-@ApiModel(description = "Represents a customer who has requested a product review")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-23T22:31:30.722986-03:00[America/Fortaleza]")
-public class Customer   {
+
+@Schema(name = "Customer", description = "Represents a customer who has requested a product review")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-24T00:23:07.669998-03:00[America/Fortaleza]")
+public class Customer {
+
   @JsonProperty("id")
   private Integer id;
 
@@ -44,9 +46,8 @@ public class Customer   {
    * Get id
    * @return id
   */
-  @ApiModelProperty(value = "")
-
-
+  
+  @Schema(name = "id", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public Integer getId() {
     return id;
   }
@@ -64,9 +65,8 @@ public class Customer   {
    * Get customerName
    * @return customerName
   */
-  @ApiModelProperty(value = "")
-
-
+  
+  @Schema(name = "customerName", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public String getCustomerName() {
     return customerName;
   }
@@ -84,9 +84,8 @@ public class Customer   {
    * Get cpfCnpj
    * @return cpfCnpj
   */
-  @ApiModelProperty(value = "")
-
-
+  
+  @Schema(name = "cpfCnpj", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public String getCpfCnpj() {
     return cpfCnpj;
   }
@@ -104,9 +103,8 @@ public class Customer   {
    * Get email
    * @return email
   */
-  @ApiModelProperty(value = "")
-
-
+  
+  @Schema(name = "email", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public String getEmail() {
     return email;
   }
@@ -124,9 +122,8 @@ public class Customer   {
    * Get phoneNumber
    * @return phoneNumber
   */
-  @ApiModelProperty(value = "")
-
-
+  
+  @Schema(name = "phoneNumber", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public String getPhoneNumber() {
     return phoneNumber;
   }
@@ -134,7 +131,6 @@ public class Customer   {
   public void setPhoneNumber(String phoneNumber) {
     this.phoneNumber = phoneNumber;
   }
-
 
   @Override
   public boolean equals(Object o) {
@@ -161,7 +157,6 @@ public class Customer   {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Customer {\n");
-    
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    customerName: ").append(toIndentedString(customerName)).append("\n");
     sb.append("    cpfCnpj: ").append(toIndentedString(cpfCnpj)).append("\n");

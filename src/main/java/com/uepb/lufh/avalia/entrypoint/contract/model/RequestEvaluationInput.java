@@ -5,29 +5,32 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.time.OffsetDateTime;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
+import javax.annotation.Generated;
 
 /**
  * Represents the input of a request to evaluate a product.
  */
-@ApiModel(description = "Represents the input of a request to evaluate a product.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-23T22:31:30.722986-03:00[America/Fortaleza]")
-public class RequestEvaluationInput   {
+
+@Schema(name = "RequestEvaluationInput", description = "Represents the input of a request to evaluate a product.")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-24T00:23:07.669998-03:00[America/Fortaleza]")
+public class RequestEvaluationInput {
+
   @JsonProperty("startDate")
-  @org.springframework.format.annotation.DateTimeFormat(iso = org.springframework.format.annotation.DateTimeFormat.ISO.DATE_TIME)
+  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
   private OffsetDateTime startDate;
 
   @JsonProperty("endDate")
-  @org.springframework.format.annotation.DateTimeFormat(iso = org.springframework.format.annotation.DateTimeFormat.ISO.DATE_TIME)
+  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
   private OffsetDateTime endDate;
 
   @JsonProperty("urgency")
@@ -87,10 +90,8 @@ public class RequestEvaluationInput   {
    * Entry date into lufh
    * @return startDate
   */
-  @ApiModelProperty(value = "Entry date into lufh")
-
-  @Valid
-
+  @Valid 
+  @Schema(name = "startDate", description = "Entry date into lufh", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public OffsetDateTime getStartDate() {
     return startDate;
   }
@@ -108,10 +109,8 @@ public class RequestEvaluationInput   {
    * Planned departure date from lufh
    * @return endDate
   */
-  @ApiModelProperty(value = "Planned departure date from lufh")
-
-  @Valid
-
+  @Valid 
+  @Schema(name = "endDate", description = "Planned departure date from lufh", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public OffsetDateTime getEndDate() {
     return endDate;
   }
@@ -129,9 +128,8 @@ public class RequestEvaluationInput   {
    * Get urgency
    * @return urgency
   */
-  @ApiModelProperty(value = "")
-
-
+  
+  @Schema(name = "urgency", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public Boolean getUrgency() {
     return urgency;
   }
@@ -149,9 +147,8 @@ public class RequestEvaluationInput   {
    * Type of contracted test
    * @return testType
   */
-  @ApiModelProperty(value = "Type of contracted test")
-
-
+  
+  @Schema(name = "testType", description = "Type of contracted test", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public TestTypeEnum getTestType() {
     return testType;
   }
@@ -169,9 +166,8 @@ public class RequestEvaluationInput   {
    * Contracted scope
    * @return coverage
   */
-  @ApiModelProperty(value = "Contracted scope")
-
-
+  
+  @Schema(name = "coverage", description = "Contracted scope", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   public String getCoverage() {
     return coverage;
   }
@@ -179,7 +175,6 @@ public class RequestEvaluationInput   {
   public void setCoverage(String coverage) {
     this.coverage = coverage;
   }
-
 
   @Override
   public boolean equals(Object o) {
@@ -206,7 +201,6 @@ public class RequestEvaluationInput   {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class RequestEvaluationInput {\n");
-    
     sb.append("    startDate: ").append(toIndentedString(startDate)).append("\n");
     sb.append("    endDate: ").append(toIndentedString(endDate)).append("\n");
     sb.append("    urgency: ").append(toIndentedString(urgency)).append("\n");
