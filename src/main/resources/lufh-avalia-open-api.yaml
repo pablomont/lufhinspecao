@@ -11,7 +11,7 @@ info:
     url: http://choosealicense.com/licenses/mit/
   version: 1.0.0-oas3
 servers:
-  - url: https://virtserver.swaggerhub.com/pablo.santos/LufhInspecao/1.0.0
+  - url: https://virtserver.swaggerhub.com/lufh-avalia
 tags:
   - name: questions
     description: Disponibiliza operações sobre as questões.

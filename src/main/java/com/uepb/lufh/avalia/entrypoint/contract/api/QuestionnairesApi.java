@@ -32,7 +32,7 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-24T00:23:07.669998-03:00[America/Fortaleza]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-24T00:43:57.784939-03:00[America/Fortaleza]")
 @Validated
 @Tag(name = "questionnaires", description = "Disponibiliza operações sobre os questionários utilizado para avaliar o produto.")
 public interface QuestionnairesApi {

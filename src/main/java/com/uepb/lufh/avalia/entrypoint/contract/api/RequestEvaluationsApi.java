@@ -33,7 +33,7 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-24T00:23:07.669998-03:00[America/Fortaleza]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-24T00:43:57.784939-03:00[America/Fortaleza]")
 @Validated
 @Tag(name = "request-evaluations", description = "Disponibiliza operações sobre as requisições de avaliação.")
 public interface RequestEvaluationsApi {

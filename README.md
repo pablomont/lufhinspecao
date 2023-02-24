@@ -23,7 +23,7 @@ Para que o código fonte seja refletido a cada nova alteração do arquivo [lufh
         <plugin>
             <groupId>org.openapitools</groupId>
             <artifactId>openapi-generator-maven-plugin</artifactId>
-            <version>5.3.1</version>
+            <version>6.4.0</version>
             <executions>
                 <execution>
                     <goals>
