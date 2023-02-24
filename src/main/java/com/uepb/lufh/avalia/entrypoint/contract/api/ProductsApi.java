@@ -32,7 +32,7 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-24T01:01:42.381974-03:00[America/Fortaleza]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-24T02:03:13.939179-03:00[America/Fortaleza]")
 @Validated
 @Tag(name = "products", description = "Disponibiliza operações sobre os produtos a serem avaliados.")
 @RequestMapping("${openapi.lufhInspeo.base-path:/lufh-avalia}")
@@ -63,7 +63,7 @@ public interface ProductsApi {
     )
     default ResponseEntity<Void> createProduct(
         @Parameter(name = "Product", description = "Product object that needs to be evaluated", required = true) @Valid @RequestBody Product product
-    ) {
+    ) throws Exception {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }
@@ -91,7 +91,7 @@ public interface ProductsApi {
     )
     default ResponseEntity<Void> deleteProduct(
         @Parameter(name = "product_id", description = "Product id to delete", required = true, in = ParameterIn.PATH) @PathVariable("product_id") Long productId
-    ) {
+    ) throws Exception {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }
@@ -125,7 +125,7 @@ public interface ProductsApi {
     )
     default ResponseEntity<Product> findProduct(
         @Parameter(name = "product_id", description = "ID of product to return", required = true, in = ParameterIn.PATH) @PathVariable("product_id") Long productId
-    ) {
+    ) throws Exception {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
@@ -172,7 +172,7 @@ public interface ProductsApi {
     default ResponseEntity<List<Product>> findProducts(
         @Parameter(name = "product_name", description = "Product name values that can be considered for filter", in = ParameterIn.QUERY) @Valid @RequestParam(value = "product_name", required = false) String productName,
         @Parameter(name = "product_type", description = "Product type values that can be considered for filter", in = ParameterIn.QUERY) @Valid @RequestParam(value = "product_type", required = false) String productType
-    ) {
+    ) throws Exception {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
@@ -214,7 +214,7 @@ public interface ProductsApi {
     default ResponseEntity<Void> updateProduct(
         @Parameter(name = "product_id", description = "Product id to update", required = true, in = ParameterIn.PATH) @PathVariable("product_id") Long productId,
         @Parameter(name = "Product", description = "Product object that needs to be evaluated", required = true) @Valid @RequestBody Product product
-    ) {
+    ) throws Exception {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }

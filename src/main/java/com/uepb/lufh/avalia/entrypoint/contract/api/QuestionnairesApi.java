@@ -32,7 +32,7 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-24T01:01:42.381974-03:00[America/Fortaleza]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-24T02:03:13.939179-03:00[America/Fortaleza]")
 @Validated
 @Tag(name = "questionnaires", description = "Disponibiliza operações sobre os questionários utilizado para avaliar o produto.")
 @RequestMapping("${openapi.lufhInspeo.base-path:/lufh-avalia}")
@@ -63,7 +63,7 @@ public interface QuestionnairesApi {
     )
     default ResponseEntity<Void> createQuestionaire(
         @Parameter(name = "Questionnaire", description = "") @Valid @RequestBody(required = false) Questionnaire questionnaire
-    ) {
+    ) throws Exception {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }
@@ -91,7 +91,7 @@ public interface QuestionnairesApi {
     )
     default ResponseEntity<Void> deleteQuestionnaire(
         @Parameter(name = "questionnaire_id", description = "Questionnaire id to delete", required = true, in = ParameterIn.PATH) @PathVariable("questionnaire_id") Long questionnaireId
-    ) {
+    ) throws Exception {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }
@@ -125,7 +125,7 @@ public interface QuestionnairesApi {
     )
     default ResponseEntity<Questionnaire> findQuestionnaire(
         @Parameter(name = "questionnaire_id", description = "ID of questionnaire to return", required = true, in = ParameterIn.PATH) @PathVariable("questionnaire_id") Long questionnaireId
-    ) {
+    ) throws Exception {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
@@ -172,7 +172,7 @@ public interface QuestionnairesApi {
     default ResponseEntity<List<Questionnaire>> findQuestionnaires(
         @Parameter(name = "evaluator", description = "Evaluator values that can be considered for filter", in = ParameterIn.QUERY) @Valid @RequestParam(value = "evaluator", required = false) String evaluator,
         @Parameter(name = "creator", description = "Creator values that can be considered for filter", in = ParameterIn.QUERY) @Valid @RequestParam(value = "creator", required = false) String creator
-    ) {
+    ) throws Exception {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
@@ -214,7 +214,7 @@ public interface QuestionnairesApi {
     default ResponseEntity<Void> updateQuestionnaire(
         @Parameter(name = "questionnaire_id", description = "Questionnaire id to update", required = true, in = ParameterIn.PATH) @PathVariable("questionnaire_id") Long questionnaireId,
         @Parameter(name = "Questionnaire", description = "", required = true) @Valid @RequestBody Questionnaire questionnaire
-    ) {
+    ) throws Exception {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }

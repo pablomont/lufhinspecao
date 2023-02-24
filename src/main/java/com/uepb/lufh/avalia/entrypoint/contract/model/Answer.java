@@ -22,7 +22,7 @@ import javax.annotation.Generated;
  */
 
 @Schema(name = "Answer", description = "Represents the answer data for the questions")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-24T01:01:42.381974-03:00[America/Fortaleza]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-24T02:03:13.939179-03:00[America/Fortaleza]")
 public class Answer {
 
   @JsonProperty("possibleAnswers")

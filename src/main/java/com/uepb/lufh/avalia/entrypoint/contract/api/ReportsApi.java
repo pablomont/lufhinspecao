@@ -32,7 +32,7 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-24T01:01:42.381974-03:00[America/Fortaleza]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-24T02:03:13.939179-03:00[America/Fortaleza]")
 @Validated
 @Tag(name = "reports", description = "Disponibiliza operações sobre os relatórios de uma avaliação.")
 @RequestMapping("${openapi.lufhInspeo.base-path:/lufh-avalia}")
@@ -63,7 +63,7 @@ public interface ReportsApi {
     )
     default ResponseEntity<Void> createReport(
         @Parameter(name = "Report", description = "", required = true) @Valid @RequestBody Report report
-    ) {
+    ) throws Exception {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }
@@ -91,7 +91,7 @@ public interface ReportsApi {
     )
     default ResponseEntity<Void> deleteReport(
         @Parameter(name = "report_id", description = "Report id to delete", required = true, in = ParameterIn.PATH) @PathVariable("report_id") Long reportId
-    ) {
+    ) throws Exception {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }
@@ -125,7 +125,7 @@ public interface ReportsApi {
     )
     default ResponseEntity<Report> findReport(
         @Parameter(name = "report_id", description = "ID of report to return", required = true, in = ParameterIn.PATH) @PathVariable("report_id") Long reportId
-    ) {
+    ) throws Exception {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
@@ -174,7 +174,7 @@ public interface ReportsApi {
         @Parameter(name = "request_evaluation_id", description = "Request evaluation id values that can be considered for filter", in = ParameterIn.QUERY) @Valid @RequestParam(value = "request_evaluation_id", required = false) String requestEvaluationId,
         @Parameter(name = "product_type", description = "Product type values that can be considered for filter", in = ParameterIn.QUERY) @Valid @RequestParam(value = "product_type", required = false) String productType,
         @Parameter(name = "report_date", description = "Report date values that can be considered for filter", in = ParameterIn.QUERY) @Valid @RequestParam(value = "report_date", required = false) String reportDate
-    ) {
+    ) throws Exception {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
@@ -216,7 +216,7 @@ public interface ReportsApi {
     default ResponseEntity<Void> updateReport(
         @Parameter(name = "report_id", description = "Report id to update", required = true, in = ParameterIn.PATH) @PathVariable("report_id") Long reportId,
         @Parameter(name = "Report", description = "", required = true) @Valid @RequestBody Report report
-    ) {
+    ) throws Exception {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }

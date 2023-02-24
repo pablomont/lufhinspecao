@@ -32,7 +32,7 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-24T01:01:42.381974-03:00[America/Fortaleza]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-24T02:03:13.939179-03:00[America/Fortaleza]")
 @Validated
 @Tag(name = "questions", description = "Disponibiliza operações sobre as questões.")
 @RequestMapping("${openapi.lufhInspeo.base-path:/lufh-avalia}")
@@ -63,7 +63,7 @@ public interface QuestionsApi {
     )
     default ResponseEntity<Void> createQuestion(
         @Parameter(name = "Question", description = "Question object that needs to be added to the form", required = true) @Valid @RequestBody Question question
-    ) {
+    ) throws Exception {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }
@@ -91,7 +91,7 @@ public interface QuestionsApi {
     )
     default ResponseEntity<Void> deleteQuestion(
         @Parameter(name = "question_id", description = "Question id to delete", required = true, in = ParameterIn.PATH) @PathVariable("question_id") Long questionId
-    ) {
+    ) throws Exception {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }
@@ -125,7 +125,7 @@ public interface QuestionsApi {
     )
     default ResponseEntity<Question> findQuestion(
         @Parameter(name = "question_id", description = "ID of question to return", required = true, in = ParameterIn.PATH) @PathVariable("question_id") Long questionId
-    ) {
+    ) throws Exception {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
@@ -174,7 +174,7 @@ public interface QuestionsApi {
         @Parameter(name = "class", description = "Class values that can be considered for filter", in = ParameterIn.QUERY) @Valid @RequestParam(value = "class", required = false) String propertyClass,
         @Parameter(name = "reference", description = "Reference values that can be considered for filter", in = ParameterIn.QUERY) @Valid @RequestParam(value = "reference", required = false) String reference,
         @Parameter(name = "product_type", description = "Product type values that can be considered for filter", in = ParameterIn.QUERY) @Valid @RequestParam(value = "product_type", required = false) String productType
-    ) {
+    ) throws Exception {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
@@ -216,7 +216,7 @@ public interface QuestionsApi {
     default ResponseEntity<Void> updateQuestion(
         @Parameter(name = "question_id", description = "Question id to update", required = true, in = ParameterIn.PATH) @PathVariable("question_id") Long questionId,
         @Parameter(name = "Question", description = "Question object that needs to be added to the form", required = true) @Valid @RequestBody Question question
-    ) {
+    ) throws Exception {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }

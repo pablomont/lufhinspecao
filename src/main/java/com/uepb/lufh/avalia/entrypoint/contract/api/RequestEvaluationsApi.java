@@ -5,6 +5,7 @@
  */
 package com.uepb.lufh.avalia.entrypoint.contract.api;
 
+import com.uepb.lufh.avalia.entrypoint.contract.model.Error;
 import com.uepb.lufh.avalia.entrypoint.contract.model.RequestEvaluationInput;
 import com.uepb.lufh.avalia.entrypoint.contract.model.RequestEvaluationOutput;
 import io.swagger.v3.oas.annotations.ExternalDocumentation;
@@ -33,7 +34,7 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-24T01:01:42.381974-03:00[America/Fortaleza]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-24T02:03:13.939179-03:00[America/Fortaleza]")
 @Validated
 @Tag(name = "request-evaluations", description = "Disponibiliza operações sobre as requisições de avaliação.")
 @RequestMapping("${openapi.lufhInspeo.base-path:/lufh-avalia}")
@@ -51,6 +52,8 @@ public interface RequestEvaluationsApi {
      * @param requestEvaluationInput Request evaluation object (required)
      * @return A RequestEvaluationOutput object (status code 200)
      *         or Internal server error (status code 500)
+     *         or Bad Request (status code 400)
+     *         or Not found (status code 404)
      */
     @Operation(
         operationId = "createRequestEvaluation",
@@ -60,7 +63,13 @@ public interface RequestEvaluationsApi {
             @ApiResponse(responseCode = "200", description = "A RequestEvaluationOutput object", content = {
                 @Content(mediaType = "application/json", schema = @Schema(implementation = RequestEvaluationOutput.class))
             }),
-            @ApiResponse(responseCode = "500", description = "Internal server error")
+            @ApiResponse(responseCode = "500", description = "Internal server error"),
+            @ApiResponse(responseCode = "400", description = "Bad Request", content = {
+                @Content(mediaType = "application/json", schema = @Schema(implementation = Error.class))
+            }),
+            @ApiResponse(responseCode = "404", description = "Not found", content = {
+                @Content(mediaType = "application/json", schema = @Schema(implementation = Error.class))
+            })
         }
     )
     @RequestMapping(
@@ -73,7 +82,7 @@ public interface RequestEvaluationsApi {
         @NotNull @Parameter(name = "product_id", description = "", required = true, in = ParameterIn.HEADER) @RequestHeader(value = "product_id", required = true) String productId,
         @NotNull @Parameter(name = "customer_cpf_cnpj", description = "", required = true, in = ParameterIn.HEADER) @RequestHeader(value = "customer_cpf_cnpj", required = true) String customerCpfCnpj,
         @Parameter(name = "RequestEvaluationInput", description = "Request evaluation object", required = true) @Valid @RequestBody RequestEvaluationInput requestEvaluationInput
-    ) {
+    ) throws Exception {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
@@ -110,7 +119,7 @@ public interface RequestEvaluationsApi {
     )
     default ResponseEntity<Void> deleteRequestEvaluation(
         @Parameter(name = "request_evaluation_id", description = "Request Evaluation id to delete", required = true, in = ParameterIn.PATH) @PathVariable("request_evaluation_id") Long requestEvaluationId
-    ) {
+    ) throws Exception {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }
@@ -121,8 +130,7 @@ public interface RequestEvaluationsApi {
      *
      * @param requestEvaluationId ID of request evaluation to return (required)
      * @return successful operation (status code 200)
-     *         or Invalid ID supplied (status code 400)
-     *         or Request evaluation not found (status code 404)
+     *         or Not found (status code 404)
      */
     @Operation(
         operationId = "findRequestEvaluation",
@@ -132,8 +140,9 @@ public interface RequestEvaluationsApi {
             @ApiResponse(responseCode = "200", description = "successful operation", content = {
                 @Content(mediaType = "application/json", schema = @Schema(implementation = RequestEvaluationOutput.class))
             }),
-            @ApiResponse(responseCode = "400", description = "Invalid ID supplied"),
-            @ApiResponse(responseCode = "404", description = "Request evaluation not found")
+            @ApiResponse(responseCode = "404", description = "Not found", content = {
+                @Content(mediaType = "application/json", schema = @Schema(implementation = Error.class))
+            })
         }
     )
     @RequestMapping(
@@ -143,7 +152,7 @@ public interface RequestEvaluationsApi {
     )
     default ResponseEntity<RequestEvaluationOutput> findRequestEvaluation(
         @Parameter(name = "request_evaluation_id", description = "ID of request evaluation to return", required = true, in = ParameterIn.PATH) @PathVariable("request_evaluation_id") Long requestEvaluationId
-    ) {
+    ) throws Exception {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
@@ -163,6 +172,7 @@ public interface RequestEvaluationsApi {
      *
      * @param customerCpfCnpj CPF and CNPJ values that can be considered for filter (optional)
      * @return successful operation (status code 200)
+     *         or Bad Request (status code 400)
      *         or Not found (status code 404)
      */
     @Operation(
@@ -173,7 +183,12 @@ public interface RequestEvaluationsApi {
             @ApiResponse(responseCode = "200", description = "successful operation", content = {
                 @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = RequestEvaluationOutput.class)))
             }),
-            @ApiResponse(responseCode = "404", description = "Not found")
+            @ApiResponse(responseCode = "400", description = "Bad Request", content = {
+                @Content(mediaType = "application/json", schema = @Schema(implementation = Error.class))
+            }),
+            @ApiResponse(responseCode = "404", description = "Not found", content = {
+                @Content(mediaType = "application/json", schema = @Schema(implementation = Error.class))
+            })
         }
     )
     @RequestMapping(
@@ -183,7 +198,7 @@ public interface RequestEvaluationsApi {
     )
     default ResponseEntity<List<RequestEvaluationOutput>> findRequestEvaluations(
         @Parameter(name = "customer_cpf_cnpj", description = "CPF and CNPJ values that can be considered for filter", in = ParameterIn.QUERY) @Valid @RequestParam(value = "customer_cpf_cnpj", required = false) String customerCpfCnpj
-    ) {
+    ) throws Exception {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
@@ -225,7 +240,7 @@ public interface RequestEvaluationsApi {
     default ResponseEntity<Void> updateRequestEvaluation(
         @Parameter(name = "request_evaluation_id", description = "Request Evaluation id to update", required = true, in = ParameterIn.PATH) @PathVariable("request_evaluation_id") Long requestEvaluationId,
         @Parameter(name = "RequestEvaluationInput", description = "", required = true) @Valid @RequestBody RequestEvaluationInput requestEvaluationInput
-    ) {
+    ) throws Exception {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }

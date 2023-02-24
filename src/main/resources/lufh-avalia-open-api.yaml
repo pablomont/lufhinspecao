@@ -11,7 +11,7 @@ info:
     url: http://choosealicense.com/licenses/mit/
   version: 1.0.0-oas3
 servers:
-  - url: https://virtserver.swaggerhub.com/lufh-avalia
+  - url: https://virtserver.swaggerhub.com/lufh-avalia/
 tags:
   - name: questions
     description: Disponibiliza operações sobre as questões.
@@ -335,8 +335,32 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/RequestEvaluationOutput'
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                CpfCnpjInvalid:
+                  summary: Cpf|Cnpj Inválido
+                  value:
+                    code: 400
+                    message: Cpf|Cnpj Inválido
+                    type: CpfCnpjInvalidException
         "404":
           description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                RequestEvaluationNotFound:
+                  summary: Request Evaluation Not Found
+                  value:
+                    code: 404
+                    message: Request Evaluation Not Found
+                    type: RequestEvaluationNotFoundException
     post:
       tags:
         - request-evaluations
@@ -373,6 +397,32 @@ paths:
                 $ref: '#/components/schemas/RequestEvaluationOutput'
         "500":
           description: Internal server error
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                CpfCnpjInvalid:
+                  summary: Cpf|Cnpj Inválido
+                  value:
+                    code: 400
+                    message: Cpf|Cnpj Inválido
+                    type: CpfCnpjInvalidException
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                ProductNotFound:
+                  summary: Product Not Found
+                  value:
+                    code: 404
+                    message: Product Not Found
+                    type: ProductNotFoundException
   /request-evaluations/{request_evaluation_id}:
     get:
       tags:
@@ -403,10 +453,19 @@ paths:
                 product_id: $response.body#/productId
               description: |
                 The 'productId' value returned in the response can be used as the  'product_id' in 'GET /products/{product_id}
-        "400":
-          description: Invalid ID supplied
         "404":
-          description: Request evaluation not found
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                RequestEvaluationNotFound:
+                  summary: Request Evaluation Not Found
+                  value:
+                    code: 404
+                    message: Request Evaluation Not Found
+                    type: RequestEvaluationNotFoundException
     put:
       tags:
         - request-evaluations
@@ -1063,3 +1122,13 @@ components:
         questionare:
           $ref: '#/components/schemas/Questionnaire'
       description: Represents the result of the evaluation
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        type:
+          type: string

@@ -32,7 +32,7 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-24T01:01:42.381974-03:00[America/Fortaleza]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-24T02:03:13.939179-03:00[America/Fortaleza]")
 @Validated
 @Tag(name = "customers", description = "Disponibiliza operações sobre os clientes que solicitaram uma avaliação de um determinado produto.")
 @RequestMapping("${openapi.lufhInspeo.base-path:/lufh-avalia}")
@@ -63,7 +63,7 @@ public interface CustomersApi {
     )
     default ResponseEntity<Void> createCustomer(
         @Parameter(name = "Customer", description = "Customer object that needs to have a product evaluation", required = true) @Valid @RequestBody Customer customer
-    ) {
+    ) throws Exception {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }
@@ -91,7 +91,7 @@ public interface CustomersApi {
     )
     default ResponseEntity<Void> deleteCustomer(
         @Parameter(name = "customer_cpf_cnpj", description = "Customer id to delete", required = true, in = ParameterIn.PATH) @PathVariable("customer_cpf_cnpj") Long customerCpfCnpj
-    ) {
+    ) throws Exception {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }
@@ -125,7 +125,7 @@ public interface CustomersApi {
     )
     default ResponseEntity<Customer> findCustomer(
         @Parameter(name = "customer_cpf_cnpj", description = "CPF or CNPJ of customer to return", required = true, in = ParameterIn.PATH) @PathVariable("customer_cpf_cnpj") Long customerCpfCnpj
-    ) {
+    ) throws Exception {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
@@ -170,7 +170,7 @@ public interface CustomersApi {
     )
     default ResponseEntity<List<Customer>> findCustomers(
         @Parameter(name = "customer_cpf_cnpj", description = "CPF and CNPJ values that can be considered for filter", in = ParameterIn.QUERY) @Valid @RequestParam(value = "customer_cpf_cnpj", required = false) String customerCpfCnpj
-    ) {
+    ) throws Exception {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
@@ -212,7 +212,7 @@ public interface CustomersApi {
     default ResponseEntity<Void> updateCustomer(
         @Parameter(name = "customer_cpf_cnpj", description = "Customer id to update", required = true, in = ParameterIn.PATH) @PathVariable("customer_cpf_cnpj") Long customerCpfCnpj,
         @Parameter(name = "Customer", description = "Customer object that needs to have a product evaluation", required = true) @Valid @RequestBody Customer customer
-    ) {
+    ) throws Exception {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }
