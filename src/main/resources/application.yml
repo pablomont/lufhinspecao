@@ -29,7 +29,7 @@ spring:
         hibernate:
             ddl-auto: update
 springdoc:
-    packagesToScan: com.uepb.lufh.avalia.entrypoint.contract
+    packagesToScan: com.uepb.lufh.avalia.entrypoint.controller
     pathsToMatch: /**
     swagger-ui:
         disable-swagger-default-url: true

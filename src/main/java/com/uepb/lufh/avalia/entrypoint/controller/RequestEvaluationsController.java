@@ -1,4 +1,4 @@
-package com.uepb.lufh.avalia.entrypoint;
+package com.uepb.lufh.avalia.entrypoint.controller;
 
 
 import com.uepb.lufh.avalia.core.domain.RequestEvaluationDomain;
