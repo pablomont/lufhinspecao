@@ -1,5 +1,7 @@
 package com.uepb.lufh.avalia.core.gateway;
 
-public interface RequestEvaluationGateway {
+import com.uepb.lufh.avalia.core.domain.RequestEvaluationDomain;
 
+public interface RequestEvaluationGateway {
+    RequestEvaluationDomain save(RequestEvaluationDomain requestEvaluationDomain);
 }

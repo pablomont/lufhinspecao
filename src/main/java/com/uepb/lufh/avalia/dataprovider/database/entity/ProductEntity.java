@@ -1,5 +1,8 @@
 package com.uepb.lufh.avalia.dataprovider.database.entity;
 
+import com.uepb.lufh.avalia.core.domain.ProductDomain;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,7 +15,9 @@ import java.util.List;
 
 @Entity
 @Table(name = "product")
+@NoArgsConstructor
 public class ProductEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "product_id")
@@ -32,6 +37,25 @@ public class ProductEntity {
 
     private String productType;
 
-    @OneToMany(mappedBy = "product")
+    @OneToMany(mappedBy = "productEntity")
     private List<RequestEvaluationEntity> evaluations;
+
+    public ProductEntity(final ProductDomain productDomain) {
+        this.productName = productDomain.getProductName();
+        this.manufacturerName = productDomain.getManufacturerName();
+        this.completionLevel = productDomain.getCompletionLevel();
+        this.productType = productDomain.getProductType();
+    }
+
+    public ProductDomain toDomain() {
+
+        return ProductDomain.builder()
+            .id(productId)
+            .productName(productName)
+            .manufacturerName(manufacturerName)
+            .completionLevel(completionLevel)
+            .productType(productType)
+            .build();
+    }
+
 }

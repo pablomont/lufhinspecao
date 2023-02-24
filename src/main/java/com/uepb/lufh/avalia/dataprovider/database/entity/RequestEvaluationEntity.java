@@ -1,6 +1,8 @@
 package com.uepb.lufh.avalia.dataprovider.database.entity;
 
+import com.uepb.lufh.avalia.core.domain.RequestEvaluationDomain;
 import com.uepb.lufh.avalia.entrypoint.contract.model.Product;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,6 +18,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "request_evaluation")
+@NoArgsConstructor
 public class RequestEvaluationEntity {
 
     @Id
@@ -30,7 +33,7 @@ public class RequestEvaluationEntity {
     @Column(name = "end_date")
     private LocalDateTime endDate;
 
-    private String urgency;
+    private Boolean urgency;
 
     @Column(name = "test_type")
     private String testType;
@@ -40,7 +43,20 @@ public class RequestEvaluationEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id", nullable = false)
-    private Product product;
+    private ProductEntity productEntity;
 
+
+    public RequestEvaluationEntity(final RequestEvaluationDomain requestEvaluationDomain) {
+        this.startDate = requestEvaluationDomain.getStartDate();
+        this.endDate = requestEvaluationDomain.getEndDate();
+        this.urgency = requestEvaluationDomain.getUrgency();
+        this.testType = requestEvaluationDomain.getTestType();
+        this.testCoverage = requestEvaluationDomain.getCoverage();
+        this.productEntity = new ProductEntity(requestEvaluationDomain.getProductDomain());
+    }
+
+    public RequestEvaluationDomain toDomain() {
+        return null;
+    }
 
 }

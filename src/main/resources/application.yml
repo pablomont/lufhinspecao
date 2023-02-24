@@ -15,7 +15,16 @@ management:
             base-path: '/'
 
 spring:
-    jackson:
-        date-format: com.uepb.lufh.avalia.configuration.RFC3339DateFormat
-        serialization:
-            WRITE_DATES_AS_TIMESTAMPS: 'false'
+    h2:
+        console:
+            enabled: 'true'
+    datasource:
+        url: jdbc:h2:mem:mydb
+        username: sa
+        password: password
+        driverClassName: org.h2.Driver
+    jpa:
+        spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
+        show-sql: 'true'
+        hibernate:
+            ddl-auto: update

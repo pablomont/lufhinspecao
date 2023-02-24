@@ -44,3 +44,6 @@ Para que o código fonte seja refletido a cada nova alteração do arquivo [lufh
     </plugins>
 </build>
 ```
+
+## URL para acessar o swagger
+http://localhost:8080/swagger-ui/index.html#/

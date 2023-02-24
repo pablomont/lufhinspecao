@@ -4,6 +4,7 @@ import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.uepb.lufh.avalia.core.domain.ProductDomain;
 import com.uepb.lufh.avalia.entrypoint.contract.model.ProductType;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -39,7 +40,7 @@ public class Product   {
   @JsonProperty("completionLevel")
   private String completionLevel;
 
-  public Product id(Long id) {
+    public Product id(Long id) {
     this.id = id;
     return this;
   }
