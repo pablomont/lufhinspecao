@@ -1,5 +1,6 @@
 package com.uepb.lufh.avalia.core.usecase.requestevaluation;
 
+import com.uepb.lufh.avalia.core.vo.CpfCnpjValueObject;
 import com.uepb.lufh.avalia.core.domain.ProductDomain;
 import com.uepb.lufh.avalia.core.domain.RequestEvaluationDomain;
 import com.uepb.lufh.avalia.core.gateway.ProductGateway;
@@ -16,14 +17,14 @@ public class CreateRequestEvaluationUseCase {
     private final ProductGateway productGateway;
     private final RequestEvaluationGateway requestEvaluationGateway;
 
-    public RequestEvaluationOutput execute(RequestEvaluationDomain evaluationDomain, String productId){
+    public RequestEvaluationOutput execute(RequestEvaluationDomain evaluationDomain, String productId, final String customerCpfCnpj){
 
-
-        ProductDomain productDomain = productGateway.findProductByProductId(Long.valueOf(productId)).orElseThrow(() -> {
-            throw new ProductNotFoundException("Product not found with id: " + productId);
-        });
-
-        evaluationDomain.setProductDomain(productDomain);
+//        ProductDomain productDomain = productGateway.findProductByProductId(Long.valueOf(productId)).orElseThrow(() -> {
+//            throw new ProductNotFoundException("Product not found with id: " + productId);
+//        });
+//
+//        evaluationDomain.setProductDomain(productDomain);
+        evaluationDomain.setCpfCnpjValueObject(new CpfCnpjValueObject(customerCpfCnpj));
         return requestEvaluationGateway.save(evaluationDomain).toOutput();
 
     }

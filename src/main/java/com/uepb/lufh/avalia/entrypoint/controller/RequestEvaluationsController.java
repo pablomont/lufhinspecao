@@ -20,7 +20,7 @@ public class RequestEvaluationsController implements RequestEvaluationsApi {
     @Override
     public ResponseEntity<RequestEvaluationOutput> createRequestEvaluation(final String productId, final String customerCpfCnpj,
         final RequestEvaluationInput requestEvaluationInput) {
-        return ResponseEntity.ok(createRequestEvaluationUseCaseImpl.execute(new RequestEvaluationDomain(requestEvaluationInput), productId));
+        return ResponseEntity.ok(createRequestEvaluationUseCaseImpl.execute(new RequestEvaluationDomain(requestEvaluationInput), productId, customerCpfCnpj));
 
     }
 

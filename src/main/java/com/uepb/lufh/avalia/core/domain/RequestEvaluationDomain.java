@@ -1,6 +1,6 @@
 package com.uepb.lufh.avalia.core.domain;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.uepb.lufh.avalia.core.vo.CpfCnpjValueObject;
 import com.uepb.lufh.avalia.entrypoint.contract.model.RequestEvaluationInput;
 import com.uepb.lufh.avalia.entrypoint.contract.model.RequestEvaluationOutput;
 import lombok.AllArgsConstructor;
@@ -24,6 +24,8 @@ public class RequestEvaluationDomain {
     private String coverage;
 
     private ProductDomain productDomain;
+
+    private CpfCnpjValueObject cpfCnpjValueObject;
 
     public RequestEvaluationDomain(RequestEvaluationInput requestEvaluationInput) {
         this.startDate = requestEvaluationInput.getStartDate().toLocalDateTime();
