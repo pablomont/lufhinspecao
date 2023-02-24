@@ -4,6 +4,7 @@ import com.uepb.lufh.avalia.core.domain.ProductDomain;
 import com.uepb.lufh.avalia.core.domain.RequestEvaluationDomain;
 import com.uepb.lufh.avalia.core.gateway.ProductGateway;
 import com.uepb.lufh.avalia.core.gateway.RequestEvaluationGateway;
+import com.uepb.lufh.avalia.dataprovider.exception.ProductNotFoundException;
 import com.uepb.lufh.avalia.entrypoint.contract.model.RequestEvaluationOutput;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,7 @@ public class CreateRequestEvaluationUseCase {
 
 
         ProductDomain productDomain = productGateway.findProductByProductId(Long.valueOf(productId)).orElseThrow(() -> {
-            throw new RuntimeException("Produto inexistente na base");
+            throw new ProductNotFoundException("Product not found with id: " + productId);
         });
 
         evaluationDomain.setProductDomain(productDomain);

@@ -345,9 +345,7 @@ paths:
                 CpfCnpjInvalid:
                   summary: Cpf|Cnpj Inválido
                   value:
-                    code: 400
                     message: Cpf|Cnpj Inválido
-                    type: CpfCnpjInvalidException
         "404":
           description: Not found
           content:
@@ -358,9 +356,7 @@ paths:
                 RequestEvaluationNotFound:
                   summary: Request Evaluation Not Found
                   value:
-                    code: 404
                     message: Request Evaluation Not Found
-                    type: RequestEvaluationNotFoundException
     post:
       tags:
         - request-evaluations
@@ -407,9 +403,7 @@ paths:
                 CpfCnpjInvalid:
                   summary: Cpf|Cnpj Inválido
                   value:
-                    code: 400
                     message: Cpf|Cnpj Inválido
-                    type: CpfCnpjInvalidException
         "404":
           description: Not found
           content:
@@ -420,9 +414,7 @@ paths:
                 ProductNotFound:
                   summary: Product Not Found
                   value:
-                    code: 404
                     message: Product Not Found
-                    type: ProductNotFoundException
   /request-evaluations/{request_evaluation_id}:
     get:
       tags:
@@ -463,9 +455,7 @@ paths:
                 RequestEvaluationNotFound:
                   summary: Request Evaluation Not Found
                   value:
-                    code: 404
                     message: Request Evaluation Not Found
-                    type: RequestEvaluationNotFoundException
     put:
       tags:
         - request-evaluations
@@ -489,11 +479,27 @@ paths:
         required: true
       responses:
         "400":
-          description: Invalid ID supplied
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                CpfCnpjInvalid:
+                  summary: Cpf|Cnpj Inválido
+                  value:
+                    message: Cpf|Cnpj Inválido
         "404":
-          description: Request Evaluation not found
-        "405":
-          description: Validation exception
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                RequestEvaluationNotFound:
+                  summary: Request Evaluation Not Found
+                  value:
+                    message: Request Evaluation Not Found
     delete:
       tags:
         - request-evaluations
@@ -511,9 +517,27 @@ paths:
             format: int64
       responses:
         "400":
-          description: Invalid ID supplied
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                CpfCnpjInvalid:
+                  summary: Cpf|Cnpj Inválido
+                  value:
+                    message: Cpf|Cnpj Inválido
         "404":
-          description: Request Evaluation not found
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                RequestEvaluationNotFound:
+                  summary: Request Evaluation Not Found
+                  value:
+                    message: Request Evaluation Not Found
   /reports:
     get:
       tags:
@@ -1125,10 +1149,5 @@ components:
     Error:
       type: object
       properties:
-        code:
-          type: integer
-          format: int32
         message:
-          type: string
-        type:
           type: string

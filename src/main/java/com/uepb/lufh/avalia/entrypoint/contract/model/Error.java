@@ -18,36 +18,11 @@ import javax.annotation.Generated;
  * Error
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-24T02:03:13.939179-03:00[America/Fortaleza]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-24T12:59:59.575611-03:00[America/Fortaleza]")
 public class Error {
-
-  @JsonProperty("code")
-  private Integer code;
 
   @JsonProperty("message")
   private String message;
-
-  @JsonProperty("type")
-  private String type;
-
-  public Error code(Integer code) {
-    this.code = code;
-    return this;
-  }
-
-  /**
-   * Get code
-   * @return code
-  */
-  
-  @Schema(name = "code", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  public Integer getCode() {
-    return code;
-  }
-
-  public void setCode(Integer code) {
-    this.code = code;
-  }
 
   public Error message(String message) {
     this.message = message;
@@ -68,25 +43,6 @@ public class Error {
     this.message = message;
   }
 
-  public Error type(String type) {
-    this.type = type;
-    return this;
-  }
-
-  /**
-   * Get type
-   * @return type
-  */
-  
-  @Schema(name = "type", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  public String getType() {
-    return type;
-  }
-
-  public void setType(String type) {
-    this.type = type;
-  }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -96,23 +52,19 @@ public class Error {
       return false;
     }
     Error error = (Error) o;
-    return Objects.equals(this.code, error.code) &&
-        Objects.equals(this.message, error.message) &&
-        Objects.equals(this.type, error.type);
+    return Objects.equals(this.message, error.message);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(code, message, type);
+    return Objects.hash(message);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Error {\n");
-    sb.append("    code: ").append(toIndentedString(code)).append("\n");
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("}");
     return sb.toString();
   }

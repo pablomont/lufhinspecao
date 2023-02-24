@@ -34,7 +34,7 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-24T02:03:13.939179-03:00[America/Fortaleza]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-24T12:59:59.575611-03:00[America/Fortaleza]")
 @Validated
 @Tag(name = "request-evaluations", description = "Disponibiliza operações sobre as requisições de avaliação.")
 @RequestMapping("${openapi.lufhInspeo.base-path:/lufh-avalia}")
@@ -101,21 +101,26 @@ public interface RequestEvaluationsApi {
      * DELETE /request-evaluations/{request_evaluation_id} : Deletes a request evaluation
      *
      * @param requestEvaluationId Request Evaluation id to delete (required)
-     * @return Invalid ID supplied (status code 400)
-     *         or Request Evaluation not found (status code 404)
+     * @return Bad Request (status code 400)
+     *         or Not found (status code 404)
      */
     @Operation(
         operationId = "deleteRequestEvaluation",
         summary = "Deletes a request evaluation",
         tags = { "request-evaluations" },
         responses = {
-            @ApiResponse(responseCode = "400", description = "Invalid ID supplied"),
-            @ApiResponse(responseCode = "404", description = "Request Evaluation not found")
+            @ApiResponse(responseCode = "400", description = "Bad Request", content = {
+                @Content(mediaType = "application/json", schema = @Schema(implementation = Error.class))
+            }),
+            @ApiResponse(responseCode = "404", description = "Not found", content = {
+                @Content(mediaType = "application/json", schema = @Schema(implementation = Error.class))
+            })
         }
     )
     @RequestMapping(
         method = RequestMethod.DELETE,
-        value = "/request-evaluations/{request_evaluation_id}"
+        value = "/request-evaluations/{request_evaluation_id}",
+        produces = { "application/json" }
     )
     default ResponseEntity<Void> deleteRequestEvaluation(
         @Parameter(name = "request_evaluation_id", description = "Request Evaluation id to delete", required = true, in = ParameterIn.PATH) @PathVariable("request_evaluation_id") Long requestEvaluationId
@@ -218,23 +223,26 @@ public interface RequestEvaluationsApi {
      *
      * @param requestEvaluationId Request Evaluation id to update (required)
      * @param requestEvaluationInput  (required)
-     * @return Invalid ID supplied (status code 400)
-     *         or Request Evaluation not found (status code 404)
-     *         or Validation exception (status code 405)
+     * @return Bad Request (status code 400)
+     *         or Not found (status code 404)
      */
     @Operation(
         operationId = "updateRequestEvaluation",
         summary = "Update an existing request evaluation",
         tags = { "request-evaluations" },
         responses = {
-            @ApiResponse(responseCode = "400", description = "Invalid ID supplied"),
-            @ApiResponse(responseCode = "404", description = "Request Evaluation not found"),
-            @ApiResponse(responseCode = "405", description = "Validation exception")
+            @ApiResponse(responseCode = "400", description = "Bad Request", content = {
+                @Content(mediaType = "application/json", schema = @Schema(implementation = Error.class))
+            }),
+            @ApiResponse(responseCode = "404", description = "Not found", content = {
+                @Content(mediaType = "application/json", schema = @Schema(implementation = Error.class))
+            })
         }
     )
     @RequestMapping(
         method = RequestMethod.PUT,
         value = "/request-evaluations/{request_evaluation_id}",
+        produces = { "application/json" },
         consumes = { "application/json" }
     )
     default ResponseEntity<Void> updateRequestEvaluation(
