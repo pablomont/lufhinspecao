@@ -1,5 +1,7 @@
 package com.uepb.lufh.avalia.core.domain;
 
+import com.uepb.lufh.avalia.entrypoint.contract.model.ProductOutput;
+import com.uepb.lufh.avalia.entrypoint.contract.model.ProductType;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +19,25 @@ public class ProductDomain {
     private final String productType;
     private final String completionLevel;
 
+    private final String productClass;
+
     private final List<RequestEvaluationDomain> requestEvaluationDomainList;
+
+    public ProductOutput toOutput() {
+
+        var productType = new ProductType();
+        productType.setName(ProductType.NameEnum.fromValue(this.getProductType()));
+
+        var productOutput = new ProductOutput();
+        productOutput.setId(this.id);
+        productOutput.setProductName(this.productName);
+        productOutput.setProductClass(this.productClass);
+        productOutput.setProductType(productType);
+        productOutput.setManufacterName(this.manufacturerName);
+        productOutput.setCompletionLevel(this.completionLevel);
+
+        return productOutput;
+
+    }
 
 }

@@ -37,6 +37,9 @@ public class ProductEntity {
     @Column(name = "product_type")
     private String productType;
 
+    @Column(name = "product_class")
+    private String productClass;
+
     @OneToMany(mappedBy = "productEntity")
     private List<RequestEvaluationEntity> evaluations;
 
@@ -47,6 +50,7 @@ public class ProductEntity {
         this.manufacturerName = productDomain.getManufacturerName();
         this.completionLevel = productDomain.getCompletionLevel();
         this.productType = productDomain.getProductType();
+        this.productClass = productDomain.getProductClass();
     }
 
     public ProductDomain toDomain() {
@@ -57,6 +61,7 @@ public class ProductEntity {
             .manufacturerName(manufacturerName)
             .completionLevel(completionLevel)
             .productType(productType)
+            .productClass(productClass)
             .build();
     }
 

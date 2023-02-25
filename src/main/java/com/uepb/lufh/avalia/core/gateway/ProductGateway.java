@@ -6,4 +6,7 @@ import java.util.Optional;
 
 public interface ProductGateway {
     Optional<ProductDomain> findProductByProductId(Long productId);
+
+    Optional<ProductDomain> save(ProductDomain productDomain);
+
 }

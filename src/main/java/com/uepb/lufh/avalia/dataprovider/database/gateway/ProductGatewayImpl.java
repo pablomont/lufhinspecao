@@ -23,4 +23,10 @@ public class ProductGatewayImpl implements ProductGateway {
         return productRepository.findByProductId(productId).map(ProductEntity::toDomain);
     }
 
+    @Override
+    public Optional<ProductDomain> save(final ProductDomain productDomain) {
+        log.info("Creating product with name: {}", productDomain.getProductName());
+        return Optional.ofNullable(productRepository.save(new ProductEntity(productDomain)).toDomain());
+    }
+
 }
