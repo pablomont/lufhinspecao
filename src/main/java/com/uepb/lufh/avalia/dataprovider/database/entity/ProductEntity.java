@@ -2,6 +2,7 @@ package com.uepb.lufh.avalia.dataprovider.database.entity;
 
 import com.uepb.lufh.avalia.core.domain.ProductDomain;
 import lombok.NoArgsConstructor;
+import org.springframework.util.ObjectUtils;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -40,7 +41,8 @@ public class ProductEntity {
     private List<RequestEvaluationEntity> evaluations;
 
     public ProductEntity(final ProductDomain productDomain) {
-        this.productId = productDomain.getId();
+        if(!ObjectUtils.isEmpty(productDomain.getId()))
+            this.productId = productDomain.getId();
         this.productName = productDomain.getProductName();
         this.manufacturerName = productDomain.getManufacturerName();
         this.completionLevel = productDomain.getCompletionLevel();

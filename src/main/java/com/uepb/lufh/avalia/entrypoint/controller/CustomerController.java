@@ -15,4 +15,9 @@ public class CustomerController implements CustomersApi {
     private final CreateCustomerUsecase createCustomerUsecase;
 
 
+    @Override
+    public ResponseEntity<CustomerOutput> createCustomer(final CustomerInput customerInput) {
+        return ResponseEntity.ok(createCustomerUsecase.execute(customerInput));
+    }
+
 }

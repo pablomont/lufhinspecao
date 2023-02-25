@@ -6,6 +6,7 @@ import com.uepb.lufh.avalia.core.domain.RequestEvaluationDomain;
 import com.uepb.lufh.avalia.core.gateway.CustomerGateway;
 import com.uepb.lufh.avalia.core.gateway.ProductGateway;
 import com.uepb.lufh.avalia.core.gateway.RequestEvaluationGateway;
+import com.uepb.lufh.avalia.core.vo.CpfCnpjValueObject;
 import com.uepb.lufh.avalia.dataprovider.exception.CustomerNotFoundException;
 import com.uepb.lufh.avalia.dataprovider.exception.CustomerNotSavedException;
 import com.uepb.lufh.avalia.dataprovider.exception.ProductNotFoundException;
@@ -30,7 +31,7 @@ public class CreateRequestEvaluationUseCase {
 
     public RequestEvaluationOutput execute(RequestEvaluationInput requestEvaluationInput, String productId, final String customerCpfCnpj){
 
-        var cpfCnpj = customerCpfCnpj.replaceAll(REGEX_CPF_CNPJ, EMPTY_STRING);
+        var cpfCnpj = CpfCnpjValueObject.getReplaceAll(customerCpfCnpj);
 
         ProductDomain productDomain = productGateway.findProductByProductId(Long.valueOf(productId)).orElseThrow(() -> {
             log.error("Product with id {} not found", productId);

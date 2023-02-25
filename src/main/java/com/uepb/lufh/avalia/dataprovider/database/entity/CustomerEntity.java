@@ -5,6 +5,7 @@ import com.uepb.lufh.avalia.core.vo.CpfCnpjValueObject;
 import com.uepb.lufh.avalia.core.vo.EmailValueObject;
 import com.uepb.lufh.avalia.core.vo.PhoneNumberValueObject;
 import lombok.NoArgsConstructor;
+import org.springframework.util.ObjectUtils;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -41,7 +42,8 @@ public class CustomerEntity {
     private List<RequestEvaluationEntity> evaluations;
 
     public CustomerEntity(final CustomerDomain customerDomain) {
-        this.customerId = Long.valueOf(customerDomain.getId());
+        if(!ObjectUtils.isEmpty(customerDomain.getId()))
+            this.customerId = customerDomain.getId();
         this.customerName = customerDomain.getCustomerName();
         this.cpfCnpj = customerDomain.getCpfCnpjValueObject().toString();
         this.email = customerDomain.getEmailValueObject().toString();
@@ -51,7 +53,7 @@ public class CustomerEntity {
     public CustomerDomain toDomain() {
 
         return CustomerDomain.builder().customerName(customerName)
-            .id(String.valueOf(customerId))
+            .id(customerId)
             .cpfCnpjValueObject(new CpfCnpjValueObject(cpfCnpj))
             .emailValueObject(new EmailValueObject(email))
             .phoneNumberValueObject(new PhoneNumberValueObject(phoneNumber))

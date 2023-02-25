@@ -3,6 +3,7 @@ package com.uepb.lufh.avalia.core.vo;
 import br.com.caelum.stella.validation.CNPJValidator;
 import br.com.caelum.stella.validation.CPFValidator;
 import br.com.caelum.stella.validation.InvalidStateException;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
@@ -13,8 +14,15 @@ public class CpfCnpjValueObject extends ValueObject{
 
     private static final String FIELD_NAME = "cpfCnpj";
 
+    private static final String REGEX_CPF_CNPJ = "[^\\d]+";
+    private static final String EMPTY_STRING = "";
+
     public CpfCnpjValueObject(final String value) {
-        super(value, FIELD_NAME);
+        super(FIELD_NAME, getReplaceAll(value));
+    }
+
+    public static String getReplaceAll(final String value) {
+        return value.replaceAll(REGEX_CPF_CNPJ, EMPTY_STRING);
     }
 
     @Override

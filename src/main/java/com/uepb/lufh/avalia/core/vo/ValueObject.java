@@ -9,9 +9,9 @@ public abstract class ValueObject {
 
     protected abstract boolean isValid(String value);
 
-    protected ValueObject(final String value, final String fieldName) {
-        this.value = value;
+    protected ValueObject(final String fieldName, final String value) {
         this.fieldName = fieldName;
+        this.value = value;
 
         if(!isValid(value)){
             throw new FieldInvalidException(fieldName,value);

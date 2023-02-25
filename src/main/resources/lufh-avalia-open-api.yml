@@ -904,6 +904,12 @@ paths:
               $ref: '#/components/schemas/CustomerInput'
         required: true
       responses:
+        "200":
+          description: A CustomerOutput object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerOutput'
         "400":
           description: Bad Request
           content:

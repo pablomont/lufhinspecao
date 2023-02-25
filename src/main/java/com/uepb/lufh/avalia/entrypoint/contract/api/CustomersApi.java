@@ -34,7 +34,7 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-25T18:36:18.315897-03:00[America/Fortaleza]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-25T19:28:13.395460-03:00[America/Fortaleza]")
 @Validated
 @Tag(name = "customers", description = "Disponibiliza operações sobre os clientes que solicitaram uma avaliação de um determinado produto.")
 @RequestMapping("${openapi.lufhInspeo.base-path:/lufh-avalia}")
@@ -48,13 +48,17 @@ public interface CustomersApi {
      * POST /customers : Add a new customer
      *
      * @param customerInput Customer object that needs to have a product evaluation (required)
-     * @return Bad Request (status code 400)
+     * @return A CustomerOutput object (status code 200)
+     *         or Bad Request (status code 400)
      */
     @Operation(
         operationId = "createCustomer",
         summary = "Add a new customer",
         tags = { "customers" },
         responses = {
+            @ApiResponse(responseCode = "200", description = "A CustomerOutput object", content = {
+                @Content(mediaType = "application/json", schema = @Schema(implementation = CustomerOutput.class))
+            }),
             @ApiResponse(responseCode = "400", description = "Bad Request", content = {
                 @Content(mediaType = "application/json", schema = @Schema(implementation = Error.class))
             })
@@ -66,9 +70,18 @@ public interface CustomersApi {
         produces = { "application/json" },
         consumes = { "application/json" }
     )
-    default ResponseEntity<Void> createCustomer(
+    default ResponseEntity<CustomerOutput> createCustomer(
         @Parameter(name = "CustomerInput", description = "Customer object that needs to have a product evaluation", required = true) @Valid @RequestBody CustomerInput customerInput
     ) throws Exception {
+        getRequest().ifPresent(request -> {
+            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
+                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
+                    String exampleString = "{ \"phoneNumber\" : \"phoneNumber\", \"id\" : 0, \"cpfCnpj\" : \"cpfCnpj\", \"customerName\" : \"customerName\", \"email\" : \"email\" }";
+                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
+                    break;
+                }
+            }
+        });
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }

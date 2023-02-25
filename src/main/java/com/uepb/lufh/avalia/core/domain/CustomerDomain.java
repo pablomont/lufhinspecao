@@ -15,7 +15,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CustomerDomain {
 
-    private final String id;
+    private final Long id;
     private final String customerName;
     private final CpfCnpjValueObject cpfCnpjValueObject;
 
@@ -28,7 +28,7 @@ public class CustomerDomain {
 
     public CustomerOutput toOutput() {
         var customerOutput = new CustomerOutput();
-        customerOutput.setId(Integer.valueOf(this.id));
+        customerOutput.setId(Math.toIntExact(this.id));
         customerOutput.setCustomerName(this.getCustomerName());
         customerOutput.setCpfCnpj(this.getCpfCnpjValueObject().toString());
         customerOutput.setEmail(this.getEmailValueObject().toString());
