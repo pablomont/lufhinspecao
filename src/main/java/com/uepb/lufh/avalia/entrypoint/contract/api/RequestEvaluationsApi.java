@@ -34,7 +34,7 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-25T04:21:14.056060-03:00[America/Fortaleza]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-25T18:36:18.315897-03:00[America/Fortaleza]")
 @Validated
 @Tag(name = "request-evaluations", description = "Disponibiliza operações sobre as requisições de avaliação.")
 @RequestMapping("${openapi.lufhInspeo.base-path:/lufh-avalia}")
@@ -101,7 +101,7 @@ public interface RequestEvaluationsApi {
      * DELETE /request-evaluations/{request_evaluation_id} : Deletes a request evaluation
      *
      * @param requestEvaluationId Request Evaluation id to delete (required)
-     * @return Bad Request (status code 400)
+     * @return No content (status code 204)
      *         or Not found (status code 404)
      */
     @Operation(
@@ -109,9 +109,7 @@ public interface RequestEvaluationsApi {
         summary = "Deletes a request evaluation",
         tags = { "request-evaluations" },
         responses = {
-            @ApiResponse(responseCode = "400", description = "Bad Request", content = {
-                @Content(mediaType = "application/json", schema = @Schema(implementation = Error.class))
-            }),
+            @ApiResponse(responseCode = "204", description = "No content"),
             @ApiResponse(responseCode = "404", description = "Not found", content = {
                 @Content(mediaType = "application/json", schema = @Schema(implementation = Error.class))
             })
@@ -223,17 +221,13 @@ public interface RequestEvaluationsApi {
      *
      * @param requestEvaluationId Request Evaluation id to update (required)
      * @param requestEvaluationInput  (required)
-     * @return Bad Request (status code 400)
-     *         or Not found (status code 404)
+     * @return Not found (status code 404)
      */
     @Operation(
         operationId = "updateRequestEvaluation",
         summary = "Update an existing request evaluation",
         tags = { "request-evaluations" },
         responses = {
-            @ApiResponse(responseCode = "400", description = "Bad Request", content = {
-                @Content(mediaType = "application/json", schema = @Schema(implementation = Error.class))
-            }),
             @ApiResponse(responseCode = "404", description = "Not found", content = {
                 @Content(mediaType = "application/json", schema = @Schema(implementation = Error.class))
             })

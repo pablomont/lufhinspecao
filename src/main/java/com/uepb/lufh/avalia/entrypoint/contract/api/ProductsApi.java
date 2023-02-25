@@ -5,7 +5,9 @@
  */
 package com.uepb.lufh.avalia.entrypoint.contract.api;
 
-import com.uepb.lufh.avalia.entrypoint.contract.model.Product;
+import com.uepb.lufh.avalia.entrypoint.contract.model.Error;
+import com.uepb.lufh.avalia.entrypoint.contract.model.ProductInput;
+import com.uepb.lufh.avalia.entrypoint.contract.model.ProductOutput;
 import io.swagger.v3.oas.annotations.ExternalDocumentation;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -32,7 +34,7 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-25T04:21:14.056060-03:00[America/Fortaleza]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-25T18:36:18.315897-03:00[America/Fortaleza]")
 @Validated
 @Tag(name = "products", description = "Disponibiliza operações sobre os produtos a serem avaliados.")
 @RequestMapping("${openapi.lufhInspeo.base-path:/lufh-avalia}")
@@ -45,25 +47,41 @@ public interface ProductsApi {
     /**
      * POST /products : Add a new product
      *
-     * @param product Product object that needs to be evaluated (required)
-     * @return Internal server error (status code 500)
+     * @param productInput Product object that needs to be evaluated (required)
+     * @return A ProductOutput object (status code 200)
+     *         or Bad Request (status code 400)
      */
     @Operation(
         operationId = "createProduct",
         summary = "Add a new product",
         tags = { "products" },
         responses = {
-            @ApiResponse(responseCode = "500", description = "Internal server error")
+            @ApiResponse(responseCode = "200", description = "A ProductOutput object", content = {
+                @Content(mediaType = "application/json", schema = @Schema(implementation = ProductOutput.class))
+            }),
+            @ApiResponse(responseCode = "400", description = "Bad Request", content = {
+                @Content(mediaType = "application/json", schema = @Schema(implementation = Error.class))
+            })
         }
     )
     @RequestMapping(
         method = RequestMethod.POST,
         value = "/products",
+        produces = { "application/json" },
         consumes = { "application/json" }
     )
-    default ResponseEntity<Void> createProduct(
-        @Parameter(name = "Product", description = "Product object that needs to be evaluated", required = true) @Valid @RequestBody Product product
+    default ResponseEntity<ProductOutput> createProduct(
+        @Parameter(name = "ProductInput", description = "Product object that needs to be evaluated", required = true) @Valid @RequestBody ProductInput productInput
     ) throws Exception {
+        getRequest().ifPresent(request -> {
+            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
+                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
+                    String exampleString = "{ \"manufacterName\" : \"Apple\", \"productClass\" : \"Class I\", \"completionLevel\" : \"Alfa Test\", \"id\" : 0, \"productName\" : \"Iphone X\", \"productType\" : { \"name\" : \"Websites\" } }";
+                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
+                    break;
+                }
+            }
+        });
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }
@@ -73,21 +91,22 @@ public interface ProductsApi {
      * DELETE /products/{product_id} : Deletes a product
      *
      * @param productId Product id to delete (required)
-     * @return Invalid ID supplied (status code 400)
-     *         or Product not found (status code 404)
+     * @return Not found (status code 404)
      */
     @Operation(
         operationId = "deleteProduct",
         summary = "Deletes a product",
         tags = { "products" },
         responses = {
-            @ApiResponse(responseCode = "400", description = "Invalid ID supplied"),
-            @ApiResponse(responseCode = "404", description = "Product not found")
+            @ApiResponse(responseCode = "404", description = "Not found", content = {
+                @Content(mediaType = "application/json", schema = @Schema(implementation = Error.class))
+            })
         }
     )
     @RequestMapping(
         method = RequestMethod.DELETE,
-        value = "/products/{product_id}"
+        value = "/products/{product_id}",
+        produces = { "application/json" }
     )
     default ResponseEntity<Void> deleteProduct(
         @Parameter(name = "product_id", description = "Product id to delete", required = true, in = ParameterIn.PATH) @PathVariable("product_id") Long productId
@@ -102,8 +121,7 @@ public interface ProductsApi {
      *
      * @param productId ID of product to return (required)
      * @return successful operation (status code 200)
-     *         or Invalid ID supplied (status code 400)
-     *         or Product not found (status code 404)
+     *         or Not found (status code 404)
      */
     @Operation(
         operationId = "findProduct",
@@ -111,11 +129,13 @@ public interface ProductsApi {
         tags = { "products" },
         responses = {
             @ApiResponse(responseCode = "200", description = "successful operation", content = {
-                @Content(mediaType = "application/json", schema = @Schema(implementation = Product.class)),
-                @Content(mediaType = "application/xml", schema = @Schema(implementation = Product.class))
+                @Content(mediaType = "application/json", schema = @Schema(implementation = ProductOutput.class)),
+                @Content(mediaType = "application/xml", schema = @Schema(implementation = ProductOutput.class))
             }),
-            @ApiResponse(responseCode = "400", description = "Invalid ID supplied"),
-            @ApiResponse(responseCode = "404", description = "Product not found")
+            @ApiResponse(responseCode = "404", description = "Not found", content = {
+                @Content(mediaType = "application/json", schema = @Schema(implementation = Error.class)),
+                @Content(mediaType = "application/xml", schema = @Schema(implementation = Error.class))
+            })
         }
     )
     @RequestMapping(
@@ -123,18 +143,18 @@ public interface ProductsApi {
         value = "/products/{product_id}",
         produces = { "application/json", "application/xml" }
     )
-    default ResponseEntity<Product> findProduct(
+    default ResponseEntity<ProductOutput> findProduct(
         @Parameter(name = "product_id", description = "ID of product to return", required = true, in = ParameterIn.PATH) @PathVariable("product_id") Long productId
     ) throws Exception {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"manufacterName\" : \"Apple\", \"productClass\" : \"Class I\", \"completionLevel\" : \"Alfa Test, Beta Test\", \"id\" : 0, \"productName\" : \"Iphone X\", \"productType\" : { \"productTypeName\" : \"Medical Device\", \"id\" : 6 } }";
+                    String exampleString = "{ \"manufacterName\" : \"Apple\", \"productClass\" : \"Class I\", \"completionLevel\" : \"Alfa Test\", \"id\" : 0, \"productName\" : \"Iphone X\", \"productType\" : { \"name\" : \"Websites\" } }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/xml"))) {
-                    String exampleString = "<Product> <id>123456789</id> <productName>Iphone X</productName> <manufacterName>Apple</manufacterName> <null> <id>123456789</id> <productTypeName>Medical Device</productTypeName> </null> <productClass>Class I</productClass> <completionLevel>Alfa Test, Beta Test</completionLevel> </Product>";
+                    String exampleString = "<null> <id>123456789</id> <productName>Iphone X</productName> <manufacterName>Apple</manufacterName> <productClass>Class I</productClass> <completionLevel>Alfa Test</completionLevel> </null>";
                     ApiUtil.setExampleResponse(request, "application/xml", exampleString);
                     break;
                 }
@@ -151,7 +171,6 @@ public interface ProductsApi {
      * @param productName Product name values that can be considered for filter (optional)
      * @param productType Product type values that can be considered for filter (optional)
      * @return successful operation (status code 200)
-     *         or Not found (status code 404)
      */
     @Operation(
         operationId = "findProducts",
@@ -159,9 +178,8 @@ public interface ProductsApi {
         tags = { "products" },
         responses = {
             @ApiResponse(responseCode = "200", description = "successful operation", content = {
-                @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Product.class)))
-            }),
-            @ApiResponse(responseCode = "404", description = "Not found")
+                @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = ProductOutput.class)))
+            })
         }
     )
     @RequestMapping(
@@ -169,14 +187,14 @@ public interface ProductsApi {
         value = "/products",
         produces = { "application/json" }
     )
-    default ResponseEntity<List<Product>> findProducts(
+    default ResponseEntity<List<ProductOutput>> findProducts(
         @Parameter(name = "product_name", description = "Product name values that can be considered for filter", in = ParameterIn.QUERY) @Valid @RequestParam(value = "product_name", required = false) String productName,
         @Parameter(name = "product_type", description = "Product type values that can be considered for filter", in = ParameterIn.QUERY) @Valid @RequestParam(value = "product_type", required = false) String productType
     ) throws Exception {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "[ { \"manufacterName\" : \"Apple\", \"productClass\" : \"Class I\", \"completionLevel\" : \"Alfa Test, Beta Test\", \"id\" : 0, \"productName\" : \"Iphone X\", \"productType\" : { \"productTypeName\" : \"Medical Device\", \"id\" : 6 } }, { \"manufacterName\" : \"Apple\", \"productClass\" : \"Class I\", \"completionLevel\" : \"Alfa Test, Beta Test\", \"id\" : 0, \"productName\" : \"Iphone X\", \"productType\" : { \"productTypeName\" : \"Medical Device\", \"id\" : 6 } } ]";
+                    String exampleString = "[ { \"manufacterName\" : \"Apple\", \"productClass\" : \"Class I\", \"completionLevel\" : \"Alfa Test\", \"id\" : 0, \"productName\" : \"Iphone X\", \"productType\" : { \"name\" : \"Websites\" } }, { \"manufacterName\" : \"Apple\", \"productClass\" : \"Class I\", \"completionLevel\" : \"Alfa Test\", \"id\" : 0, \"productName\" : \"Iphone X\", \"productType\" : { \"name\" : \"Websites\" } } ]";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -191,29 +209,32 @@ public interface ProductsApi {
      * PUT /products/{product_id} : Update an existing product
      *
      * @param productId Product id to update (required)
-     * @param product Product object that needs to be evaluated (required)
-     * @return Invalid ID supplied (status code 400)
-     *         or Question not found (status code 404)
-     *         or Validation exception (status code 405)
+     * @param productInput Product object that needs to be evaluated (required)
+     * @return Bad Request (status code 400)
+     *         or Not found (status code 404)
      */
     @Operation(
         operationId = "updateProduct",
         summary = "Update an existing product",
         tags = { "products" },
         responses = {
-            @ApiResponse(responseCode = "400", description = "Invalid ID supplied"),
-            @ApiResponse(responseCode = "404", description = "Question not found"),
-            @ApiResponse(responseCode = "405", description = "Validation exception")
+            @ApiResponse(responseCode = "400", description = "Bad Request", content = {
+                @Content(mediaType = "application/json", schema = @Schema(implementation = Error.class))
+            }),
+            @ApiResponse(responseCode = "404", description = "Not found", content = {
+                @Content(mediaType = "application/json", schema = @Schema(implementation = Error.class))
+            })
         }
     )
     @RequestMapping(
         method = RequestMethod.PUT,
         value = "/products/{product_id}",
-        consumes = { "application/json", "application/xml" }
+        produces = { "application/json" },
+        consumes = { "application/json" }
     )
     default ResponseEntity<Void> updateProduct(
         @Parameter(name = "product_id", description = "Product id to update", required = true, in = ParameterIn.PATH) @PathVariable("product_id") Long productId,
-        @Parameter(name = "Product", description = "Product object that needs to be evaluated", required = true) @Valid @RequestBody Product product
+        @Parameter(name = "ProductInput", description = "Product object that needs to be evaluated", required = true) @Valid @RequestBody ProductInput productInput
     ) throws Exception {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 

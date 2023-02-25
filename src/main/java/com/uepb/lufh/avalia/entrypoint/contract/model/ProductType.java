@@ -4,6 +4,7 @@ import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
@@ -19,51 +20,88 @@ import javax.annotation.Generated;
  */
 
 @Schema(name = "ProductType", description = "Representa o tipo do produto")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-25T04:21:14.056060-03:00[America/Fortaleza]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-25T18:36:18.315897-03:00[America/Fortaleza]")
 public class ProductType {
 
-  @JsonProperty("id")
-  private Long id;
+  /**
+   * Each product can be tested by usability testing
+   */
+  public enum NameEnum {
+    WEBSITES("Websites"),
+    
+    MOBILE_APPLICATIONS("Mobile applications"),
+    
+    SOFTWARE("Software"),
+    
+    ELECTRONIC_GAMES("Electronic games"),
+    
+    PHYSICAL_PRODUCTS_WITH_ELECTRONIC_INTERFACES("Physical products with electronic interfaces"),
+    
+    HOME_APPLIANCES("Home appliances"),
+    
+    GPS_NAVIGATION_SYSTEMS("GPS navigation systems"),
+    
+    IN_CAR_ENTERTAINMENT_SYSTEMS("In-car entertainment systems"),
+    
+    VENDING_MACHINES("Vending machines"),
+    
+    ATMS_AUTOMATED_TELLER_MACHINES_("ATMs (Automated Teller Machines)"),
+    
+    ACCESS_CONTROL_SYSTEMS("Access control systems"),
+    
+    LIGHTING_AND_TEMPERATURE_CONTROL_SYSTEMS_IN_BUILDINGS("Lighting and temperature control systems in buildings"),
+    
+    MEDICAL_DEVICES("Medical devices"),
+    
+    CONSUMER_PRODUCTS("Consumer products");
 
-  @JsonProperty("productTypeName")
-  private String productTypeName;
+    private String value;
 
-  public ProductType id(Long id) {
-    this.id = id;
+    NameEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static NameEnum fromValue(String value) {
+      for (NameEnum b : NameEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  @JsonProperty("name")
+  private NameEnum name;
+
+  public ProductType name(NameEnum name) {
+    this.name = name;
     return this;
   }
 
   /**
-   * Get id
-   * @return id
+   * Each product can be tested by usability testing
+   * @return name
   */
   
-  @Schema(name = "id", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  public Long getId() {
-    return id;
+  @Schema(name = "name", description = "Each product can be tested by usability testing", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  public NameEnum getName() {
+    return name;
   }
 
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-  public ProductType productTypeName(String productTypeName) {
-    this.productTypeName = productTypeName;
-    return this;
-  }
-
-  /**
-   * Get productTypeName
-   * @return productTypeName
-  */
-  
-  @Schema(name = "productTypeName", example = "Medical Device", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  public String getProductTypeName() {
-    return productTypeName;
-  }
-
-  public void setProductTypeName(String productTypeName) {
-    this.productTypeName = productTypeName;
+  public void setName(NameEnum name) {
+    this.name = name;
   }
 
   @Override
@@ -75,21 +113,19 @@ public class ProductType {
       return false;
     }
     ProductType productType = (ProductType) o;
-    return Objects.equals(this.id, productType.id) &&
-        Objects.equals(this.productTypeName, productType.productTypeName);
+    return Objects.equals(this.name, productType.name);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, productTypeName);
+    return Objects.hash(name);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ProductType {\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    productTypeName: ").append(toIndentedString(productTypeName)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("}");
     return sb.toString();
   }

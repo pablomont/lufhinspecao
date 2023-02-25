@@ -343,9 +343,9 @@ paths:
                 $ref: '#/components/schemas/Error'
               examples:
                 CpfCnpjInvalid:
-                  summary: Cpf|Cnpj Inválido
+                  summary: customer_cpf_cnpj invalid
                   value:
-                    message: Cpf|Cnpj Inválido
+                    message: customer_cpf_cnpj invalid
         "404":
           description: Not found
           content:
@@ -354,9 +354,9 @@ paths:
                 $ref: '#/components/schemas/Error'
               examples:
                 RequestEvaluationNotFound:
-                  summary: Request Evaluation Not Found
+                  summary: Request Evaluation not found
                   value:
-                    message: Request Evaluation Not Found
+                    message: Request Evaluation not found
     post:
       tags:
         - request-evaluations
@@ -401,9 +401,9 @@ paths:
                 $ref: '#/components/schemas/Error'
               examples:
                 CpfCnpjInvalid:
-                  summary: Cpf|Cnpj Inválido
+                  summary: customer_cpf_cnpj invalid
                   value:
-                    message: Cpf|Cnpj Inválido
+                    message: customer_cpf_cnpj invalid
         "404":
           description: Not found
           content:
@@ -412,9 +412,9 @@ paths:
                 $ref: '#/components/schemas/Error'
               examples:
                 ProductNotFound:
-                  summary: Product Not Found
+                  summary: Product not found
                   value:
-                    message: Product Not Found
+                    message: Product not found
   /request-evaluations/{request_evaluation_id}:
     get:
       tags:
@@ -453,9 +453,9 @@ paths:
                 $ref: '#/components/schemas/Error'
               examples:
                 RequestEvaluationNotFound:
-                  summary: Request Evaluation Not Found
+                  summary: Request Evaluation not found
                   value:
-                    message: Request Evaluation Not Found
+                    message: Request Evaluation not found
     put:
       tags:
         - request-evaluations
@@ -478,17 +478,6 @@ paths:
               $ref: '#/components/schemas/RequestEvaluationInput'
         required: true
       responses:
-        "400":
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-              examples:
-                CpfCnpjInvalid:
-                  summary: Cpf|Cnpj Inválido
-                  value:
-                    message: Cpf|Cnpj Inválido
         "404":
           description: Not found
           content:
@@ -497,9 +486,9 @@ paths:
                 $ref: '#/components/schemas/Error'
               examples:
                 RequestEvaluationNotFound:
-                  summary: Request Evaluation Not Found
+                  summary: Request Evaluation not found
                   value:
-                    message: Request Evaluation Not Found
+                    message: Request Evaluation not found
     delete:
       tags:
         - request-evaluations
@@ -516,17 +505,8 @@ paths:
             type: integer
             format: int64
       responses:
-        "400":
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-              examples:
-                CpfCnpjInvalid:
-                  summary: Cpf|Cnpj Inválido
-                  value:
-                    message: Cpf|Cnpj Inválido
+        "204":
+          description: No content
         "404":
           description: Not found
           content:
@@ -703,9 +683,20 @@ paths:
           schema:
             type: string
             enum:
+              - Websites
+              - Mobile applications
               - Software
-              - Hardware
-              - Hardware/Software
+              - Electronic games
+              - Physical products with electronic interfaces
+              - Home appliances
+              - GPS navigation systems
+              - In-car entertainment systems
+              - Vending machines
+              - ATMs (Automated Teller Machines)
+              - Access control systems
+              - Lighting and temperature control systems in buildings
+              - Medical devices
+              - Consumer products
       responses:
         "200":
           description: successful operation
@@ -714,9 +705,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Product'
-        "404":
-          description: Not found
+                  $ref: '#/components/schemas/ProductOutput'
     post:
       tags:
         - products
@@ -727,11 +716,26 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Product'
+              $ref: '#/components/schemas/ProductInput'
         required: true
       responses:
-        "500":
-          description: Internal server error
+        "200":
+          description: A ProductOutput object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductOutput'
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                ProductTypeInvalid:
+                  summary: productType invalid
+                  value:
+                    message: productType invalid
   /products/{product_id}:
     get:
       tags:
@@ -754,14 +758,21 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Product'
+                $ref: '#/components/schemas/ProductOutput'
             application/xml:
               schema:
-                $ref: '#/components/schemas/Product'
-        "400":
-          description: Invalid ID supplied
+                $ref: '#/components/schemas/ProductOutput'
         "404":
-          description: Product not found
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                CustomerNotFound:
+                  summary: Product not found
+                  value:
+                    message: Product not found
     put:
       tags:
         - products
@@ -782,18 +793,31 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Product'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/Product'
+              $ref: '#/components/schemas/ProductInput'
         required: true
       responses:
         "400":
-          description: Invalid ID supplied
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                ProductTypeInvalid:
+                  summary: productType invalid
+                  value:
+                    message: productType invalid
         "404":
-          description: Question not found
-        "405":
-          description: Validation exception
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                ProductNotFound:
+                  summary: Product not found
+                  value:
+                    message: Product not found
     delete:
       tags:
         - products
@@ -810,10 +834,17 @@ paths:
             type: integer
             format: int64
       responses:
-        "400":
-          description: Invalid ID supplied
         "404":
-          description: Product not found
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                ProductNotFound:
+                  summary: Product not found
+                  value:
+                    message: Product not found
   /customers:
     get:
       tags:
@@ -837,9 +868,29 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Customer'
+                  $ref: '#/components/schemas/CustomerOutput'
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                CpfCnpjInvalid:
+                  summary: customer_cpf_cnpj invalid
+                  value:
+                    message: customer_cpf_cnpj invalid
         "404":
           description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                CustomerNotFound:
+                  summary: Customer not found
+                  value:
+                    message: Customer not found
     post:
       tags:
         - customers
@@ -850,11 +901,20 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Customer'
+              $ref: '#/components/schemas/CustomerInput'
         required: true
       responses:
-        "500":
-          description: Internal server error
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                CpfCnpjInvalid:
+                  summary: cpfCnpj invalid
+                  value:
+                    message: cpfCnpj invalid
   /customers/{customer_cpf_cnpj}:
     get:
       tags:
@@ -877,14 +937,32 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Customer'
+                $ref: '#/components/schemas/CustomerOutput'
             application/xml:
               schema:
-                $ref: '#/components/schemas/Customer'
+                $ref: '#/components/schemas/CustomerOutput'
         "400":
-          description: Invalid ID supplied
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                CpfCnpjInvalid:
+                  summary: customer_cpf_cnpj invalid
+                  value:
+                    message: customer_cpf_cnpj invalid
         "404":
-          description: Customer not found
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                CustomerNotFound:
+                  summary: Customer not found
+                  value:
+                    message: Customer not found
     put:
       tags:
         - customers
@@ -893,30 +971,51 @@ paths:
       parameters:
         - name: customer_cpf_cnpj
           in: path
-          description: Customer id to update
+          description: CPF or CNPJ of customer to update
           required: true
           style: simple
           explode: false
           schema:
-            type: integer
-            format: int64
+            type: string
       requestBody:
         description: Customer object that needs to have a product evaluation
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Customer'
+              $ref: '#/components/schemas/CustomerOutput'
           application/xml:
             schema:
-              $ref: '#/components/schemas/Customer'
+              $ref: '#/components/schemas/CustomerOutput'
         required: true
       responses:
+        "200":
+          description: A CustomerOutput object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerOutput'
         "400":
-          description: Invalid ID supplied
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                CpfCnpjInvalid:
+                  summary: customer_cpf_cnpj invalid
+                  value:
+                    message: customer_cpf_cnpj invalid
         "404":
-          description: Customer not found
-        "405":
-          description: Validation exception
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                CustomerNotFound:
+                  summary: Customer not found
+                  value:
+                    message: Customer not found
     delete:
       tags:
         - customers
@@ -925,7 +1024,7 @@ paths:
       parameters:
         - name: customer_cpf_cnpj
           in: path
-          description: Customer id to delete
+          description: CPF or CNPJ of customer to delete
           required: true
           style: simple
           explode: false
@@ -933,13 +1032,51 @@ paths:
             type: integer
             format: int64
       responses:
-        "400":
-          description: Invalid ID supplied
+        "204":
+          description: No content
         "404":
-          description: Customer not found
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                CustomerNotFound:
+                  summary: Customer not found
+                  value:
+                    message: Customer not found
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                CpfCnpjInvalid:
+                  summary: customer_cpf_cnpj invalid
+                  value:
+                    message: customer_cpf_cnpj invalid
 components:
   schemas:
-    Product:
+    ProductInput:
+      type: object
+      properties:
+        productName:
+          type: string
+          example: Iphone X
+        manufacterName:
+          type: string
+          example: Apple
+        productType:
+          $ref: '#/components/schemas/ProductType'
+        productClass:
+          type: string
+          example: Class I
+        completionLevel:
+          type: string
+          example: Alfa Test
+      description: Represents a product to be evaluated
+    ProductOutput:
       type: object
       properties:
         id:
@@ -958,16 +1095,29 @@ components:
           example: Class I
         completionLevel:
           type: string
-          example: Alfa Test, Beta Test
+          example: Alfa Test
       description: Represents a product to be evaluated
     ProductType:
+      type: object
       properties:
-        id:
-          type: integer
-          format: int64
-        productTypeName:
+        name:
           type: string
-          example: Medical Device
+          description: Each product can be tested by usability testing
+          enum:
+            - Websites
+            - Mobile applications
+            - Software
+            - Electronic games
+            - Physical products with electronic interfaces
+            - Home appliances
+            - GPS navigation systems
+            - In-car entertainment systems
+            - Vending machines
+            - ATMs (Automated Teller Machines)
+            - Access control systems
+            - Lighting and temperature control systems in buildings
+            - Medical devices
+            - Consumer products
       description: Representa o tipo do produto
     Question:
       required:
@@ -1122,7 +1272,18 @@ components:
           type: string
           description: Contracted scope
       description: Represents the input of a request to evaluate a product.
-    Customer:
+    CustomerInput:
+      properties:
+        customerName:
+          type: string
+        cpfCnpj:
+          type: string
+        email:
+          type: string
+        phoneNumber:
+          type: string
+      description: Represents a customer who has requested a product review
+    CustomerOutput:
       properties:
         id:
           type: integer
