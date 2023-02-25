@@ -1,8 +1,8 @@
 package com.uepb.lufh.avalia.dataprovider.database.entity;
 
 import com.uepb.lufh.avalia.core.domain.RequestEvaluationDomain;
-import com.uepb.lufh.avalia.entrypoint.contract.model.Product;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,16 +19,16 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "request_evaluation")
 @NoArgsConstructor
+@Setter
 public class RequestEvaluationEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "request_evaluation_id")
-    private Long id;
+    private Long requestEvaluationId;
 
     @Column(name = "start_date")
     private LocalDateTime startDate;
-
 
     @Column(name = "end_date")
     private LocalDateTime endDate;
@@ -45,6 +45,10 @@ public class RequestEvaluationEntity {
     @JoinColumn(name = "product_id", nullable = false)
     private ProductEntity productEntity;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "customer_id", nullable = false)
+    private CustomerEntity customerEntity;
+
 
     public RequestEvaluationEntity(final RequestEvaluationDomain requestEvaluationDomain) {
         this.startDate = requestEvaluationDomain.getStartDate();
@@ -52,11 +56,31 @@ public class RequestEvaluationEntity {
         this.urgency = requestEvaluationDomain.getUrgency();
         this.testType = requestEvaluationDomain.getTestType();
         this.testCoverage = requestEvaluationDomain.getCoverage();
-        this.productEntity = new ProductEntity(requestEvaluationDomain.getProductDomain());
+        setProductEntity(new ProductEntity(requestEvaluationDomain.getProductDomain()));
+        setCustomerEntity(new CustomerEntity(requestEvaluationDomain.getCustomerDomain()));
     }
 
     public RequestEvaluationDomain toDomain() {
-        return null;
+
+        return RequestEvaluationDomain.builder()
+            .id(String.valueOf(requestEvaluationId))
+            .customerDomain(customerEntity.toDomain())
+            .productDomain(productEntity.toDomain())
+            .startDate(startDate)
+            .endDate(endDate)
+            .coverage(testCoverage)
+            .urgency(urgency)
+            .testType(testType)
+            .build();
+    }
+
+    public void setProductEntity(final ProductEntity productEntity) {
+        this.productEntity = productEntity;
+    }
+
+    public void setCustomerEntity(final CustomerEntity customerEntity) {
+        this.customerEntity = customerEntity;
+        //this.customerEntity.addEvaluations(this);
     }
 
 }

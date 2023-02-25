@@ -5,7 +5,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.uepb.lufh.avalia.entrypoint.contract.model.Questionnaire;
-import java.time.OffsetDateTime;
+import java.time.LocalDateTime;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
@@ -22,7 +22,7 @@ import javax.annotation.Generated;
  */
 
 @Schema(name = "Report", description = "Represents the result of the evaluation")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-25T01:48:48.709289-03:00[America/Fortaleza]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-25T04:21:14.056060-03:00[America/Fortaleza]")
 public class Report {
 
   @JsonProperty("requestEvaluationId")
@@ -30,7 +30,7 @@ public class Report {
 
   @JsonProperty("reportDate")
   @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-  private OffsetDateTime reportDate;
+  private LocalDateTime reportDate;
 
   @JsonProperty("questionare")
   private Questionnaire questionare;
@@ -54,7 +54,7 @@ public class Report {
     this.requestEvaluationId = requestEvaluationId;
   }
 
-  public Report reportDate(OffsetDateTime reportDate) {
+  public Report reportDate(LocalDateTime reportDate) {
     this.reportDate = reportDate;
     return this;
   }
@@ -65,11 +65,11 @@ public class Report {
   */
   @Valid 
   @Schema(name = "reportDate", description = "date the report was made", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  public OffsetDateTime getReportDate() {
+  public LocalDateTime getReportDate() {
     return reportDate;
   }
 
-  public void setReportDate(OffsetDateTime reportDate) {
+  public void setReportDate(LocalDateTime reportDate) {
     this.reportDate = reportDate;
   }
 

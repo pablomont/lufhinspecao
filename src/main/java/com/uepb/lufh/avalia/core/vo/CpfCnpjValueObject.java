@@ -42,4 +42,10 @@ public class CpfCnpjValueObject extends ValueObject{
             return false;
         }
     }
+
+    @Override
+    public String toString() {
+        return value;
+    }
+
 }

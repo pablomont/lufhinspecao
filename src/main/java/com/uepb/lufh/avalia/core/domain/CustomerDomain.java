@@ -4,18 +4,25 @@ import com.uepb.lufh.avalia.core.vo.CpfCnpjValueObject;
 import com.uepb.lufh.avalia.core.vo.EmailValueObject;
 import com.uepb.lufh.avalia.core.vo.PhoneNumberValueObject;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
-@Data
+import java.util.List;
+
 @Builder
+@Getter
 @RequiredArgsConstructor
 public class CustomerDomain {
 
-//    private Long id;
-//    CpfCnpjValueObject cpfCnpjValueObject;
-//    EmailValueObject emailValueObject;
-//    PhoneNumberValueObject phoneNumberValueObject;
-//    String customerName;
+    private final Long id;
+    private final String customerName;
+    private final CpfCnpjValueObject cpfCnpjValueObject;
+
+    private final EmailValueObject emailValueObject;
+
+    private final PhoneNumberValueObject phoneNumberValueObject;
+
+    private final List<RequestEvaluationDomain> requestEvaluationDomainList;
+
 
 }

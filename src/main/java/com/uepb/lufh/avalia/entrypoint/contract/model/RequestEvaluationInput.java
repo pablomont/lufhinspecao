@@ -5,7 +5,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
-import java.time.OffsetDateTime;
+import java.time.LocalDateTime;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
@@ -22,16 +22,16 @@ import javax.annotation.Generated;
  */
 
 @Schema(name = "RequestEvaluationInput", description = "Represents the input of a request to evaluate a product.")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-25T01:48:48.709289-03:00[America/Fortaleza]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-25T04:21:14.056060-03:00[America/Fortaleza]")
 public class RequestEvaluationInput {
 
   @JsonProperty("startDate")
   @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-  private OffsetDateTime startDate;
+  private LocalDateTime startDate;
 
   @JsonProperty("endDate")
   @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-  private OffsetDateTime endDate;
+  private LocalDateTime endDate;
 
   @JsonProperty("urgency")
   private Boolean urgency;
@@ -81,7 +81,7 @@ public class RequestEvaluationInput {
   @JsonProperty("coverage")
   private String coverage;
 
-  public RequestEvaluationInput startDate(OffsetDateTime startDate) {
+  public RequestEvaluationInput startDate(LocalDateTime startDate) {
     this.startDate = startDate;
     return this;
   }
@@ -92,15 +92,15 @@ public class RequestEvaluationInput {
   */
   @Valid 
   @Schema(name = "startDate", description = "Entry date into lufh", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  public OffsetDateTime getStartDate() {
+  public LocalDateTime getStartDate() {
     return startDate;
   }
 
-  public void setStartDate(OffsetDateTime startDate) {
+  public void setStartDate(LocalDateTime startDate) {
     this.startDate = startDate;
   }
 
-  public RequestEvaluationInput endDate(OffsetDateTime endDate) {
+  public RequestEvaluationInput endDate(LocalDateTime endDate) {
     this.endDate = endDate;
     return this;
   }
@@ -111,11 +111,11 @@ public class RequestEvaluationInput {
   */
   @Valid 
   @Schema(name = "endDate", description = "Planned departure date from lufh", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  public OffsetDateTime getEndDate() {
+  public LocalDateTime getEndDate() {
     return endDate;
   }
 
-  public void setEndDate(OffsetDateTime endDate) {
+  public void setEndDate(LocalDateTime endDate) {
     this.endDate = endDate;
   }
 

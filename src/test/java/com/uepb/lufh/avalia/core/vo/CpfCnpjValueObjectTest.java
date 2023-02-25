@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class CpfCnpjValueObjectTest {
     @Test
     void testValidCpf() {
-        String cpf = "10190673494";
+        String cpf = "89725089006";
         CpfCnpjValueObject cpfCnpj = new CpfCnpjValueObject(cpf);
         assertTrue(cpfCnpj.isValid(cpf));
     }
@@ -22,7 +22,7 @@ class CpfCnpjValueObjectTest {
 
     @Test
     void testValidCnpj() {
-        String cnpj = "74329815000155";
+        String cnpj = "44443085000158";
         CpfCnpjValueObject cpfCnpj = new CpfCnpjValueObject(cnpj);
         assertTrue(cpfCnpj.isValid(cnpj));
     }
