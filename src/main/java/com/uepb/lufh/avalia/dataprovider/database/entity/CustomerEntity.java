@@ -41,7 +41,7 @@ public class CustomerEntity {
     private List<RequestEvaluationEntity> evaluations;
 
     public CustomerEntity(final CustomerDomain customerDomain) {
-        this.customerId = customerDomain.getId();
+        this.customerId = Long.valueOf(customerDomain.getId());
         this.customerName = customerDomain.getCustomerName();
         this.cpfCnpj = customerDomain.getCpfCnpjValueObject().toString();
         this.email = customerDomain.getEmailValueObject().toString();
@@ -51,7 +51,7 @@ public class CustomerEntity {
     public CustomerDomain toDomain() {
 
         return CustomerDomain.builder().customerName(customerName)
-            .id(customerId)
+            .id(String.valueOf(customerId))
             .cpfCnpjValueObject(new CpfCnpjValueObject(cpfCnpj))
             .emailValueObject(new EmailValueObject(email))
             .phoneNumberValueObject(new PhoneNumberValueObject(phoneNumber))

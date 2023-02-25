@@ -7,7 +7,9 @@ import com.uepb.lufh.avalia.core.gateway.CustomerGateway;
 import com.uepb.lufh.avalia.core.gateway.ProductGateway;
 import com.uepb.lufh.avalia.core.gateway.RequestEvaluationGateway;
 import com.uepb.lufh.avalia.dataprovider.exception.CustomerNotFoundException;
+import com.uepb.lufh.avalia.dataprovider.exception.CustomerNotSavedException;
 import com.uepb.lufh.avalia.dataprovider.exception.ProductNotFoundException;
+import com.uepb.lufh.avalia.dataprovider.exception.RequestEvaluationNotSavedException;
 import com.uepb.lufh.avalia.entrypoint.contract.model.RequestEvaluationInput;
 import com.uepb.lufh.avalia.entrypoint.contract.model.RequestEvaluationOutput;
 import lombok.RequiredArgsConstructor;
@@ -50,7 +52,9 @@ public class CreateRequestEvaluationUseCase {
             .testType(requestEvaluationInput.getTestType().getValue())
             .build();
 
-        return requestEvaluationGateway.save(requestEvaluationDomain).toOutput();
+        return requestEvaluationGateway.save(requestEvaluationDomain)
+            .orElseThrow(() -> new RequestEvaluationNotSavedException(customerCpfCnpj,productId))
+            .toOutput();
 
     }
 

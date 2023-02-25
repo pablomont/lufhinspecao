@@ -20,8 +20,16 @@ public class CustomerGatewayImpl implements CustomerGateway {
     @Override
     public Optional<CustomerDomain> findCustomerByCpfCnpj(final String customerCpfCnpj) {
 
-        log.info("Find customer by cpfCnpj {}", customerCpfCnpj);
+        log.info("Finding customer by cpfCnpj {}", customerCpfCnpj);
         return customerRepository.findByCpfCnpj(customerCpfCnpj).map(CustomerEntity::toDomain);
+    }
+
+    @Override
+    public Optional<CustomerDomain> save(final CustomerDomain customerDomain) {
+
+        log.info("Creating customer, cpf: {}", customerDomain.getCpfCnpjValueObject());
+        return Optional.ofNullable(customerRepository.save(new CustomerEntity(customerDomain)).toDomain());
+
     }
 
 }

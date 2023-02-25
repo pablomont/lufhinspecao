@@ -1,7 +1,6 @@
 package com.uepb.lufh.avalia.entrypoint.controller;
 
 
-import com.uepb.lufh.avalia.core.domain.RequestEvaluationDomain;
 import com.uepb.lufh.avalia.core.usecase.requestevaluation.CreateRequestEvaluationUseCase;
 import com.uepb.lufh.avalia.entrypoint.contract.api.RequestEvaluationsApi;
 import com.uepb.lufh.avalia.entrypoint.contract.model.RequestEvaluationInput;

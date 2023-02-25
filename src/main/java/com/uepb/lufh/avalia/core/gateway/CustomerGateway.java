@@ -8,4 +8,6 @@ public interface CustomerGateway {
 
     Optional<CustomerDomain> findCustomerByCpfCnpj(String customerCpfCnpj);
 
+    Optional<CustomerDomain> save(CustomerDomain customerDomain);
+
 }
