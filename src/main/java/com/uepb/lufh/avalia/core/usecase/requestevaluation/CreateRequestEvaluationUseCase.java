@@ -4,7 +4,6 @@ import com.uepb.lufh.avalia.core.domain.CustomerDomain;
 import com.uepb.lufh.avalia.core.domain.ProductDomain;
 import com.uepb.lufh.avalia.core.domain.RequestEvaluationDomain;
 import com.uepb.lufh.avalia.core.gateway.CustomerGateway;
-import com.uepb.lufh.avalia.core.vo.CpfCnpjValueObject;
 import com.uepb.lufh.avalia.core.gateway.ProductGateway;
 import com.uepb.lufh.avalia.core.gateway.RequestEvaluationGateway;
 import com.uepb.lufh.avalia.dataprovider.exception.NotFoundException;
@@ -25,16 +24,16 @@ public class CreateRequestEvaluationUseCase {
     public RequestEvaluationOutput execute(RequestEvaluationInput requestEvaluationInput, String productId, final String customerCpfCnpj){
 
         ProductDomain productDomain = productGateway.findProductByProductId(Long.valueOf(productId)).orElseThrow(() -> {
-            throw new NotFoundException("Product",productId);
+            throw new NotFoundException(productId);
         });
 
-//        CustomerDomain customerDomain = customerGateway.findCustomerByCpfCnpj(customerCpfCnpj).orElseThrow(() -> {
-//            throw new NotFoundException("Customer", customerCpfCnpj);
-//        });
+        CustomerDomain customerDomain = customerGateway.findCustomerByCpfCnpj(customerCpfCnpj).orElseThrow(() -> {
+            throw new NotFoundException(customerCpfCnpj);
+        });
 
-        var requestEvaluationDomaiun = RequestEvaluationDomain.builder()
+        var requestEvaluationDomain = RequestEvaluationDomain.builder()
             .productDomain(productDomain)
-            //.customerDomain(customerDomain)
+            .customerDomain(customerDomain)
             .startDate(requestEvaluationInput.getStartDate().toLocalDateTime())
             .endDate(requestEvaluationInput.getEndDate().toLocalDateTime())
             .coverage(requestEvaluationInput.getCoverage())
@@ -42,7 +41,7 @@ public class CreateRequestEvaluationUseCase {
             .testType(requestEvaluationInput.getTestType().getValue())
             .build();
 
-        return requestEvaluationGateway.save(requestEvaluationDomaiun).toOutput();
+        return requestEvaluationGateway.save(requestEvaluationDomain).toOutput();
 
     }
 

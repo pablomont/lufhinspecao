@@ -5,10 +5,8 @@ import org.springframework.http.HttpStatus;
 
 public class NotFoundException extends LufhAvaliaException{
 
-    private static final String MESSAGE = "%s not found with value: %s";
-
-    public NotFoundException(final String domainName, final String domainValue) {
-        super(String.format(MESSAGE,domainName,domainValue), HttpStatus.NOT_FOUND);
+    public NotFoundException(final String productId) {
+        super(MessageSourceHelper.getInstance().getMessage("error.product.not.found", productId), HttpStatus.NOT_FOUND);
     }
 
 }
