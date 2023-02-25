@@ -1,7 +1,6 @@
 package com.uepb.lufh.avalia.dataprovider.database.entity;
 
 import com.uepb.lufh.avalia.core.domain.ProductDomain;
-import com.uepb.lufh.avalia.core.domain.RequestEvaluationDomain;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
@@ -11,9 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 
 @Entity
@@ -48,26 +45,17 @@ public class ProductEntity {
         this.manufacturerName = productDomain.getManufacturerName();
         this.completionLevel = productDomain.getCompletionLevel();
         this.productType = productDomain.getProductType();
-        this.evaluations = new ArrayList<>();
-        //setEvaluations(productDomain.getRequestEvaluationDomainList());
     }
 
     public ProductDomain toDomain() {
 
         return ProductDomain.builder()
             .id(productId)
-            //.requestEvaluationDomainList(evaluations.stream().map(RequestEvaluationEntity::toDomain).collect(
-                //Collectors.toList()))
             .productName(productName)
             .manufacturerName(manufacturerName)
             .completionLevel(completionLevel)
             .productType(productType)
             .build();
     }
-
-//    public void setEvaluations(final List<RequestEvaluationDomain> evaluations) {
-//        this.evaluations = evaluations.stream().map(RequestEvaluationEntity::new).collect(Collectors.toList());
-//        this.evaluations.forEach(evaluation -> evaluation.setProductEntity(this));
-//    }
 
 }

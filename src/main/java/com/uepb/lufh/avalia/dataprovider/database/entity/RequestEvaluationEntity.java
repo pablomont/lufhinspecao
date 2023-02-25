@@ -56,8 +56,8 @@ public class RequestEvaluationEntity {
         this.urgency = requestEvaluationDomain.getUrgency();
         this.testType = requestEvaluationDomain.getTestType();
         this.testCoverage = requestEvaluationDomain.getCoverage();
-        setProductEntity(new ProductEntity(requestEvaluationDomain.getProductDomain()));
-        setCustomerEntity(new CustomerEntity(requestEvaluationDomain.getCustomerDomain()));
+        this.productEntity = new ProductEntity(requestEvaluationDomain.getProductDomain());
+        this.customerEntity = new CustomerEntity(requestEvaluationDomain.getCustomerDomain());
     }
 
     public RequestEvaluationDomain toDomain() {
@@ -72,15 +72,6 @@ public class RequestEvaluationEntity {
             .urgency(urgency)
             .testType(testType)
             .build();
-    }
-
-    public void setProductEntity(final ProductEntity productEntity) {
-        this.productEntity = productEntity;
-    }
-
-    public void setCustomerEntity(final CustomerEntity customerEntity) {
-        this.customerEntity = customerEntity;
-        //this.customerEntity.addEvaluations(this);
     }
 
 }
