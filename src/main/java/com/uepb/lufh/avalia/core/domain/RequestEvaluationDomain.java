@@ -6,34 +6,28 @@ import com.uepb.lufh.avalia.entrypoint.contract.model.RequestEvaluationOutput;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 
-@Data
+
 @Builder
-@AllArgsConstructor
-@NoArgsConstructor
+@Getter
 public class RequestEvaluationDomain {
 
     private String id;
-    private LocalDateTime startDate;
-    private LocalDateTime endDate;
-    private Boolean urgency;
-    private String testType;
-    private String coverage;
-
+    private final LocalDateTime startDate;
+    private final LocalDateTime endDate;
+    private final Boolean urgency;
+    private final String testType;
+    private final String coverage;
     private ProductDomain productDomain;
 
-    private CpfCnpjValueObject cpfCnpjValueObject;
+    private CustomerDomain customerDomain;
 
-    public RequestEvaluationDomain(RequestEvaluationInput requestEvaluationInput) {
-        this.startDate = requestEvaluationInput.getStartDate().toLocalDateTime();
-        this.endDate = requestEvaluationInput.getEndDate().toLocalDateTime();
-        this.urgency = requestEvaluationInput.getUrgency();
-        this.testType = requestEvaluationInput.getTestType().getValue();
-        this.coverage = requestEvaluationInput.getCoverage();
-    }
 
     public RequestEvaluationOutput toOutput() {
         RequestEvaluationOutput requestEvaluationOutput = new RequestEvaluationOutput();
