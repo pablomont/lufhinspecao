@@ -8,7 +8,7 @@ public class PhoneNumberValueObject extends ValueObject {
     private static final String FIELD_NAME = "phoneNumber";
 
     public PhoneNumberValueObject(final String value) {
-        super(value, FIELD_NAME);
+        super(FIELD_NAME, value);
     }
 
     @Override

@@ -8,7 +8,7 @@ public class EmailValueObject extends ValueObject{
     private static final String FIELD_NAME = "email";
 
     public EmailValueObject(final String value) {
-        super(value, FIELD_NAME);
+        super(FIELD_NAME, value);
     }
 
     @Override
