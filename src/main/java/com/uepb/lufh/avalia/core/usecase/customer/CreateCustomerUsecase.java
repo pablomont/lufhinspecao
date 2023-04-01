@@ -2,10 +2,9 @@ package com.uepb.lufh.avalia.core.usecase.customer;
 
 import com.uepb.lufh.avalia.core.domain.CustomerDomain;
 import com.uepb.lufh.avalia.core.gateway.CustomerGateway;
-import com.uepb.lufh.avalia.core.vo.CpfCnpjValueObject;
-import com.uepb.lufh.avalia.core.vo.EmailValueObject;
-import com.uepb.lufh.avalia.core.vo.PhoneNumberValueObject;
-import com.uepb.lufh.avalia.dataprovider.exception.CustomerNotFoundException;
+import com.uepb.lufh.avalia.core.domain.vo.CpfCnpjValueObject;
+import com.uepb.lufh.avalia.core.domain.vo.EmailValueObject;
+import com.uepb.lufh.avalia.core.domain.vo.PhoneNumberValueObject;
 import com.uepb.lufh.avalia.dataprovider.exception.CustomerNotSavedException;
 import com.uepb.lufh.avalia.entrypoint.contract.model.CustomerInput;
 import com.uepb.lufh.avalia.entrypoint.contract.model.CustomerOutput;

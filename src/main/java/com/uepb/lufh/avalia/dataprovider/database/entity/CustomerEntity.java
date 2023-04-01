@@ -1,9 +1,9 @@
 package com.uepb.lufh.avalia.dataprovider.database.entity;
 
 import com.uepb.lufh.avalia.core.domain.CustomerDomain;
-import com.uepb.lufh.avalia.core.vo.CpfCnpjValueObject;
-import com.uepb.lufh.avalia.core.vo.EmailValueObject;
-import com.uepb.lufh.avalia.core.vo.PhoneNumberValueObject;
+import com.uepb.lufh.avalia.core.domain.vo.CpfCnpjValueObject;
+import com.uepb.lufh.avalia.core.domain.vo.EmailValueObject;
+import com.uepb.lufh.avalia.core.domain.vo.PhoneNumberValueObject;
 import lombok.NoArgsConstructor;
 import org.springframework.util.ObjectUtils;
 

@@ -1,5 +1,6 @@
 package com.uepb.lufh.avalia.core.vo;
 
+import com.uepb.lufh.avalia.core.domain.vo.CpfCnpjValueObject;
 import com.uepb.lufh.avalia.dataprovider.exception.FieldInvalidException;
 import org.junit.jupiter.api.Test;
 

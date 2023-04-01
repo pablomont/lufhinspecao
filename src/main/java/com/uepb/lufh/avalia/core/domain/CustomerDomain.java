@@ -1,8 +1,8 @@
 package com.uepb.lufh.avalia.core.domain;
 
-import com.uepb.lufh.avalia.core.vo.CpfCnpjValueObject;
-import com.uepb.lufh.avalia.core.vo.EmailValueObject;
-import com.uepb.lufh.avalia.core.vo.PhoneNumberValueObject;
+import com.uepb.lufh.avalia.core.domain.vo.CpfCnpjValueObject;
+import com.uepb.lufh.avalia.core.domain.vo.EmailValueObject;
+import com.uepb.lufh.avalia.core.domain.vo.PhoneNumberValueObject;
 import com.uepb.lufh.avalia.entrypoint.contract.model.CustomerOutput;
 import lombok.Builder;
 import lombok.Getter;

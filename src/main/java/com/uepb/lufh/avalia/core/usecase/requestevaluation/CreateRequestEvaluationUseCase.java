@@ -6,9 +6,7 @@ import com.uepb.lufh.avalia.core.domain.RequestEvaluationDomain;
 import com.uepb.lufh.avalia.core.gateway.CustomerGateway;
 import com.uepb.lufh.avalia.core.gateway.ProductGateway;
 import com.uepb.lufh.avalia.core.gateway.RequestEvaluationGateway;
-import com.uepb.lufh.avalia.core.vo.CpfCnpjValueObject;
 import com.uepb.lufh.avalia.dataprovider.exception.CustomerNotFoundException;
-import com.uepb.lufh.avalia.dataprovider.exception.CustomerNotSavedException;
 import com.uepb.lufh.avalia.dataprovider.exception.ProductNotFoundException;
 import com.uepb.lufh.avalia.dataprovider.exception.RequestEvaluationNotSavedException;
 import com.uepb.lufh.avalia.entrypoint.contract.model.RequestEvaluationInput;
@@ -22,7 +20,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class CreateRequestEvaluationUseCase {
 
-    public static final String REGEX_CPF_CNPJ = "[^\\d]+";
+    private static final String REGEX_NON_NUMERIC_CHARS = "[^\\d]+";
     public static final String EMPTY_STRING = "";
     private final ProductGateway productGateway;
 
@@ -31,7 +29,7 @@ public class CreateRequestEvaluationUseCase {
 
     public RequestEvaluationOutput execute(RequestEvaluationInput requestEvaluationInput, String productId, final String customerCpfCnpj){
 
-        var cpfCnpj = CpfCnpjValueObject.getReplaceAll(customerCpfCnpj);
+        var cpfCnpj = customerCpfCnpj.replaceAll(REGEX_NON_NUMERIC_CHARS, EMPTY_STRING);
 
         ProductDomain productDomain = productGateway.findProductByProductId(Long.valueOf(productId)).orElseThrow(() -> {
             log.error("Product with id {} not found", productId);

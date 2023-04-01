@@ -1,4 +1,4 @@
-package com.uepb.lufh.avalia.core.vo;
+package com.uepb.lufh.avalia.core.domain.vo;
 
 import com.uepb.lufh.avalia.dataprovider.exception.FieldInvalidException;
 
