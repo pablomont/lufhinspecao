@@ -1,5 +1,6 @@
 package com.uepb.lufh.avalia.dataprovider.database.entity;
 
+import com.uepb.lufh.avalia.core.domain.ProductClass;
 import com.uepb.lufh.avalia.core.domain.ProductDomain;
 import lombok.NoArgsConstructor;
 import org.springframework.util.ObjectUtils;
@@ -50,7 +51,7 @@ public class ProductEntity {
         this.manufacturerName = productDomain.getManufacturerName();
         this.completionLevel = productDomain.getCompletionLevel();
         this.productType = productDomain.getProductType();
-        this.productClass = productDomain.getProductClass();
+        this.productClass = productDomain.getProductClass().toString();
     }
 
     public ProductDomain toDomain() {
@@ -61,7 +62,7 @@ public class ProductEntity {
             .manufacturerName(manufacturerName)
             .completionLevel(completionLevel)
             .productType(productType)
-            .productClass(productClass)
+            .productClass(ProductClass.fromValue(productClass))
             .build();
     }
 

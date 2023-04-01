@@ -1,5 +1,6 @@
 package com.uepb.lufh.avalia.core.usecase.product;
 
+import com.uepb.lufh.avalia.core.domain.ProductClass;
 import com.uepb.lufh.avalia.core.domain.ProductDomain;
 import com.uepb.lufh.avalia.core.gateway.ProductGateway;
 import com.uepb.lufh.avalia.dataprovider.exception.ProductNotSavedException;
@@ -23,7 +24,7 @@ public class CreateProductUsecase {
             .productType(productInput.getProductType().getName().getValue())
             .completionLevel(productInput.getCompletionLevel().getValue())
             .manufacturerName(productInput.getManufacterName())
-            .productClass(productInput.getProductClass().getValue())
+            .productClass(ProductClass.fromValue(productInput.getProductClass()))
             .build();
 
         return productGateway.save(productDomain)

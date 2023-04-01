@@ -19,7 +19,7 @@ public class ProductDomain {
     private final String productType;
     private final String completionLevel;
 
-    private final String productClass;
+    private final ProductClass productClass;
 
     private final List<RequestEvaluationDomain> requestEvaluationDomainList;
 
@@ -31,7 +31,7 @@ public class ProductDomain {
         var productOutput = new ProductOutput();
         productOutput.setId(this.id);
         productOutput.setProductName(this.productName);
-        productOutput.setProductClass(this.productClass);
+        productOutput.setProductClass(this.productClass.toString());
         productOutput.setProductType(productType);
         productOutput.setManufacterName(this.manufacturerName);
         productOutput.setCompletionLevel(this.completionLevel);

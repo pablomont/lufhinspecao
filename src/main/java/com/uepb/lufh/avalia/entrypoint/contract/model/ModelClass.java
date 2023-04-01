@@ -21,7 +21,7 @@ import javax.annotation.Generated;
  */
 
 @JsonTypeName("Class")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-03-31T23:04:52.699113-03:00[America/Fortaleza]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-04-01T00:41:45.587364-03:00[America/Fortaleza]")
 public class ModelClass {
 
   /**

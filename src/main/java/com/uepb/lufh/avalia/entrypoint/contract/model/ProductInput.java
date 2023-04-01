@@ -21,7 +21,7 @@ import javax.annotation.Generated;
  */
 
 @Schema(name = "ProductInput", description = "Represents a product to be evaluated")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-03-31T23:04:52.699113-03:00[America/Fortaleza]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-04-01T00:41:45.587364-03:00[America/Fortaleza]")
 public class ProductInput {
 
   @JsonProperty("productName")
@@ -33,47 +33,8 @@ public class ProductInput {
   @JsonProperty("productType")
   private ProductType productType;
 
-  /**
-   * Gets or Sets productClass
-   */
-  public enum ProductClassEnum {
-    _1("Class 1"),
-    
-    _2("Class 2"),
-    
-    _3("Class 3"),
-    
-    _4("Class 4");
-
-    private String value;
-
-    ProductClassEnum(String value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static ProductClassEnum fromValue(String value) {
-      for (ProductClassEnum b : ProductClassEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
-
   @JsonProperty("productClass")
-  private ProductClassEnum productClass;
+  private String productClass;
 
   /**
    * Gets or Sets completionLevel
@@ -178,7 +139,7 @@ public class ProductInput {
     this.productType = productType;
   }
 
-  public ProductInput productClass(ProductClassEnum productClass) {
+  public ProductInput productClass(String productClass) {
     this.productClass = productClass;
     return this;
   }
@@ -188,12 +149,12 @@ public class ProductInput {
    * @return productClass
   */
   
-  @Schema(name = "productClass", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  public ProductClassEnum getProductClass() {
+  @Schema(name = "productClass", example = "Class I", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  public String getProductClass() {
     return productClass;
   }
 
-  public void setProductClass(ProductClassEnum productClass) {
+  public void setProductClass(String productClass) {
     this.productClass = productClass;
   }
 
