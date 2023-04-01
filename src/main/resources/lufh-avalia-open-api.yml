@@ -1077,10 +1077,20 @@ components:
           $ref: '#/components/schemas/ProductType'
         productClass:
           type: string
-          example: Class I
+          enum:
+            - Class 1
+            - Class 2
+            - Class 3
+            - Class 4
         completionLevel:
           type: string
-          example: Alfa Test
+          enum:
+            - Alfa Test
+            - Beta Test
+            - Finished Product
+            - Low Fidelity Prototype
+            - Medium Fidelity Prototype
+            - Specification
       description: Represents a product to be evaluated
     ProductOutput:
       type: object

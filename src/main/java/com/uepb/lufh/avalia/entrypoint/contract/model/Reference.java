@@ -19,7 +19,7 @@ import javax.annotation.Generated;
  * Reference
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-25T19:28:13.395460-03:00[America/Fortaleza]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-03-31T23:04:52.699113-03:00[America/Fortaleza]")
 public class Reference {
 
   /**

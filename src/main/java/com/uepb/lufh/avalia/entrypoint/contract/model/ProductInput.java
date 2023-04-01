@@ -4,6 +4,7 @@ import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 import com.uepb.lufh.avalia.entrypoint.contract.model.ProductType;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
@@ -20,7 +21,7 @@ import javax.annotation.Generated;
  */
 
 @Schema(name = "ProductInput", description = "Represents a product to be evaluated")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-25T19:28:13.395460-03:00[America/Fortaleza]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-03-31T23:04:52.699113-03:00[America/Fortaleza]")
 public class ProductInput {
 
   @JsonProperty("productName")
@@ -32,11 +33,93 @@ public class ProductInput {
   @JsonProperty("productType")
   private ProductType productType;
 
+  /**
+   * Gets or Sets productClass
+   */
+  public enum ProductClassEnum {
+    _1("Class 1"),
+    
+    _2("Class 2"),
+    
+    _3("Class 3"),
+    
+    _4("Class 4");
+
+    private String value;
+
+    ProductClassEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static ProductClassEnum fromValue(String value) {
+      for (ProductClassEnum b : ProductClassEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
   @JsonProperty("productClass")
-  private String productClass;
+  private ProductClassEnum productClass;
+
+  /**
+   * Gets or Sets completionLevel
+   */
+  public enum CompletionLevelEnum {
+    ALFA_TEST("Alfa Test"),
+    
+    BETA_TEST("Beta Test"),
+    
+    FINISHED_PRODUCT("Finished Product"),
+    
+    LOW_FIDELITY_PROTOTYPE("Low Fidelity Prototype"),
+    
+    MEDIUM_FIDELITY_PROTOTYPE("Medium Fidelity Prototype"),
+    
+    SPECIFICATION("Specification");
+
+    private String value;
+
+    CompletionLevelEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static CompletionLevelEnum fromValue(String value) {
+      for (CompletionLevelEnum b : CompletionLevelEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
 
   @JsonProperty("completionLevel")
-  private String completionLevel;
+  private CompletionLevelEnum completionLevel;
 
   public ProductInput productName(String productName) {
     this.productName = productName;
@@ -95,7 +178,7 @@ public class ProductInput {
     this.productType = productType;
   }
 
-  public ProductInput productClass(String productClass) {
+  public ProductInput productClass(ProductClassEnum productClass) {
     this.productClass = productClass;
     return this;
   }
@@ -105,16 +188,16 @@ public class ProductInput {
    * @return productClass
   */
   
-  @Schema(name = "productClass", example = "Class I", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  public String getProductClass() {
+  @Schema(name = "productClass", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  public ProductClassEnum getProductClass() {
     return productClass;
   }
 
-  public void setProductClass(String productClass) {
+  public void setProductClass(ProductClassEnum productClass) {
     this.productClass = productClass;
   }
 
-  public ProductInput completionLevel(String completionLevel) {
+  public ProductInput completionLevel(CompletionLevelEnum completionLevel) {
     this.completionLevel = completionLevel;
     return this;
   }
@@ -124,12 +207,12 @@ public class ProductInput {
    * @return completionLevel
   */
   
-  @Schema(name = "completionLevel", example = "Alfa Test", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  public String getCompletionLevel() {
+  @Schema(name = "completionLevel", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  public CompletionLevelEnum getCompletionLevel() {
     return completionLevel;
   }
 
-  public void setCompletionLevel(String completionLevel) {
+  public void setCompletionLevel(CompletionLevelEnum completionLevel) {
     this.completionLevel = completionLevel;
   }
 

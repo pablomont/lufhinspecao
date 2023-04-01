@@ -21,9 +21,9 @@ public class CreateProductUsecase {
         var productDomain = ProductDomain.builder()
             .productName(productInput.getProductName())
             .productType(productInput.getProductType().getName().getValue())
-            .completionLevel(productInput.getCompletionLevel())
+            .completionLevel(productInput.getCompletionLevel().getValue())
             .manufacturerName(productInput.getManufacterName())
-            .productClass(productInput.getProductClass())
+            .productClass(productInput.getProductClass().getValue())
             .build();
 
         return productGateway.save(productDomain)
