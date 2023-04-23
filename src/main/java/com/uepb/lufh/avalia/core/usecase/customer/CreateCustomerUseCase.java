@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class CreateCustomerUsecase {
+public class CreateCustomerUseCase {
 
     private final CustomerGateway customerGateway;
 

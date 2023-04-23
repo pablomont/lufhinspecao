@@ -1,6 +1,6 @@
 package com.uepb.lufh.avalia.entrypoint.controller;
 
-import com.uepb.lufh.avalia.core.usecase.product.CreateProductUsecase;
+import com.uepb.lufh.avalia.core.usecase.product.CreateProductUseCase;
 import com.uepb.lufh.avalia.entrypoint.contract.api.ProductsApi;
 import com.uepb.lufh.avalia.entrypoint.contract.model.ProductInput;
 import com.uepb.lufh.avalia.entrypoint.contract.model.ProductOutput;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class ProductController implements ProductsApi {
 
-    private final CreateProductUsecase createProductUsecase;
+    private final CreateProductUseCase createProductUsecase;
 
 
     @Override

@@ -307,3 +307,18 @@ INSERT INTO question (question_class, product_type, base_question, detailed_ques
 	('Privacy & Security', 'Software', 'Can protected or confidential areas be accessed with a certain password?', ''),
 	('Privacy & Security', 'Hardware', 'Are protected areas completely inaccessible?', ''),
 	('Privacy & Security', 'Hardware', 'Can protected or confidential areas be accessed with a certain password?', '');
+
+INSERT INTO questionnaire (creator, title) VALUES
+	('Daniel Scherer', 'Questionario teste');
+
+INSERT INTO questionnaire_question(questionnaire_id, question_id) VALUES
+    (1, 1),
+    (1, 2),
+    (1, 3),
+    (1, 4),
+    (1, 5),
+    (1, 6),
+    (1, 7),
+    (1, 8),
+    (1, 9),
+    (1, 10)

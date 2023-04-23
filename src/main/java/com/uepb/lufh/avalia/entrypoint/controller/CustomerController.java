@@ -1,6 +1,6 @@
 package com.uepb.lufh.avalia.entrypoint.controller;
 
-import com.uepb.lufh.avalia.core.usecase.customer.CreateCustomerUsecase;
+import com.uepb.lufh.avalia.core.usecase.customer.CreateCustomerUseCase;
 import com.uepb.lufh.avalia.entrypoint.contract.api.CustomersApi;
 import com.uepb.lufh.avalia.entrypoint.contract.model.CustomerInput;
 import com.uepb.lufh.avalia.entrypoint.contract.model.CustomerOutput;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class CustomerController implements CustomersApi {
 
-    private final CreateCustomerUsecase createCustomerUsecase;
+    private final CreateCustomerUseCase createCustomerUsecase;
 
 
     @Override
