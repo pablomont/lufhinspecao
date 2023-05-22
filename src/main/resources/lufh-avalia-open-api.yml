@@ -1153,8 +1153,6 @@ components:
         detailedQuestion:
           type: string
           example: Is only (and all) information, essential to decision making, displayed on the screen?
-        reference:
-          $ref: '#/components/schemas/Reference'
         answer:
           $ref: '#/components/schemas/Answer'
       xml:
@@ -1199,8 +1197,6 @@ components:
         detailedQuestion:
           type: string
           example: Is only (and all) information, essential to decision making, displayed on the screen?
-        reference:
-          $ref: '#/components/schemas/Reference'
       xml:
         name: Question
     Reference:

@@ -6,7 +6,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.uepb.lufh.avalia.entrypoint.contract.model.ModelClass;
-import com.uepb.lufh.avalia.entrypoint.contract.model.Reference;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
@@ -21,7 +20,7 @@ import javax.annotation.Generated;
  * QuestionInput
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-05-22T16:10:45.981298-03:00[America/Fortaleza]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-05-22T19:01:17.964952-03:00[America/Fortaleza]")
 public class QuestionInput {
 
   @JsonProperty("id")
@@ -75,9 +74,6 @@ public class QuestionInput {
 
   @JsonProperty("detailedQuestion")
   private String detailedQuestion;
-
-  @JsonProperty("reference")
-  private Reference reference;
 
   public QuestionInput id(Long id) {
     this.id = id;
@@ -174,25 +170,6 @@ public class QuestionInput {
     this.detailedQuestion = detailedQuestion;
   }
 
-  public QuestionInput reference(Reference reference) {
-    this.reference = reference;
-    return this;
-  }
-
-  /**
-   * Get reference
-   * @return reference
-  */
-  @Valid 
-  @Schema(name = "reference", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  public Reference getReference() {
-    return reference;
-  }
-
-  public void setReference(Reference reference) {
-    this.reference = reference;
-  }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -206,13 +183,12 @@ public class QuestionInput {
         Objects.equals(this.propertyClass, questionInput.propertyClass) &&
         Objects.equals(this.productType, questionInput.productType) &&
         Objects.equals(this.baseQuestion, questionInput.baseQuestion) &&
-        Objects.equals(this.detailedQuestion, questionInput.detailedQuestion) &&
-        Objects.equals(this.reference, questionInput.reference);
+        Objects.equals(this.detailedQuestion, questionInput.detailedQuestion);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, propertyClass, productType, baseQuestion, detailedQuestion, reference);
+    return Objects.hash(id, propertyClass, productType, baseQuestion, detailedQuestion);
   }
 
   @Override
@@ -224,7 +200,6 @@ public class QuestionInput {
     sb.append("    productType: ").append(toIndentedString(productType)).append("\n");
     sb.append("    baseQuestion: ").append(toIndentedString(baseQuestion)).append("\n");
     sb.append("    detailedQuestion: ").append(toIndentedString(detailedQuestion)).append("\n");
-    sb.append("    reference: ").append(toIndentedString(reference)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -7,7 +7,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.uepb.lufh.avalia.entrypoint.contract.model.Answer;
 import com.uepb.lufh.avalia.entrypoint.contract.model.ModelClass;
-import com.uepb.lufh.avalia.entrypoint.contract.model.Reference;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
@@ -22,7 +21,7 @@ import javax.annotation.Generated;
  * QuestionOutput
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-05-22T16:10:45.981298-03:00[America/Fortaleza]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-05-22T19:01:17.964952-03:00[America/Fortaleza]")
 public class QuestionOutput {
 
   @JsonProperty("id")
@@ -76,9 +75,6 @@ public class QuestionOutput {
 
   @JsonProperty("detailedQuestion")
   private String detailedQuestion;
-
-  @JsonProperty("reference")
-  private Reference reference;
 
   @JsonProperty("answer")
   private Answer answer;
@@ -178,25 +174,6 @@ public class QuestionOutput {
     this.detailedQuestion = detailedQuestion;
   }
 
-  public QuestionOutput reference(Reference reference) {
-    this.reference = reference;
-    return this;
-  }
-
-  /**
-   * Get reference
-   * @return reference
-  */
-  @Valid 
-  @Schema(name = "reference", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  public Reference getReference() {
-    return reference;
-  }
-
-  public void setReference(Reference reference) {
-    this.reference = reference;
-  }
-
   public QuestionOutput answer(Answer answer) {
     this.answer = answer;
     return this;
@@ -230,13 +207,12 @@ public class QuestionOutput {
         Objects.equals(this.productType, questionOutput.productType) &&
         Objects.equals(this.baseQuestion, questionOutput.baseQuestion) &&
         Objects.equals(this.detailedQuestion, questionOutput.detailedQuestion) &&
-        Objects.equals(this.reference, questionOutput.reference) &&
         Objects.equals(this.answer, questionOutput.answer);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, propertyClass, productType, baseQuestion, detailedQuestion, reference, answer);
+    return Objects.hash(id, propertyClass, productType, baseQuestion, detailedQuestion, answer);
   }
 
   @Override
@@ -248,7 +224,6 @@ public class QuestionOutput {
     sb.append("    productType: ").append(toIndentedString(productType)).append("\n");
     sb.append("    baseQuestion: ").append(toIndentedString(baseQuestion)).append("\n");
     sb.append("    detailedQuestion: ").append(toIndentedString(detailedQuestion)).append("\n");
-    sb.append("    reference: ").append(toIndentedString(reference)).append("\n");
     sb.append("    answer: ").append(toIndentedString(answer)).append("\n");
     sb.append("}");
     return sb.toString();
