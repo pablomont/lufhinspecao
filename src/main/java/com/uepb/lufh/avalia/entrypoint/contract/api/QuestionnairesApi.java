@@ -33,7 +33,7 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-05-22T15:51:28.790186-03:00[America/Fortaleza]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-05-22T16:10:45.981298-03:00[America/Fortaleza]")
 @Validated
 @Tag(name = "questionnaires", description = "Disponibiliza operações sobre os questionários utilizado para avaliar o produto.")
 @RequestMapping("${openapi.lufhInspeo.base-path:/lufh-avalia}")
@@ -47,24 +47,38 @@ public interface QuestionnairesApi {
      * POST /questionnaires : Add a new questionnaire
      *
      * @param questionnaireInput  (optional)
-     * @return Internal server error (status code 500)
+     * @return A QuestionnaireOutput object (status code 200)
+     *         or Internal server error (status code 500)
      */
     @Operation(
         operationId = "createQuestionaire",
         summary = "Add a new questionnaire",
         tags = { "questionnaires" },
         responses = {
+            @ApiResponse(responseCode = "200", description = "A QuestionnaireOutput object", content = {
+                @Content(mediaType = "application/json", schema = @Schema(implementation = QuestionnaireOutput.class))
+            }),
             @ApiResponse(responseCode = "500", description = "Internal server error")
         }
     )
     @RequestMapping(
         method = RequestMethod.POST,
         value = "/questionnaires",
+        produces = { "application/json" },
         consumes = { "application/json" }
     )
-    default ResponseEntity<Void> createQuestionaire(
+    default ResponseEntity<QuestionnaireOutput> createQuestionaire(
         @Parameter(name = "QuestionnaireInput", description = "") @Valid @RequestBody(required = false) QuestionnaireInput questionnaireInput
     ) throws Exception {
+        getRequest().ifPresent(request -> {
+            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
+                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
+                    String exampleString = "{ \"creator\" : \"creator\", \"questions\" : [ { \"reference\" : { \"bibliography\" : \"bibliography\", \"type\" : \"Article\" }, \"baseQuestion\" : \"Is it designed minimal?\", \"answer\" : { \"severity\" : \"0 Not a usability problem at all\", \"answer\" : \"answer\", \"weight\" : \"0 Necessary for every System\" }, \"id\" : 0, \"detailedQuestion\" : \"Is only (and all) information, essential to decision making, displayed on the screen?\", \"class\" : { \"name\" : \"Aesthetic and minimalist design\" }, \"productType\" : \"Software\" }, { \"reference\" : { \"bibliography\" : \"bibliography\", \"type\" : \"Article\" }, \"baseQuestion\" : \"Is it designed minimal?\", \"answer\" : { \"severity\" : \"0 Not a usability problem at all\", \"answer\" : \"answer\", \"weight\" : \"0 Necessary for every System\" }, \"id\" : 0, \"detailedQuestion\" : \"Is only (and all) information, essential to decision making, displayed on the screen?\", \"class\" : { \"name\" : \"Aesthetic and minimalist design\" }, \"productType\" : \"Software\" } ], \"id\" : 0, \"title\" : \"title\", \"evaluator\" : \"evaluator\" }";
+                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
+                    break;
+                }
+            }
+        });
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }
@@ -130,12 +144,12 @@ public interface QuestionnairesApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"creator\" : \"creator\", \"questions\" : [ { \"reference\" : { \"bibliography\" : \"bibliography\", \"type\" : \"Article\" }, \"baseQuestion\" : \"Is it designed minimal?\", \"id\" : 0, \"detailedQuestion\" : \"Is only (and all) information, essential to decision making, displayed on the screen?\", \"class\" : { \"name\" : \"Aesthetic and minimalist design\" }, \"productType\" : \"Software\" }, { \"reference\" : { \"bibliography\" : \"bibliography\", \"type\" : \"Article\" }, \"baseQuestion\" : \"Is it designed minimal?\", \"id\" : 0, \"detailedQuestion\" : \"Is only (and all) information, essential to decision making, displayed on the screen?\", \"class\" : { \"name\" : \"Aesthetic and minimalist design\" }, \"productType\" : \"Software\" } ], \"id\" : 0, \"title\" : \"title\", \"evaluator\" : \"evaluator\" }";
+                    String exampleString = "{ \"creator\" : \"creator\", \"questionIds\" : [ \"questionIds\", \"questionIds\" ], \"title\" : \"title\", \"evaluator\" : \"evaluator\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/xml"))) {
-                    String exampleString = "<QuestionnaireInput> <id>123456789</id> <Question> <id>123456789</id> <null> <name>aeiou</name> </null> <productType>aeiou</productType> <baseQuestion>Is it designed minimal?</baseQuestion> <detailedQuestion>Is only (and all) information, essential to decision making, displayed on the screen?</detailedQuestion> <null> <type>aeiou</type> <bibliography>aeiou</bibliography> </null> </Question> <evaluator>aeiou</evaluator> <creator>aeiou</creator> <title>aeiou</title> </QuestionnaireInput>";
+                    String exampleString = "<QuestionnaireInput> <questionIds>aeiou</questionIds> <evaluator>aeiou</evaluator> <creator>aeiou</creator> <title>aeiou</title> </QuestionnaireInput>";
                     ApiUtil.setExampleResponse(request, "application/xml", exampleString);
                     break;
                 }
@@ -177,7 +191,7 @@ public interface QuestionnairesApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "[ { \"creator\" : \"creator\", \"questions\" : [ { \"reference\" : { \"bibliography\" : \"bibliography\", \"type\" : \"Article\" }, \"baseQuestion\" : \"Is it designed minimal?\", \"id\" : 0, \"detailedQuestion\" : \"Is only (and all) information, essential to decision making, displayed on the screen?\", \"class\" : { \"name\" : \"Aesthetic and minimalist design\" }, \"productType\" : \"Software\" }, { \"reference\" : { \"bibliography\" : \"bibliography\", \"type\" : \"Article\" }, \"baseQuestion\" : \"Is it designed minimal?\", \"id\" : 0, \"detailedQuestion\" : \"Is only (and all) information, essential to decision making, displayed on the screen?\", \"class\" : { \"name\" : \"Aesthetic and minimalist design\" }, \"productType\" : \"Software\" } ], \"id\" : 0, \"title\" : \"title\", \"evaluator\" : \"evaluator\" }, { \"creator\" : \"creator\", \"questions\" : [ { \"reference\" : { \"bibliography\" : \"bibliography\", \"type\" : \"Article\" }, \"baseQuestion\" : \"Is it designed minimal?\", \"id\" : 0, \"detailedQuestion\" : \"Is only (and all) information, essential to decision making, displayed on the screen?\", \"class\" : { \"name\" : \"Aesthetic and minimalist design\" }, \"productType\" : \"Software\" }, { \"reference\" : { \"bibliography\" : \"bibliography\", \"type\" : \"Article\" }, \"baseQuestion\" : \"Is it designed minimal?\", \"id\" : 0, \"detailedQuestion\" : \"Is only (and all) information, essential to decision making, displayed on the screen?\", \"class\" : { \"name\" : \"Aesthetic and minimalist design\" }, \"productType\" : \"Software\" } ], \"id\" : 0, \"title\" : \"title\", \"evaluator\" : \"evaluator\" } ]";
+                    String exampleString = "[ { \"creator\" : \"creator\", \"questionIds\" : [ \"questionIds\", \"questionIds\" ], \"title\" : \"title\", \"evaluator\" : \"evaluator\" }, { \"creator\" : \"creator\", \"questionIds\" : [ \"questionIds\", \"questionIds\" ], \"title\" : \"title\", \"evaluator\" : \"evaluator\" } ]";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }

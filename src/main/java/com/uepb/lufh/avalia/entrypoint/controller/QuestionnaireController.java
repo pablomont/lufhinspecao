@@ -5,7 +5,6 @@ import com.uepb.lufh.avalia.core.domain.QuestionnaireDomain;
 import com.uepb.lufh.avalia.core.usecase.questionnaire.CreateQuestionnaireUseCase;
 import com.uepb.lufh.avalia.entrypoint.contract.api.QuestionnairesApi;
 import com.uepb.lufh.avalia.entrypoint.contract.model.ModelClass;
-import com.uepb.lufh.avalia.entrypoint.contract.model.QuestionInput;
 import com.uepb.lufh.avalia.entrypoint.contract.model.QuestionOutput;
 import com.uepb.lufh.avalia.entrypoint.contract.model.QuestionnaireInput;
 import com.uepb.lufh.avalia.entrypoint.contract.model.QuestionnaireOutput;
@@ -23,17 +22,14 @@ public class QuestionnaireController implements QuestionnairesApi {
     private final CreateQuestionnaireUseCase createQuestionnaireUseCase;
 
     @Override
-    public ResponseEntity<Void> createQuestionaire(final QuestionnaireInput questionnaireInput){
+    public ResponseEntity<QuestionnaireOutput> createQuestionaire(final QuestionnaireInput questionnaireInput) {
 
         var questionnaireDomain = QuestionnaireDomain.builder()
             .creator(questionnaireInput.getCreator())
             .evaluator(questionnaireInput.getEvaluator())
-            .questions(createQuestionDomainList(questionnaireInput.getQuestions()))
             .build();
 
-        var result = createOutput(createQuestionnaireUseCase.execute(questionnaireDomain));
-
-        return null;
+        return ResponseEntity.ok(createOutput(createQuestionnaireUseCase.execute(questionnaireDomain, questionnaireInput.getQuestionIds())));
     }
 
     private QuestionnaireOutput createOutput(final QuestionnaireDomain questionnaireDomain) {
@@ -44,22 +40,6 @@ public class QuestionnaireController implements QuestionnairesApi {
         questionnaireOutput.setQuestions(createQuestionOutputList(questionnaireDomain.getQuestions()));
 
         return questionnaireOutput;
-    }
-
-    private List<QuestionDomain> createQuestionDomainList(final List<QuestionInput> questions) {
-
-        return questions.stream().map(this::createQuestionDomain).collect(Collectors.toList());
-
-    }
-
-    private QuestionDomain createQuestionDomain(final QuestionInput questionInput) {
-        return QuestionDomain.builder()
-            .baseQuestion(questionInput.getBaseQuestion())
-            .detailedQuestion(questionInput.getDetailedQuestion())
-            .questionClass(questionInput.getPropertyClass().toString())
-            .productType(questionInput.getProductType().getValue())
-            .questionId(questionInput.getId())
-            .build();
     }
 
     private List<QuestionOutput> createQuestionOutputList(final List<QuestionDomain> questions) {

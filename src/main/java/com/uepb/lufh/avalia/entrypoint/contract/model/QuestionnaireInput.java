@@ -4,7 +4,6 @@ import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.uepb.lufh.avalia.entrypoint.contract.model.QuestionInput;
 import java.util.ArrayList;
 import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -22,15 +21,12 @@ import javax.annotation.Generated;
  */
 
 @Schema(name = "QuestionnaireInput", description = "It represents a grouping of questions that must be answered when analyzing a product.")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-05-22T15:51:28.790186-03:00[America/Fortaleza]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-05-22T16:10:45.981298-03:00[America/Fortaleza]")
 public class QuestionnaireInput {
 
-  @JsonProperty("id")
-  private Long id;
-
-  @JsonProperty("questions")
+  @JsonProperty("questionIds")
   @Valid
-  private List<QuestionInput> questions = null;
+  private List<String> questionIds = null;
 
   @JsonProperty("evaluator")
   private String evaluator;
@@ -41,50 +37,31 @@ public class QuestionnaireInput {
   @JsonProperty("title")
   private String title;
 
-  public QuestionnaireInput id(Long id) {
-    this.id = id;
+  public QuestionnaireInput questionIds(List<String> questionIds) {
+    this.questionIds = questionIds;
+    return this;
+  }
+
+  public QuestionnaireInput addQuestionIdsItem(String questionIdsItem) {
+    if (this.questionIds == null) {
+      this.questionIds = new ArrayList<>();
+    }
+    this.questionIds.add(questionIdsItem);
     return this;
   }
 
   /**
-   * Get id
-   * @return id
+   * Get questionIds
+   * @return questionIds
   */
   
-  @Schema(name = "id", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  public Long getId() {
-    return id;
+  @Schema(name = "questionIds", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  public List<String> getQuestionIds() {
+    return questionIds;
   }
 
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-  public QuestionnaireInput questions(List<QuestionInput> questions) {
-    this.questions = questions;
-    return this;
-  }
-
-  public QuestionnaireInput addQuestionsItem(QuestionInput questionsItem) {
-    if (this.questions == null) {
-      this.questions = new ArrayList<>();
-    }
-    this.questions.add(questionsItem);
-    return this;
-  }
-
-  /**
-   * Get questions
-   * @return questions
-  */
-  @Valid 
-  @Schema(name = "questions", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  public List<QuestionInput> getQuestions() {
-    return questions;
-  }
-
-  public void setQuestions(List<QuestionInput> questions) {
-    this.questions = questions;
+  public void setQuestionIds(List<String> questionIds) {
+    this.questionIds = questionIds;
   }
 
   public QuestionnaireInput evaluator(String evaluator) {
@@ -153,8 +130,7 @@ public class QuestionnaireInput {
       return false;
     }
     QuestionnaireInput questionnaireInput = (QuestionnaireInput) o;
-    return Objects.equals(this.id, questionnaireInput.id) &&
-        Objects.equals(this.questions, questionnaireInput.questions) &&
+    return Objects.equals(this.questionIds, questionnaireInput.questionIds) &&
         Objects.equals(this.evaluator, questionnaireInput.evaluator) &&
         Objects.equals(this.creator, questionnaireInput.creator) &&
         Objects.equals(this.title, questionnaireInput.title);
@@ -162,15 +138,14 @@ public class QuestionnaireInput {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, questions, evaluator, creator, title);
+    return Objects.hash(questionIds, evaluator, creator, title);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class QuestionnaireInput {\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    questions: ").append(toIndentedString(questions)).append("\n");
+    sb.append("    questionIds: ").append(toIndentedString(questionIds)).append("\n");
     sb.append("    evaluator: ").append(toIndentedString(evaluator)).append("\n");
     sb.append("    creator: ").append(toIndentedString(creator)).append("\n");
     sb.append("    title: ").append(toIndentedString(title)).append("\n");

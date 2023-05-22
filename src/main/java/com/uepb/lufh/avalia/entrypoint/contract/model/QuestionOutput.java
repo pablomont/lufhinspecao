@@ -22,7 +22,7 @@ import javax.annotation.Generated;
  * QuestionOutput
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-05-22T15:51:28.790186-03:00[America/Fortaleza]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-05-22T16:10:45.981298-03:00[America/Fortaleza]")
 public class QuestionOutput {
 
   @JsonProperty("id")
