@@ -1241,6 +1241,8 @@ components:
           type: string
         creator:
           type: string
+        title:
+          type: string
       description: It represents a grouping of questions that must be answered when analyzing a product.
     QuestionnaireInput:
       properties:
@@ -1254,6 +1256,8 @@ components:
         evaluator:
           type: string
         creator:
+          type: string
+        title:
           type: string
       description: It represents a grouping of questions that must be answered when analyzing a product.
     RequestEvaluationOutput:

@@ -22,7 +22,7 @@ import javax.annotation.Generated;
  */
 
 @Schema(name = "QuestionnaireInput", description = "It represents a grouping of questions that must be answered when analyzing a product.")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-05-22T14:54:28.759680-03:00[America/Fortaleza]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-05-22T15:42:55.777299-03:00[America/Fortaleza]")
 public class QuestionnaireInput {
 
   @JsonProperty("id")
@@ -37,6 +37,9 @@ public class QuestionnaireInput {
 
   @JsonProperty("creator")
   private String creator;
+
+  @JsonProperty("title")
+  private String title;
 
   public QuestionnaireInput id(Long id) {
     this.id = id;
@@ -122,6 +125,25 @@ public class QuestionnaireInput {
     this.creator = creator;
   }
 
+  public QuestionnaireInput title(String title) {
+    this.title = title;
+    return this;
+  }
+
+  /**
+   * Get title
+   * @return title
+  */
+  
+  @Schema(name = "title", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  public String getTitle() {
+    return title;
+  }
+
+  public void setTitle(String title) {
+    this.title = title;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -134,12 +156,13 @@ public class QuestionnaireInput {
     return Objects.equals(this.id, questionnaireInput.id) &&
         Objects.equals(this.questions, questionnaireInput.questions) &&
         Objects.equals(this.evaluator, questionnaireInput.evaluator) &&
-        Objects.equals(this.creator, questionnaireInput.creator);
+        Objects.equals(this.creator, questionnaireInput.creator) &&
+        Objects.equals(this.title, questionnaireInput.title);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, questions, evaluator, creator);
+    return Objects.hash(id, questions, evaluator, creator, title);
   }
 
   @Override
@@ -150,6 +173,7 @@ public class QuestionnaireInput {
     sb.append("    questions: ").append(toIndentedString(questions)).append("\n");
     sb.append("    evaluator: ").append(toIndentedString(evaluator)).append("\n");
     sb.append("    creator: ").append(toIndentedString(creator)).append("\n");
+    sb.append("    title: ").append(toIndentedString(title)).append("\n");
     sb.append("}");
     return sb.toString();
   }

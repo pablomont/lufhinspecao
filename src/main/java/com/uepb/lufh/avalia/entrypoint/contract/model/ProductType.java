@@ -20,7 +20,7 @@ import javax.annotation.Generated;
  */
 
 @Schema(name = "ProductType", description = "Representa o tipo do produto")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-05-22T14:54:28.759680-03:00[America/Fortaleza]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-05-22T15:42:55.777299-03:00[America/Fortaleza]")
 public class ProductType {
 
   /**

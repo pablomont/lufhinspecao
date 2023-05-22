@@ -9,10 +9,10 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class QuestionDomain {
 
-    private Long questionId;
-    private String questionClass;
-    private String productType;
-    private String baseQuestion;
-    private String detailedQuestion;
+    private final Long questionId;
+    private final String questionClass;
+    private final String productType;
+    private final String baseQuestion;
+    private final String detailedQuestion;
 
 }
