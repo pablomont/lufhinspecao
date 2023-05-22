@@ -9,8 +9,6 @@ import com.uepb.lufh.avalia.core.gateway.RequestEvaluationGateway;
 import com.uepb.lufh.avalia.dataprovider.exception.CustomerNotFoundException;
 import com.uepb.lufh.avalia.dataprovider.exception.ProductNotFoundException;
 import com.uepb.lufh.avalia.dataprovider.exception.RequestEvaluationNotSavedException;
-import com.uepb.lufh.avalia.entrypoint.contract.model.RequestEvaluationInput;
-import com.uepb.lufh.avalia.entrypoint.contract.model.RequestEvaluationOutput;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -27,7 +25,7 @@ public class CreateRequestEvaluationUseCase {
     private final CustomerGateway customerGateway;
     private final RequestEvaluationGateway requestEvaluationGateway;
 
-    public RequestEvaluationOutput execute(RequestEvaluationInput requestEvaluationInput, String productId, final String customerCpfCnpj){
+    public RequestEvaluationDomain execute(RequestEvaluationDomain requestEvaluationDomain, String productId, final String customerCpfCnpj){
 
         var cpfCnpj = customerCpfCnpj.replaceAll(REGEX_NON_NUMERIC_CHARS, EMPTY_STRING);
 
@@ -41,19 +39,18 @@ public class CreateRequestEvaluationUseCase {
             throw new CustomerNotFoundException(customerCpfCnpj);
         });
 
-        var requestEvaluationDomain = RequestEvaluationDomain.builder()
+        var requestEvaluationDomainToSave = RequestEvaluationDomain.builder()
             .productDomain(productDomain)
             .customerDomain(customerDomain)
-            .startDate(requestEvaluationInput.getStartDate())
-            .endDate(requestEvaluationInput.getEndDate())
-            .coverage(requestEvaluationInput.getCoverage())
-            .urgency(requestEvaluationInput.getUrgency())
-            .testType(requestEvaluationInput.getTestType().getValue())
+            .startDate(requestEvaluationDomain.getStartDate())
+            .endDate(requestEvaluationDomain.getEndDate())
+            .coverage(requestEvaluationDomain.getCoverage())
+            .urgency(requestEvaluationDomain.getUrgency())
+            .testType(requestEvaluationDomain.getTestType())
             .build();
 
-        return requestEvaluationGateway.save(requestEvaluationDomain)
-            .orElseThrow(() -> new RequestEvaluationNotSavedException(customerCpfCnpj,productId))
-            .toOutput();
+        return requestEvaluationGateway.save(requestEvaluationDomainToSave)
+            .orElseThrow(() -> new RequestEvaluationNotSavedException(customerCpfCnpj,productId));
 
     }
 
