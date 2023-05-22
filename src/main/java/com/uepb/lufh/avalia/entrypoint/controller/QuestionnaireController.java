@@ -58,7 +58,7 @@ public class QuestionnaireController implements QuestionnairesApi {
             .detailedQuestion(questionInput.getDetailedQuestion())
             .questionClass(questionInput.getPropertyClass().toString())
             .productType(questionInput.getProductType().getValue())
-            //TODO .questionId(questionInput.getQuestionId()))
+            .questionId(questionInput.getId())
             .build();
     }
 
