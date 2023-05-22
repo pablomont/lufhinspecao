@@ -19,7 +19,7 @@ import javax.annotation.Generated;
  */
 
 @Schema(name = "CustomerInput", description = "Represents a customer who has requested a product review")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-04-01T00:41:45.587364-03:00[America/Fortaleza]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-05-22T14:54:28.759680-03:00[America/Fortaleza]")
 public class CustomerInput {
 
   @JsonProperty("customerName")

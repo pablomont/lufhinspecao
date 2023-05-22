@@ -5,7 +5,8 @@
  */
 package com.uepb.lufh.avalia.entrypoint.contract.api;
 
-import com.uepb.lufh.avalia.entrypoint.contract.model.Questionnaire;
+import com.uepb.lufh.avalia.entrypoint.contract.model.QuestionnaireInput;
+import com.uepb.lufh.avalia.entrypoint.contract.model.QuestionnaireOutput;
 import io.swagger.v3.oas.annotations.ExternalDocumentation;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -32,7 +33,7 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-04-01T00:41:45.587364-03:00[America/Fortaleza]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-05-22T14:54:28.759680-03:00[America/Fortaleza]")
 @Validated
 @Tag(name = "questionnaires", description = "Disponibiliza operações sobre os questionários utilizado para avaliar o produto.")
 @RequestMapping("${openapi.lufhInspeo.base-path:/lufh-avalia}")
@@ -45,7 +46,7 @@ public interface QuestionnairesApi {
     /**
      * POST /questionnaires : Add a new questionnaire
      *
-     * @param questionnaire  (optional)
+     * @param questionnaireInput  (optional)
      * @return Internal server error (status code 500)
      */
     @Operation(
@@ -62,7 +63,7 @@ public interface QuestionnairesApi {
         consumes = { "application/json" }
     )
     default ResponseEntity<Void> createQuestionaire(
-        @Parameter(name = "Questionnaire", description = "") @Valid @RequestBody(required = false) Questionnaire questionnaire
+        @Parameter(name = "QuestionnaireInput", description = "") @Valid @RequestBody(required = false) QuestionnaireInput questionnaireInput
     ) throws Exception {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
@@ -111,8 +112,8 @@ public interface QuestionnairesApi {
         tags = { "questionnaires" },
         responses = {
             @ApiResponse(responseCode = "200", description = "successful operation", content = {
-                @Content(mediaType = "application/json", schema = @Schema(implementation = Questionnaire.class)),
-                @Content(mediaType = "application/xml", schema = @Schema(implementation = Questionnaire.class))
+                @Content(mediaType = "application/json", schema = @Schema(implementation = QuestionnaireInput.class)),
+                @Content(mediaType = "application/xml", schema = @Schema(implementation = QuestionnaireInput.class))
             }),
             @ApiResponse(responseCode = "400", description = "Invalid ID supplied"),
             @ApiResponse(responseCode = "404", description = "Questionnaire not found")
@@ -123,18 +124,18 @@ public interface QuestionnairesApi {
         value = "/questionnaires/{questionnaire_id}",
         produces = { "application/json", "application/xml" }
     )
-    default ResponseEntity<Questionnaire> findQuestionnaire(
+    default ResponseEntity<QuestionnaireInput> findQuestionnaire(
         @Parameter(name = "questionnaire_id", description = "ID of questionnaire to return", required = true, in = ParameterIn.PATH) @PathVariable("questionnaire_id") Long questionnaireId
     ) throws Exception {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"creator\" : \"creator\", \"questions\" : [ { \"reference\" : { \"bibliography\" : \"bibliography\", \"type\" : \"Article\" }, \"baseQuestion\" : \"Is it designed minimal?\", \"answer\" : { \"severity\" : \"0 Not a usability problem at all\", \"weight\" : \"0 Necessary for every System\", \"possibleAnswers\" : [ \"possibleAnswers\", \"possibleAnswers\" ], \"choosenAnswer\" : \"choosenAnswer\" }, \"id\" : 0, \"detailedQuestion\" : \"Is only (and all) information, essential to decision making, displayed on the screen?\", \"class\" : { \"name\" : \"Aesthetic and minimalist design\" }, \"productType\" : \"Software\" }, { \"reference\" : { \"bibliography\" : \"bibliography\", \"type\" : \"Article\" }, \"baseQuestion\" : \"Is it designed minimal?\", \"answer\" : { \"severity\" : \"0 Not a usability problem at all\", \"weight\" : \"0 Necessary for every System\", \"possibleAnswers\" : [ \"possibleAnswers\", \"possibleAnswers\" ], \"choosenAnswer\" : \"choosenAnswer\" }, \"id\" : 0, \"detailedQuestion\" : \"Is only (and all) information, essential to decision making, displayed on the screen?\", \"class\" : { \"name\" : \"Aesthetic and minimalist design\" }, \"productType\" : \"Software\" } ], \"id\" : 0, \"evaluator\" : \"evaluator\" }";
+                    String exampleString = "{ \"creator\" : \"creator\", \"questions\" : [ { \"reference\" : { \"bibliography\" : \"bibliography\", \"type\" : \"Article\" }, \"baseQuestion\" : \"Is it designed minimal?\", \"detailedQuestion\" : \"Is only (and all) information, essential to decision making, displayed on the screen?\", \"class\" : { \"name\" : \"Aesthetic and minimalist design\" }, \"productType\" : \"Software\" }, { \"reference\" : { \"bibliography\" : \"bibliography\", \"type\" : \"Article\" }, \"baseQuestion\" : \"Is it designed minimal?\", \"detailedQuestion\" : \"Is only (and all) information, essential to decision making, displayed on the screen?\", \"class\" : { \"name\" : \"Aesthetic and minimalist design\" }, \"productType\" : \"Software\" } ], \"id\" : 0, \"evaluator\" : \"evaluator\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/xml"))) {
-                    String exampleString = "<Questionnaire> <id>123456789</id> <Question> <id>123456789</id> <null> <name>aeiou</name> </null> <productType>aeiou</productType> <baseQuestion>Is it designed minimal?</baseQuestion> <detailedQuestion>Is only (and all) information, essential to decision making, displayed on the screen?</detailedQuestion> <null> <type>aeiou</type> <bibliography>aeiou</bibliography> </null> <null> <possibleAnswers>aeiou</possibleAnswers> <choosenAnswer>aeiou</choosenAnswer> <severity>aeiou</severity> <weight>aeiou</weight> </null> </Question> <evaluator>aeiou</evaluator> <creator>aeiou</creator> </Questionnaire>";
+                    String exampleString = "<QuestionnaireInput> <id>123456789</id> <Question> <null> <name>aeiou</name> </null> <productType>aeiou</productType> <baseQuestion>Is it designed minimal?</baseQuestion> <detailedQuestion>Is only (and all) information, essential to decision making, displayed on the screen?</detailedQuestion> <null> <type>aeiou</type> <bibliography>aeiou</bibliography> </null> </Question> <evaluator>aeiou</evaluator> <creator>aeiou</creator> </QuestionnaireInput>";
                     ApiUtil.setExampleResponse(request, "application/xml", exampleString);
                     break;
                 }
@@ -159,7 +160,7 @@ public interface QuestionnairesApi {
         tags = { "questionnaires" },
         responses = {
             @ApiResponse(responseCode = "200", description = "successful operation", content = {
-                @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Questionnaire.class)))
+                @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = QuestionnaireInput.class)))
             }),
             @ApiResponse(responseCode = "404", description = "Not found")
         }
@@ -169,14 +170,14 @@ public interface QuestionnairesApi {
         value = "/questionnaires",
         produces = { "application/json" }
     )
-    default ResponseEntity<List<Questionnaire>> findQuestionnaires(
+    default ResponseEntity<List<QuestionnaireInput>> findQuestionnaires(
         @Parameter(name = "evaluator", description = "Evaluator values that can be considered for filter", in = ParameterIn.QUERY) @Valid @RequestParam(value = "evaluator", required = false) String evaluator,
         @Parameter(name = "creator", description = "Creator values that can be considered for filter", in = ParameterIn.QUERY) @Valid @RequestParam(value = "creator", required = false) String creator
     ) throws Exception {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "[ { \"creator\" : \"creator\", \"questions\" : [ { \"reference\" : { \"bibliography\" : \"bibliography\", \"type\" : \"Article\" }, \"baseQuestion\" : \"Is it designed minimal?\", \"answer\" : { \"severity\" : \"0 Not a usability problem at all\", \"weight\" : \"0 Necessary for every System\", \"possibleAnswers\" : [ \"possibleAnswers\", \"possibleAnswers\" ], \"choosenAnswer\" : \"choosenAnswer\" }, \"id\" : 0, \"detailedQuestion\" : \"Is only (and all) information, essential to decision making, displayed on the screen?\", \"class\" : { \"name\" : \"Aesthetic and minimalist design\" }, \"productType\" : \"Software\" }, { \"reference\" : { \"bibliography\" : \"bibliography\", \"type\" : \"Article\" }, \"baseQuestion\" : \"Is it designed minimal?\", \"answer\" : { \"severity\" : \"0 Not a usability problem at all\", \"weight\" : \"0 Necessary for every System\", \"possibleAnswers\" : [ \"possibleAnswers\", \"possibleAnswers\" ], \"choosenAnswer\" : \"choosenAnswer\" }, \"id\" : 0, \"detailedQuestion\" : \"Is only (and all) information, essential to decision making, displayed on the screen?\", \"class\" : { \"name\" : \"Aesthetic and minimalist design\" }, \"productType\" : \"Software\" } ], \"id\" : 0, \"evaluator\" : \"evaluator\" }, { \"creator\" : \"creator\", \"questions\" : [ { \"reference\" : { \"bibliography\" : \"bibliography\", \"type\" : \"Article\" }, \"baseQuestion\" : \"Is it designed minimal?\", \"answer\" : { \"severity\" : \"0 Not a usability problem at all\", \"weight\" : \"0 Necessary for every System\", \"possibleAnswers\" : [ \"possibleAnswers\", \"possibleAnswers\" ], \"choosenAnswer\" : \"choosenAnswer\" }, \"id\" : 0, \"detailedQuestion\" : \"Is only (and all) information, essential to decision making, displayed on the screen?\", \"class\" : { \"name\" : \"Aesthetic and minimalist design\" }, \"productType\" : \"Software\" }, { \"reference\" : { \"bibliography\" : \"bibliography\", \"type\" : \"Article\" }, \"baseQuestion\" : \"Is it designed minimal?\", \"answer\" : { \"severity\" : \"0 Not a usability problem at all\", \"weight\" : \"0 Necessary for every System\", \"possibleAnswers\" : [ \"possibleAnswers\", \"possibleAnswers\" ], \"choosenAnswer\" : \"choosenAnswer\" }, \"id\" : 0, \"detailedQuestion\" : \"Is only (and all) information, essential to decision making, displayed on the screen?\", \"class\" : { \"name\" : \"Aesthetic and minimalist design\" }, \"productType\" : \"Software\" } ], \"id\" : 0, \"evaluator\" : \"evaluator\" } ]";
+                    String exampleString = "[ { \"creator\" : \"creator\", \"questions\" : [ { \"reference\" : { \"bibliography\" : \"bibliography\", \"type\" : \"Article\" }, \"baseQuestion\" : \"Is it designed minimal?\", \"detailedQuestion\" : \"Is only (and all) information, essential to decision making, displayed on the screen?\", \"class\" : { \"name\" : \"Aesthetic and minimalist design\" }, \"productType\" : \"Software\" }, { \"reference\" : { \"bibliography\" : \"bibliography\", \"type\" : \"Article\" }, \"baseQuestion\" : \"Is it designed minimal?\", \"detailedQuestion\" : \"Is only (and all) information, essential to decision making, displayed on the screen?\", \"class\" : { \"name\" : \"Aesthetic and minimalist design\" }, \"productType\" : \"Software\" } ], \"id\" : 0, \"evaluator\" : \"evaluator\" }, { \"creator\" : \"creator\", \"questions\" : [ { \"reference\" : { \"bibliography\" : \"bibliography\", \"type\" : \"Article\" }, \"baseQuestion\" : \"Is it designed minimal?\", \"detailedQuestion\" : \"Is only (and all) information, essential to decision making, displayed on the screen?\", \"class\" : { \"name\" : \"Aesthetic and minimalist design\" }, \"productType\" : \"Software\" }, { \"reference\" : { \"bibliography\" : \"bibliography\", \"type\" : \"Article\" }, \"baseQuestion\" : \"Is it designed minimal?\", \"detailedQuestion\" : \"Is only (and all) information, essential to decision making, displayed on the screen?\", \"class\" : { \"name\" : \"Aesthetic and minimalist design\" }, \"productType\" : \"Software\" } ], \"id\" : 0, \"evaluator\" : \"evaluator\" } ]";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -191,7 +192,7 @@ public interface QuestionnairesApi {
      * PUT /questionnaires/{questionnaire_id} : Update an existing questionnaire
      *
      * @param questionnaireId Questionnaire id to update (required)
-     * @param questionnaire  (required)
+     * @param questionnaireOutput  (required)
      * @return Invalid ID supplied (status code 400)
      *         or Questionnaire not found (status code 404)
      *         or Validation exception (status code 405)
@@ -213,7 +214,7 @@ public interface QuestionnairesApi {
     )
     default ResponseEntity<Void> updateQuestionnaire(
         @Parameter(name = "questionnaire_id", description = "Questionnaire id to update", required = true, in = ParameterIn.PATH) @PathVariable("questionnaire_id") Long questionnaireId,
-        @Parameter(name = "Questionnaire", description = "", required = true) @Valid @RequestBody Questionnaire questionnaire
+        @Parameter(name = "QuestionnaireOutput", description = "", required = true) @Valid @RequestBody QuestionnaireOutput questionnaireOutput
     ) throws Exception {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 

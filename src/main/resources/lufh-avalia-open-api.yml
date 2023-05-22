@@ -86,7 +86,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Question'
+                  $ref: '#/components/schemas/QuestionOutput'
         "404":
           description: Not found
     post:
@@ -99,7 +99,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Question'
+              $ref: '#/components/schemas/QuestionInput'
         required: true
       responses:
         "500":
@@ -126,10 +126,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Question'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/Question'
+                $ref: '#/components/schemas/QuestionOutput'
         "400":
           description: Invalid ID supplied
         "404":
@@ -154,10 +151,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Question'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/Question'
+              $ref: '#/components/schemas/QuestionInput'
         required: true
       responses:
         "400":
@@ -217,7 +211,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Questionnaire'
+                  $ref: '#/components/schemas/QuestionnaireInput'
         "404":
           description: Not found
     post:
@@ -229,7 +223,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Questionnaire'
+              $ref: '#/components/schemas/QuestionnaireInput'
       responses:
         "500":
           description: Internal server error
@@ -255,10 +249,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Questionnaire'
+                $ref: '#/components/schemas/QuestionnaireInput'
             application/xml:
               schema:
-                $ref: '#/components/schemas/Questionnaire'
+                $ref: '#/components/schemas/QuestionnaireInput'
         "400":
           description: Invalid ID supplied
         "404":
@@ -282,7 +276,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Questionnaire'
+              $ref: '#/components/schemas/QuestionnaireOutput'
         required: true
       responses:
         "400":
@@ -1131,7 +1125,7 @@ components:
             - Medical devices
             - Consumer products
       description: Representa o tipo do produto
-    Question:
+    QuestionOutput:
       required:
         - description
       type: object
@@ -1177,6 +1171,29 @@ components:
             - User control and freedom
             - Visibility of system status
             - Privacy & Security
+    QuestionInput:
+      required:
+        - description
+      type: object
+      properties:
+        class:
+          $ref: '#/components/schemas/Class'
+        productType:
+          type: string
+          enum:
+            - Software
+            - Hardware
+            - Hardware/Software
+        baseQuestion:
+          type: string
+          example: Is it designed minimal?
+        detailedQuestion:
+          type: string
+          example: Is only (and all) information, essential to decision making, displayed on the screen?
+        reference:
+          $ref: '#/components/schemas/Reference'
+      xml:
+        name: Question
     Reference:
       type: object
       properties:
@@ -1193,11 +1210,7 @@ components:
     Answer:
       type: object
       properties:
-        possibleAnswers:
-          type: array
-          items:
-            type: string
-        choosenAnswer:
+        answer:
           type: string
         severity:
           type: string
@@ -1215,7 +1228,7 @@ components:
             - 2 Necessary for Simple Systems without data have to be entered or with strict guidance throughout the usage process
             - 3 Necessary for Complex Systems with data have to be entered on several dialogs
       description: Represents the answer data for the questions
-    Questionnaire:
+    QuestionnaireOutput:
       properties:
         id:
           type: integer
@@ -1223,7 +1236,21 @@ components:
         questions:
           type: array
           items:
-            $ref: '#/components/schemas/Question'
+            $ref: '#/components/schemas/QuestionOutput'
+        evaluator:
+          type: string
+        creator:
+          type: string
+      description: It represents a grouping of questions that must be answered when analyzing a product.
+    QuestionnaireInput:
+      properties:
+        id:
+          type: integer
+          format: int64
+        questions:
+          type: array
+          items:
+            $ref: '#/components/schemas/QuestionInput'
         evaluator:
           type: string
         creator:
@@ -1317,7 +1344,7 @@ components:
           description: date the report was made
           format: date-time
         questionare:
-          $ref: '#/components/schemas/Questionnaire'
+          $ref: '#/components/schemas/QuestionnaireOutput'
       description: Represents the result of the evaluation
     Error:
       type: object

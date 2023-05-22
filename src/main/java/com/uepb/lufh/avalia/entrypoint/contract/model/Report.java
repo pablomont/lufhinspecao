@@ -4,7 +4,7 @@ import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.uepb.lufh.avalia.entrypoint.contract.model.Questionnaire;
+import com.uepb.lufh.avalia.entrypoint.contract.model.QuestionnaireOutput;
 import java.time.LocalDateTime;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -22,7 +22,7 @@ import javax.annotation.Generated;
  */
 
 @Schema(name = "Report", description = "Represents the result of the evaluation")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-04-01T00:41:45.587364-03:00[America/Fortaleza]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-05-22T14:54:28.759680-03:00[America/Fortaleza]")
 public class Report {
 
   @JsonProperty("requestEvaluationId")
@@ -33,7 +33,7 @@ public class Report {
   private LocalDateTime reportDate;
 
   @JsonProperty("questionare")
-  private Questionnaire questionare;
+  private QuestionnaireOutput questionare;
 
   public Report requestEvaluationId(Integer requestEvaluationId) {
     this.requestEvaluationId = requestEvaluationId;
@@ -73,7 +73,7 @@ public class Report {
     this.reportDate = reportDate;
   }
 
-  public Report questionare(Questionnaire questionare) {
+  public Report questionare(QuestionnaireOutput questionare) {
     this.questionare = questionare;
     return this;
   }
@@ -84,11 +84,11 @@ public class Report {
   */
   @Valid 
   @Schema(name = "questionare", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  public Questionnaire getQuestionare() {
+  public QuestionnaireOutput getQuestionare() {
     return questionare;
   }
 
-  public void setQuestionare(Questionnaire questionare) {
+  public void setQuestionare(QuestionnaireOutput questionare) {
     this.questionare = questionare;
   }
 

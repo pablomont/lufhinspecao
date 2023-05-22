@@ -5,8 +5,6 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.ArrayList;
-import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
@@ -22,15 +20,11 @@ import javax.annotation.Generated;
  */
 
 @Schema(name = "Answer", description = "Represents the answer data for the questions")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-04-01T00:41:45.587364-03:00[America/Fortaleza]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-05-22T14:54:28.759680-03:00[America/Fortaleza]")
 public class Answer {
 
-  @JsonProperty("possibleAnswers")
-  @Valid
-  private List<String> possibleAnswers = null;
-
-  @JsonProperty("choosenAnswer")
-  private String choosenAnswer;
+  @JsonProperty("answer")
+  private String answer;
 
   /**
    * Gets or Sets severity
@@ -118,50 +112,23 @@ public class Answer {
   @JsonProperty("weight")
   private WeightEnum weight;
 
-  public Answer possibleAnswers(List<String> possibleAnswers) {
-    this.possibleAnswers = possibleAnswers;
-    return this;
-  }
-
-  public Answer addPossibleAnswersItem(String possibleAnswersItem) {
-    if (this.possibleAnswers == null) {
-      this.possibleAnswers = new ArrayList<>();
-    }
-    this.possibleAnswers.add(possibleAnswersItem);
+  public Answer answer(String answer) {
+    this.answer = answer;
     return this;
   }
 
   /**
-   * Get possibleAnswers
-   * @return possibleAnswers
+   * Get answer
+   * @return answer
   */
   
-  @Schema(name = "possibleAnswers", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  public List<String> getPossibleAnswers() {
-    return possibleAnswers;
+  @Schema(name = "answer", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  public String getAnswer() {
+    return answer;
   }
 
-  public void setPossibleAnswers(List<String> possibleAnswers) {
-    this.possibleAnswers = possibleAnswers;
-  }
-
-  public Answer choosenAnswer(String choosenAnswer) {
-    this.choosenAnswer = choosenAnswer;
-    return this;
-  }
-
-  /**
-   * Get choosenAnswer
-   * @return choosenAnswer
-  */
-  
-  @Schema(name = "choosenAnswer", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  public String getChoosenAnswer() {
-    return choosenAnswer;
-  }
-
-  public void setChoosenAnswer(String choosenAnswer) {
-    this.choosenAnswer = choosenAnswer;
+  public void setAnswer(String answer) {
+    this.answer = answer;
   }
 
   public Answer severity(SeverityEnum severity) {
@@ -211,23 +178,21 @@ public class Answer {
       return false;
     }
     Answer answer = (Answer) o;
-    return Objects.equals(this.possibleAnswers, answer.possibleAnswers) &&
-        Objects.equals(this.choosenAnswer, answer.choosenAnswer) &&
+    return Objects.equals(this.answer, answer.answer) &&
         Objects.equals(this.severity, answer.severity) &&
         Objects.equals(this.weight, answer.weight);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(possibleAnswers, choosenAnswer, severity, weight);
+    return Objects.hash(answer, severity, weight);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Answer {\n");
-    sb.append("    possibleAnswers: ").append(toIndentedString(possibleAnswers)).append("\n");
-    sb.append("    choosenAnswer: ").append(toIndentedString(choosenAnswer)).append("\n");
+    sb.append("    answer: ").append(toIndentedString(answer)).append("\n");
     sb.append("    severity: ").append(toIndentedString(severity)).append("\n");
     sb.append("    weight: ").append(toIndentedString(weight)).append("\n");
     sb.append("}");

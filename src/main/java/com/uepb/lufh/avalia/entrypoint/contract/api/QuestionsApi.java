@@ -5,7 +5,8 @@
  */
 package com.uepb.lufh.avalia.entrypoint.contract.api;
 
-import com.uepb.lufh.avalia.entrypoint.contract.model.Question;
+import com.uepb.lufh.avalia.entrypoint.contract.model.QuestionInput;
+import com.uepb.lufh.avalia.entrypoint.contract.model.QuestionOutput;
 import io.swagger.v3.oas.annotations.ExternalDocumentation;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -32,7 +33,7 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-04-01T00:41:45.587364-03:00[America/Fortaleza]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-05-22T14:54:28.759680-03:00[America/Fortaleza]")
 @Validated
 @Tag(name = "questions", description = "Disponibiliza operações sobre as questões.")
 @RequestMapping("${openapi.lufhInspeo.base-path:/lufh-avalia}")
@@ -45,7 +46,7 @@ public interface QuestionsApi {
     /**
      * POST /questions : Add a new question
      *
-     * @param question Question object that needs to be added to the form (required)
+     * @param questionInput Question object that needs to be added to the form (required)
      * @return Internal server error (status code 500)
      */
     @Operation(
@@ -62,7 +63,7 @@ public interface QuestionsApi {
         consumes = { "application/json" }
     )
     default ResponseEntity<Void> createQuestion(
-        @Parameter(name = "Question", description = "Question object that needs to be added to the form", required = true) @Valid @RequestBody Question question
+        @Parameter(name = "QuestionInput", description = "Question object that needs to be added to the form", required = true) @Valid @RequestBody QuestionInput questionInput
     ) throws Exception {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
@@ -111,8 +112,7 @@ public interface QuestionsApi {
         tags = { "questions" },
         responses = {
             @ApiResponse(responseCode = "200", description = "successful operation", content = {
-                @Content(mediaType = "application/json", schema = @Schema(implementation = Question.class)),
-                @Content(mediaType = "application/xml", schema = @Schema(implementation = Question.class))
+                @Content(mediaType = "application/json", schema = @Schema(implementation = QuestionOutput.class))
             }),
             @ApiResponse(responseCode = "400", description = "Invalid ID supplied"),
             @ApiResponse(responseCode = "404", description = "Question not found")
@@ -121,21 +121,16 @@ public interface QuestionsApi {
     @RequestMapping(
         method = RequestMethod.GET,
         value = "/questions/{question_id}",
-        produces = { "application/json", "application/xml" }
+        produces = { "application/json" }
     )
-    default ResponseEntity<Question> findQuestion(
+    default ResponseEntity<QuestionOutput> findQuestion(
         @Parameter(name = "question_id", description = "ID of question to return", required = true, in = ParameterIn.PATH) @PathVariable("question_id") Long questionId
     ) throws Exception {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"reference\" : { \"bibliography\" : \"bibliography\", \"type\" : \"Article\" }, \"baseQuestion\" : \"Is it designed minimal?\", \"answer\" : { \"severity\" : \"0 Not a usability problem at all\", \"weight\" : \"0 Necessary for every System\", \"possibleAnswers\" : [ \"possibleAnswers\", \"possibleAnswers\" ], \"choosenAnswer\" : \"choosenAnswer\" }, \"id\" : 0, \"detailedQuestion\" : \"Is only (and all) information, essential to decision making, displayed on the screen?\", \"class\" : { \"name\" : \"Aesthetic and minimalist design\" }, \"productType\" : \"Software\" }";
+                    String exampleString = "{ \"reference\" : { \"bibliography\" : \"bibliography\", \"type\" : \"Article\" }, \"baseQuestion\" : \"Is it designed minimal?\", \"answer\" : { \"severity\" : \"0 Not a usability problem at all\", \"answer\" : \"answer\", \"weight\" : \"0 Necessary for every System\" }, \"id\" : 0, \"detailedQuestion\" : \"Is only (and all) information, essential to decision making, displayed on the screen?\", \"class\" : { \"name\" : \"Aesthetic and minimalist design\" }, \"productType\" : \"Software\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
-                    break;
-                }
-                if (mediaType.isCompatibleWith(MediaType.valueOf("application/xml"))) {
-                    String exampleString = "<Question> <id>123456789</id> <null> <name>aeiou</name> </null> <productType>aeiou</productType> <baseQuestion>Is it designed minimal?</baseQuestion> <detailedQuestion>Is only (and all) information, essential to decision making, displayed on the screen?</detailedQuestion> <null> <type>aeiou</type> <bibliography>aeiou</bibliography> </null> <null> <possibleAnswers>aeiou</possibleAnswers> <choosenAnswer>aeiou</choosenAnswer> <severity>aeiou</severity> <weight>aeiou</weight> </null> </Question>";
-                    ApiUtil.setExampleResponse(request, "application/xml", exampleString);
                     break;
                 }
             }
@@ -160,7 +155,7 @@ public interface QuestionsApi {
         tags = { "questions" },
         responses = {
             @ApiResponse(responseCode = "200", description = "successful operation", content = {
-                @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Question.class)))
+                @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = QuestionOutput.class)))
             }),
             @ApiResponse(responseCode = "404", description = "Not found")
         }
@@ -170,7 +165,7 @@ public interface QuestionsApi {
         value = "/questions",
         produces = { "application/json" }
     )
-    default ResponseEntity<List<Question>> findQuestions(
+    default ResponseEntity<List<QuestionOutput>> findQuestions(
         @Parameter(name = "class", description = "Class values that can be considered for filter", in = ParameterIn.QUERY) @Valid @RequestParam(value = "class", required = false) String propertyClass,
         @Parameter(name = "reference", description = "Reference values that can be considered for filter", in = ParameterIn.QUERY) @Valid @RequestParam(value = "reference", required = false) String reference,
         @Parameter(name = "product_type", description = "Product type values that can be considered for filter", in = ParameterIn.QUERY) @Valid @RequestParam(value = "product_type", required = false) String productType
@@ -178,7 +173,7 @@ public interface QuestionsApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "[ { \"reference\" : { \"bibliography\" : \"bibliography\", \"type\" : \"Article\" }, \"baseQuestion\" : \"Is it designed minimal?\", \"answer\" : { \"severity\" : \"0 Not a usability problem at all\", \"weight\" : \"0 Necessary for every System\", \"possibleAnswers\" : [ \"possibleAnswers\", \"possibleAnswers\" ], \"choosenAnswer\" : \"choosenAnswer\" }, \"id\" : 0, \"detailedQuestion\" : \"Is only (and all) information, essential to decision making, displayed on the screen?\", \"class\" : { \"name\" : \"Aesthetic and minimalist design\" }, \"productType\" : \"Software\" }, { \"reference\" : { \"bibliography\" : \"bibliography\", \"type\" : \"Article\" }, \"baseQuestion\" : \"Is it designed minimal?\", \"answer\" : { \"severity\" : \"0 Not a usability problem at all\", \"weight\" : \"0 Necessary for every System\", \"possibleAnswers\" : [ \"possibleAnswers\", \"possibleAnswers\" ], \"choosenAnswer\" : \"choosenAnswer\" }, \"id\" : 0, \"detailedQuestion\" : \"Is only (and all) information, essential to decision making, displayed on the screen?\", \"class\" : { \"name\" : \"Aesthetic and minimalist design\" }, \"productType\" : \"Software\" } ]";
+                    String exampleString = "[ { \"reference\" : { \"bibliography\" : \"bibliography\", \"type\" : \"Article\" }, \"baseQuestion\" : \"Is it designed minimal?\", \"answer\" : { \"severity\" : \"0 Not a usability problem at all\", \"answer\" : \"answer\", \"weight\" : \"0 Necessary for every System\" }, \"id\" : 0, \"detailedQuestion\" : \"Is only (and all) information, essential to decision making, displayed on the screen?\", \"class\" : { \"name\" : \"Aesthetic and minimalist design\" }, \"productType\" : \"Software\" }, { \"reference\" : { \"bibliography\" : \"bibliography\", \"type\" : \"Article\" }, \"baseQuestion\" : \"Is it designed minimal?\", \"answer\" : { \"severity\" : \"0 Not a usability problem at all\", \"answer\" : \"answer\", \"weight\" : \"0 Necessary for every System\" }, \"id\" : 0, \"detailedQuestion\" : \"Is only (and all) information, essential to decision making, displayed on the screen?\", \"class\" : { \"name\" : \"Aesthetic and minimalist design\" }, \"productType\" : \"Software\" } ]";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -193,7 +188,7 @@ public interface QuestionsApi {
      * PUT /questions/{question_id} : Update an existing question
      *
      * @param questionId Question id to update (required)
-     * @param question Question object that needs to be added to the form (required)
+     * @param questionInput Question object that needs to be added to the form (required)
      * @return Invalid ID supplied (status code 400)
      *         or Question not found (status code 404)
      *         or Validation exception (status code 405)
@@ -211,11 +206,11 @@ public interface QuestionsApi {
     @RequestMapping(
         method = RequestMethod.PUT,
         value = "/questions/{question_id}",
-        consumes = { "application/json", "application/xml" }
+        consumes = { "application/json" }
     )
     default ResponseEntity<Void> updateQuestion(
         @Parameter(name = "question_id", description = "Question id to update", required = true, in = ParameterIn.PATH) @PathVariable("question_id") Long questionId,
-        @Parameter(name = "Question", description = "Question object that needs to be added to the form", required = true) @Valid @RequestBody Question question
+        @Parameter(name = "QuestionInput", description = "Question object that needs to be added to the form", required = true) @Valid @RequestBody QuestionInput questionInput
     ) throws Exception {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
