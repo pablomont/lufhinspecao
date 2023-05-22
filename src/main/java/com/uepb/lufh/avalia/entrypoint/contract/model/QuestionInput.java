@@ -21,8 +21,11 @@ import javax.annotation.Generated;
  * QuestionInput
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-05-22T15:42:55.777299-03:00[America/Fortaleza]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-05-22T15:51:28.790186-03:00[America/Fortaleza]")
 public class QuestionInput {
+
+  @JsonProperty("id")
+  private Long id;
 
   @JsonProperty("class")
   private ModelClass propertyClass;
@@ -75,6 +78,25 @@ public class QuestionInput {
 
   @JsonProperty("reference")
   private Reference reference;
+
+  public QuestionInput id(Long id) {
+    this.id = id;
+    return this;
+  }
+
+  /**
+   * Get id
+   * @return id
+  */
+  
+  @Schema(name = "id", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
 
   public QuestionInput propertyClass(ModelClass propertyClass) {
     this.propertyClass = propertyClass;
@@ -180,7 +202,8 @@ public class QuestionInput {
       return false;
     }
     QuestionInput questionInput = (QuestionInput) o;
-    return Objects.equals(this.propertyClass, questionInput.propertyClass) &&
+    return Objects.equals(this.id, questionInput.id) &&
+        Objects.equals(this.propertyClass, questionInput.propertyClass) &&
         Objects.equals(this.productType, questionInput.productType) &&
         Objects.equals(this.baseQuestion, questionInput.baseQuestion) &&
         Objects.equals(this.detailedQuestion, questionInput.detailedQuestion) &&
@@ -189,13 +212,14 @@ public class QuestionInput {
 
   @Override
   public int hashCode() {
-    return Objects.hash(propertyClass, productType, baseQuestion, detailedQuestion, reference);
+    return Objects.hash(id, propertyClass, productType, baseQuestion, detailedQuestion, reference);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class QuestionInput {\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    propertyClass: ").append(toIndentedString(propertyClass)).append("\n");
     sb.append("    productType: ").append(toIndentedString(productType)).append("\n");
     sb.append("    baseQuestion: ").append(toIndentedString(baseQuestion)).append("\n");

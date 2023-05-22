@@ -21,7 +21,7 @@ import javax.annotation.Generated;
  */
 
 @Schema(name = "ProductInput", description = "Represents a product to be evaluated")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-05-22T15:42:55.777299-03:00[America/Fortaleza]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-05-22T15:51:28.790186-03:00[America/Fortaleza]")
 public class ProductInput {
 
   @JsonProperty("productName")
