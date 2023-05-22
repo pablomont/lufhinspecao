@@ -6,7 +6,7 @@ VALUES (1, 'Notebook XPTO', 'Acme Inc.',  'Alfa', 'Eletrônico', 'Class I');
 
 INSERT INTO question (question_class, product_type, base_question, detailed_question ) VALUES
 	('Aesthetic and minimalist design', 'Software', 'Is it designed minimal?', ''),
-	('Aesthetic and minimalist design', '', 'Is it designed minimal?', '"Is only (and all) information, essential to decision making, displayed on the screen?"'),
+	('Aesthetic and minimalist design', 'Software', 'Is it designed minimal?', '"Is only (and all) information, essential to decision making, displayed on the screen?"'),
 	('Aesthetic and minimalist design', 'Software', 'Is it designed minimal?', '"If visual elements (such as arrows or lines) are used, do they provide extra information?"'),
 	('Aesthetic and minimalist design', 'Software', 'Is it designed minimal?', '"Are there enough function keys to support functionality, but not so many that scanning and finding are difficult?"'),
 	('Aesthetic and minimalist design', 'Software', 'Is the design consistent?', ''),

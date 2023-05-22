@@ -1,6 +1,9 @@
 package com.uepb.lufh.avalia.dataprovider.database.entity;
 
+import com.uepb.lufh.avalia.core.domain.QuestionDomain;
+import com.uepb.lufh.avalia.core.domain.QuestionnaireDomain;
 import lombok.NoArgsConstructor;
+import org.springframework.util.ObjectUtils;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,6 +15,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "questionnaire")
@@ -37,5 +41,33 @@ public class QuestionnaireEntity {
         joinColumns = @JoinColumn(name = "questionnaire_id"),
         inverseJoinColumns = @JoinColumn(name = "question_id"))
     private List<QuestionEntity> questionEntities;
+
+    public QuestionnaireEntity(final QuestionnaireDomain questionnaireDomain) {
+        if(!ObjectUtils.isEmpty(questionnaireDomain.getQuestionnaireId()))
+            this.questionnaireId = questionnaireDomain.getQuestionnaireId();
+
+        this.evaluator = questionnaireDomain.getEvaluator();
+        this.title = questionnaireDomain.getTitle();
+        this.creator = questionnaireDomain.getCreator();
+        this.questionEntities = buildQuestionEntityList(questionnaireDomain.getQuestions());
+    }
+
+    private List<QuestionEntity> buildQuestionEntityList(final List<QuestionDomain> questions) {
+        return questions.stream().map(QuestionEntity::new)
+            .collect(Collectors.toList());
+    }
+
+    public QuestionnaireDomain toDomain() {
+
+        var questions = questionEntities.stream().map(QuestionEntity::toDomain).collect(Collectors.toList());
+        return QuestionnaireDomain.builder()
+
+            .questions(questions)
+            .evaluator(this.evaluator)
+            .creator(this.creator)
+            .questionnaireId(this.questionnaireId)
+            .title(this.title)
+            .build();
+    }
 
 }

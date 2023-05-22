@@ -20,7 +20,7 @@ public class ProductGatewayImpl implements ProductGateway {
     @Override
     public Optional<ProductDomain> findProductByProductId(final Long productId) {
         log.info("Find product by {}", productId);
-        return productRepository.findByProductId(productId).map(ProductEntity::toDomain);
+        return Optional.of(productRepository.getById(productId)).map(ProductEntity::toDomain);
     }
 
     @Override
