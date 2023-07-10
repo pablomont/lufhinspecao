@@ -6,10 +6,13 @@ import org.springframework.util.ObjectUtils;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.List;
 
@@ -37,6 +40,10 @@ public class QuestionEntity {
 
     @ManyToMany(mappedBy = "questionEntities")
     private List<QuestionnaireEntity> questionnaireEntities;
+
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "answer_id", nullable = false)
+    private List<AnswerEntity> answerEntity;
 
     public QuestionEntity(final QuestionDomain questionDomain) {
         if(!ObjectUtils.isEmpty(questionDomain.getQuestionId()))

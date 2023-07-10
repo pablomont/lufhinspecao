@@ -33,7 +33,7 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-07-10T12:11:03.916856-03:00[America/Fortaleza]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-07-10T12:53:00.057977-03:00[America/Fortaleza]")
 @Validated
 @Tag(name = "reports", description = "Disponibiliza operações sobre os relatórios de uma avaliação.")
 @RequestMapping("${openapi.lufhInspeo.base-path:/lufh-avalia}")
@@ -55,7 +55,7 @@ public interface ReportsApi {
         tags = { "reports" },
         responses = {
             @ApiResponse(responseCode = "200", description = "successful operation", content = {
-                @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = ReportOutput.class)))
+                @Content(mediaType = "application/json", schema = @Schema(implementation = ReportOutput.class))
             })
         }
     )
@@ -65,13 +65,13 @@ public interface ReportsApi {
         produces = { "application/json" },
         consumes = { "application/json" }
     )
-    default ResponseEntity<List<ReportOutput>> createReport(
+    default ResponseEntity<ReportOutput> createReport(
         @Parameter(name = "ReportInput", description = "", required = true) @Valid @RequestBody ReportInput reportInput
     ) throws Exception {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "[ { \"requestEvaluationId\" : 6, \"answer\" : [ { \"severity\" : \"0 Not a usability problem at all\", \"answer\" : \"answer\", \"weight\" : \"0 Necessary for every System\" }, { \"severity\" : \"0 Not a usability problem at all\", \"answer\" : \"answer\", \"weight\" : \"0 Necessary for every System\" } ], \"questionnaireId\" : 1, \"id\" : 0 }, { \"requestEvaluationId\" : 6, \"answer\" : [ { \"severity\" : \"0 Not a usability problem at all\", \"answer\" : \"answer\", \"weight\" : \"0 Necessary for every System\" }, { \"severity\" : \"0 Not a usability problem at all\", \"answer\" : \"answer\", \"weight\" : \"0 Necessary for every System\" } ], \"questionnaireId\" : 1, \"id\" : 0 } ]";
+                    String exampleString = "{ \"requestEvaluationId\" : 6, \"answer\" : [ { \"severity\" : \"0 Not a usability problem at all\", \"answer\" : \"answer\", \"weight\" : \"0 Necessary for every System\" }, { \"severity\" : \"0 Not a usability problem at all\", \"answer\" : \"answer\", \"weight\" : \"0 Necessary for every System\" } ], \"questionnaireId\" : 1, \"id\" : 0 }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }

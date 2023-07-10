@@ -581,9 +581,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ReportOutput'
+                $ref: '#/components/schemas/ReportOutput'
   /reports/{report_id}:
     get:
       tags:
