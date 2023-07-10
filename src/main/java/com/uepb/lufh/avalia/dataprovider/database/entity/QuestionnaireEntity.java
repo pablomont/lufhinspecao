@@ -29,9 +29,6 @@ public class QuestionnaireEntity {
     @Column(name = "title")
     private String title;
 
-    @Column(name = "evaluator")
-    private String evaluator;
-
     @Column(name = "creator")
     private String creator;
 
@@ -46,7 +43,6 @@ public class QuestionnaireEntity {
         if(!ObjectUtils.isEmpty(questionnaireDomain.getQuestionnaireId()))
             this.questionnaireId = questionnaireDomain.getQuestionnaireId();
 
-        this.evaluator = questionnaireDomain.getEvaluator();
         this.title = questionnaireDomain.getTitle();
         this.creator = questionnaireDomain.getCreator();
         this.questionEntities = buildQuestionEntityList(questionnaireDomain.getQuestions());
@@ -63,7 +59,6 @@ public class QuestionnaireEntity {
         return QuestionnaireDomain.builder()
 
             .questions(questions)
-            .evaluator(this.evaluator)
             .creator(this.creator)
             .questionnaireId(this.questionnaireId)
             .title(this.title)
