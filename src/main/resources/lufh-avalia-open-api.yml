@@ -561,7 +561,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Report'
+                  $ref: '#/components/schemas/ReportOutput'
         "404":
           description: Not found
     post:
@@ -573,11 +573,17 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Report'
+              $ref: '#/components/schemas/ReportInput'
         required: true
       responses:
-        "500":
-          description: Internal server error
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ReportOutput'
   /reports/{report_id}:
     get:
       tags:
@@ -600,10 +606,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Report'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/Report'
+                $ref: '#/components/schemas/ReportOutput'
         "400":
           description: Invalid ID supplied
         "404":
@@ -627,10 +630,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Report'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/Report'
+              $ref: '#/components/schemas/ReportInput'
         required: true
       responses:
         "400":
@@ -1341,16 +1341,29 @@ components:
         phoneNumber:
           type: string
       description: Represents a customer who has requested a product review
-    Report:
+    ReportInput:
       properties:
         requestEvaluationId:
           type: integer
-        reportDate:
-          type: string
-          description: date the report was made
-          format: date-time
-        questionare:
-          $ref: '#/components/schemas/QuestionnaireOutput'
+        questionnaireId:
+          type: integer
+        answer:
+          type: array
+          items:
+            $ref: '#/components/schemas/Answer'
+      description: Represents the result of the evaluation
+    ReportOutput:
+      properties:
+        id:
+          type: integer
+        requestEvaluationId:
+          type: integer
+        questionnaireId:
+          type: integer
+        answer:
+          type: array
+          items:
+            $ref: '#/components/schemas/Answer'
       description: Represents the result of the evaluation
     Error:
       type: object
