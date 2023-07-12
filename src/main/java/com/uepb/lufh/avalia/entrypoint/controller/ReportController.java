@@ -9,11 +9,13 @@ import com.uepb.lufh.avalia.core.usecase.report.CreateReportUseCase;
 import com.uepb.lufh.avalia.entrypoint.contract.api.ReportsApi;
 import com.uepb.lufh.avalia.entrypoint.contract.model.Answer;
 import com.uepb.lufh.avalia.entrypoint.contract.model.AnsweredQuestion;
+import com.uepb.lufh.avalia.entrypoint.contract.model.ModelClass;
 import com.uepb.lufh.avalia.entrypoint.contract.model.QuestionOutput;
 import com.uepb.lufh.avalia.entrypoint.contract.model.Questionnaire;
 import com.uepb.lufh.avalia.entrypoint.contract.model.ReportInput;
 import com.uepb.lufh.avalia.entrypoint.contract.model.ReportOutput;
 import lombok.RequiredArgsConstructor;
+import org.springframework.boot.Banner;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -52,6 +54,7 @@ public class ReportController implements ReportsApi {
         var reportOutput = new ReportOutput();
         reportOutput.setQuestionnaire(questionnaire);
         reportOutput.setRequestEvaluationId(Integer.valueOf(reportDomain.getRequestEvaluationDomain().getId()));
+        reportOutput.setId(reportDomain.getReportId().intValue());
 
         return reportOutput;
     }
@@ -77,6 +80,9 @@ public class ReportController implements ReportsApi {
         question.setDetailedQuestion(questionDomain.getDetailedQuestion());
         question.setBaseQuestion(questionDomain.getBaseQuestion());
         question.setProductType(QuestionOutput.ProductTypeEnum.fromValue(questionDomain.getProductType()));
+        var modelClass = new ModelClass();
+        modelClass.setName(ModelClass.NameEnum.fromValue(questionDomain.getQuestionClass()));
+        question.setPropertyClass(modelClass);
         return question;
     }
 
@@ -86,6 +92,7 @@ public class ReportController implements ReportsApi {
         answer.setAnswer(answerDomain.getAnswer());
         answer.setSeverity(Answer.SeverityEnum.fromValue(answerDomain.getSeverity()));
         answer.setWeight(Answer.WeightEnum.fromValue(answerDomain.getWeight()));
+        answer.setId(answerDomain.getId().intValue());
 
         return answer;
     }

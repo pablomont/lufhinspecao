@@ -1352,6 +1352,8 @@ components:
       description: Represents the result of the evaluation
     ReportOutput:
       properties:
+        id:
+          type: integer
         requestEvaluationId:
           type: integer
         questionnaire:

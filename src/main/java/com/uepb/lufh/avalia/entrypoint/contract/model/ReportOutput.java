@@ -20,14 +20,36 @@ import javax.annotation.Generated;
  */
 
 @Schema(name = "ReportOutput", description = "Represents the result of the evaluation")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-07-11T21:57:14.378621-03:00[America/Fortaleza]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-07-11T22:27:20.267225-03:00[America/Fortaleza]")
 public class ReportOutput {
+
+  @JsonProperty("id")
+  private Integer id;
 
   @JsonProperty("requestEvaluationId")
   private Integer requestEvaluationId;
 
   @JsonProperty("questionnaire")
   private Questionnaire questionnaire;
+
+  public ReportOutput id(Integer id) {
+    this.id = id;
+    return this;
+  }
+
+  /**
+   * Get id
+   * @return id
+  */
+  
+  @Schema(name = "id", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  public Integer getId() {
+    return id;
+  }
+
+  public void setId(Integer id) {
+    this.id = id;
+  }
 
   public ReportOutput requestEvaluationId(Integer requestEvaluationId) {
     this.requestEvaluationId = requestEvaluationId;
@@ -76,19 +98,21 @@ public class ReportOutput {
       return false;
     }
     ReportOutput reportOutput = (ReportOutput) o;
-    return Objects.equals(this.requestEvaluationId, reportOutput.requestEvaluationId) &&
+    return Objects.equals(this.id, reportOutput.id) &&
+        Objects.equals(this.requestEvaluationId, reportOutput.requestEvaluationId) &&
         Objects.equals(this.questionnaire, reportOutput.questionnaire);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(requestEvaluationId, questionnaire);
+    return Objects.hash(id, requestEvaluationId, questionnaire);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ReportOutput {\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    requestEvaluationId: ").append(toIndentedString(requestEvaluationId)).append("\n");
     sb.append("    questionnaire: ").append(toIndentedString(questionnaire)).append("\n");
     sb.append("}");
