@@ -24,4 +24,15 @@ public class ReportGatewayImpl implements ReportGateway {
         return Optional.of(reportRepository.save(new ReportEntity(reportDomain, questionDomain, answerDomain)).toDomain());
     }
 
+    @Override
+    public Long getCurrValReportSeq() {
+        reportRepository.initializeSequence();
+        return reportRepository.getCurrValReportSeq();
+    }
+
+    @Override
+    public void updateReportSeqVal(final Long value) {
+        reportRepository.updateReportSeqVal(value);
+    }
+
 }

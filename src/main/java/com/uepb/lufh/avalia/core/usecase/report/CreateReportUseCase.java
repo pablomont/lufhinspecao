@@ -2,7 +2,6 @@ package com.uepb.lufh.avalia.core.usecase.report;
 
 import com.uepb.lufh.avalia.core.domain.ReportDomain;
 import com.uepb.lufh.avalia.core.gateway.AnswerGateway;
-import com.uepb.lufh.avalia.core.gateway.QuestionGateway;
 import com.uepb.lufh.avalia.core.gateway.QuestionnaireGateway;
 import com.uepb.lufh.avalia.core.gateway.ReportGateway;
 import com.uepb.lufh.avalia.core.gateway.RequestEvaluationGateway;
@@ -10,6 +9,7 @@ import com.uepb.lufh.avalia.dataprovider.exception.RequestEvaluationNotFoundExce
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayDeque;
 
@@ -24,6 +24,7 @@ public class CreateReportUseCase {
 
     private final AnswerGateway answerGateway;
 
+    @Transactional
     public ReportDomain execute(ReportDomain reportDomain) {
 
         long requestEvaluationId = Long.parseLong(reportDomain.getRequestEvaluationDomain().getId());
@@ -45,16 +46,18 @@ public class CreateReportUseCase {
         var dequeAnswers = new ArrayDeque<>(reportDomain.getAnswers());
         reportDomain.getAnswers().clear();
 
+        var seqValue = reportGateway.getCurrValReportSeq() + 1;
         questionnaireDomain.getQuestions().forEach(questionDomain ->
             answerGateway.save(dequeAnswers.removeFirst()).ifPresent(answerDomainResult -> {
                 reportDomain.setRequestEvaluationDomain(requestEvaluationDomain);
                 reportDomain.setQuestionnaireDomain(questionnaireDomain);
-
+                reportDomain.setReportId(seqValue);
                 reportGateway.save(reportDomain, questionDomain, answerDomainResult).
                     ifPresent(reportDomainResult -> reportDomain.setReportId(reportDomainResult.getReportId()));
                 reportDomain.getAnswers().add(answerDomainResult);
             }));
 
+        reportGateway.updateReportSeqVal(seqValue);
         return reportDomain;
     }
 

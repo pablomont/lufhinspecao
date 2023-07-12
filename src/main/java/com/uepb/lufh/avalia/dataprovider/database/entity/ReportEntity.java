@@ -23,8 +23,12 @@ import java.time.LocalDateTime;
 @Setter
 public class ReportEntity {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long id;
+
     @Column(name = "report_id")
     private Long reportId;
 
@@ -48,6 +52,7 @@ public class ReportEntity {
     private AnswerEntity answerEntity;
 
     public ReportEntity(ReportDomain reportDomain, QuestionDomain questionDomain, AnswerDomain answerDomain){
+        this.reportId = reportDomain.getReportId();
         this.questionnaireEntity = new QuestionnaireEntity(reportDomain.getQuestionnaireDomain());
         this.requestEvaluationEntity = new RequestEvaluationEntity(reportDomain.getRequestEvaluationDomain());
         this.questionEntity = new QuestionEntity(questionDomain);

@@ -10,4 +10,8 @@ public interface ReportGateway {
 
     Optional<ReportDomain> save(final ReportDomain reportDomain, final QuestionDomain questionDomain, final AnswerDomain answerDomain);
 
+    Long getCurrValReportSeq();
+
+    void updateReportSeqVal(Long value);
+
 }

@@ -15,7 +15,6 @@ import com.uepb.lufh.avalia.entrypoint.contract.model.Questionnaire;
 import com.uepb.lufh.avalia.entrypoint.contract.model.ReportInput;
 import com.uepb.lufh.avalia.entrypoint.contract.model.ReportOutput;
 import lombok.RequiredArgsConstructor;
-import org.springframework.boot.Banner;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 

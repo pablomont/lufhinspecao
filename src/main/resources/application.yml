@@ -28,7 +28,7 @@ spring:
         show-sql: 'true'
         hibernate:
             ddl-auto: update
-        defer-datasource-initialization: 'true'
+        defer-datasource-initialization: true
 springdoc:
     packagesToScan: com.uepb.lufh.avalia.entrypoint.controller
     pathsToMatch: /**

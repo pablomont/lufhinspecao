@@ -1,3 +1,5 @@
+CREATE SEQUENCE report_seq START WITH 0;
+
 INSERT INTO customer (customer_id, cpf_cnpj, customer_name, email, phone_number)
 VALUES (1, '44443085000158',  'João da Silva', 'joao.silva@example.com', '(83)98623-5856');
 
