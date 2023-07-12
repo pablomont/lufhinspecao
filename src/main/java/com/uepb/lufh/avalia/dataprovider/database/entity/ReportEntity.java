@@ -29,15 +29,16 @@ public class ReportEntity {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "report_id")
-    private Long reportId;
-
     @Column(name = "created_at")
     private LocalDateTime createdAt;
+
+    @Column(name = "report_id")
+    private Long reportId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "request_evaluation_id")
     private RequestEvaluationEntity requestEvaluationEntity;
+
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "questionnaire_id")
