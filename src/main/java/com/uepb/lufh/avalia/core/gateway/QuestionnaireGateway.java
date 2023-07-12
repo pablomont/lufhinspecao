@@ -6,4 +6,6 @@ import java.util.Optional;
 
 public interface QuestionnaireGateway {
     Optional<QuestionnaireDomain> createQuestionnaire(QuestionnaireDomain questionnaireDomain);
+
+    Optional<QuestionnaireDomain> findByQuestionnaireId(Long questionnaireId);
 }

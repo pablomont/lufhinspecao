@@ -6,4 +6,6 @@ import java.util.Optional;
 
 public interface RequestEvaluationGateway {
     Optional<RequestEvaluationDomain> save(RequestEvaluationDomain requestEvaluationDomain);
+
+    Optional<RequestEvaluationDomain> findByRequestEvaluationId(Long id);
 }

@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -38,6 +39,9 @@ public class QuestionnaireEntity {
         joinColumns = @JoinColumn(name = "questionnaire_id"),
         inverseJoinColumns = @JoinColumn(name = "question_id"))
     private List<QuestionEntity> questionEntities;
+
+    @OneToMany(mappedBy = "questionnaireEntity")
+    private List<ReportEntity> questionnaireQuestionAnswers;
 
     public QuestionnaireEntity(final QuestionnaireDomain questionnaireDomain) {
         if(!ObjectUtils.isEmpty(questionnaireDomain.getQuestionnaireId()))

@@ -23,4 +23,9 @@ public class RequestEvaluationGatewayImpl implements RequestEvaluationGateway {
         return Optional.ofNullable(requestEvaluationRepository.save(new RequestEvaluationEntity(requestEvaluationDomain)).toDomain());
     }
 
+    @Override
+    public Optional<RequestEvaluationDomain> findByRequestEvaluationId(final Long id) {
+        return requestEvaluationRepository.findById(id).map(RequestEvaluationEntity::toDomain);
+    }
+
 }

@@ -30,6 +30,11 @@ public class QuestionGatewayImpl implements QuestionGateway {
         return Optional.of(questionRepository.getById(id)).map(QuestionEntity::toDomain);
     }
 
+    @Override
+    public Optional<QuestionDomain> save(final QuestionDomain questionDomain) {
+        return Optional.of(questionRepository.save(new QuestionEntity(questionDomain)).toDomain());
+    }
+
     private List<QuestionDomain> buildQuestionDomainList(final List<QuestionEntity> questionEntities) {
 
         return questionEntities.stream().map(QuestionEntity::toDomain)

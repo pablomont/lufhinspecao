@@ -3,6 +3,7 @@ package com.uepb.lufh.avalia.dataprovider.database.entity;
 import com.uepb.lufh.avalia.core.domain.RequestEvaluationDomain;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.util.ObjectUtils;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -51,6 +52,10 @@ public class RequestEvaluationEntity {
 
 
     public RequestEvaluationEntity(final RequestEvaluationDomain requestEvaluationDomain) {
+
+        if(!ObjectUtils.isEmpty(requestEvaluationDomain.getId()))
+            this.requestEvaluationId = Long.valueOf(requestEvaluationDomain.getId());
+
         this.startDate = requestEvaluationDomain.getStartDate();
         this.endDate = requestEvaluationDomain.getEndDate();
         this.urgency = requestEvaluationDomain.getUrgency();

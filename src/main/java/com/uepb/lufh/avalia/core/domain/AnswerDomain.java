@@ -7,6 +7,8 @@ import lombok.Getter;
 @Getter
 public class AnswerDomain {
 
+    private final Long id;
+
     private final String answer;
 
     private final String severity;

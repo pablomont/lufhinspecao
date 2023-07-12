@@ -25,4 +25,9 @@ public class QuestionnaireGatewayImpl implements QuestionnaireGateway {
             .map(QuestionnaireEntity::toDomain);
     }
 
+    @Override
+    public Optional<QuestionnaireDomain> findByQuestionnaireId(final Long questionnaireId) {
+        return questionnaireRepository.findById(questionnaireId).map(QuestionnaireEntity::toDomain);
+    }
+
 }

@@ -1,12 +1,12 @@
 package com.uepb.lufh.avalia.core.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 
 @Builder
 @Getter
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class QuestionDomain {
 
     private final Long questionId;

@@ -1,7 +1,9 @@
 package com.uepb.lufh.avalia.entrypoint.controller;
 
 import com.uepb.lufh.avalia.core.domain.AnswerDomain;
+import com.uepb.lufh.avalia.core.domain.QuestionnaireDomain;
 import com.uepb.lufh.avalia.core.domain.ReportDomain;
+import com.uepb.lufh.avalia.core.domain.RequestEvaluationDomain;
 import com.uepb.lufh.avalia.core.usecase.report.CreateReportUseCase;
 import com.uepb.lufh.avalia.entrypoint.contract.api.ReportsApi;
 import com.uepb.lufh.avalia.entrypoint.contract.model.Answer;
@@ -24,8 +26,8 @@ public class ReportController implements ReportsApi {
     public ResponseEntity<ReportOutput> createReport(final ReportInput reportInput) {
         var reportDomain = ReportDomain.builder()
             .answers(buildAnswerDomainList(reportInput.getAnswer()))
-            .questionnaireId(reportInput.getQuestionnaireId().longValue())
-            .requestEvaluationId(reportInput.getRequestEvaluationId().longValue())
+            .questionnaireDomain(QuestionnaireDomain.builder().questionnaireId(reportInput.getQuestionnaireId().longValue()).build())
+            .requestEvaluationDomain(RequestEvaluationDomain.builder().id(reportInput.getRequestEvaluationId().toString()).build())
             .build();
 
         return ResponseEntity.ok(createOutput(createReportUseCase.execute(reportDomain)));
@@ -39,8 +41,8 @@ public class ReportController implements ReportsApi {
 
         reportOutput.setAnswer(answerList);
         reportOutput.setId(reportDomain.getReportId().intValue());
-        reportOutput.setQuestionnaireId(reportDomain.getQuestionnaireId().intValue());
-        reportOutput.setRequestEvaluationId(reportDomain.getRequestEvaluationId().intValue());
+        reportOutput.setQuestionnaireId(reportDomain.getQuestionnaireDomain().getQuestionnaireId().intValue());
+        reportOutput.setRequestEvaluationId(Integer.parseInt(reportDomain.getRequestEvaluationDomain().getId()));
 
         return reportOutput;
     }
@@ -48,7 +50,7 @@ public class ReportController implements ReportsApi {
     private Answer buildAnswer(final AnswerDomain answerDomain) {
 
         var answer = new Answer();
-        answer.setAnswer(answer.getAnswer());
+        answer.setAnswer(answerDomain.getAnswer());
         answer.setSeverity(Answer.SeverityEnum.fromValue(answerDomain.getSeverity()));
         answer.setWeight(Answer.WeightEnum.fromValue(answerDomain.getWeight()));
 
