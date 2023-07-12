@@ -20,8 +20,11 @@ import javax.annotation.Generated;
  */
 
 @Schema(name = "Answer", description = "Represents the answer data for the questions")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-07-10T12:53:00.057977-03:00[America/Fortaleza]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-07-11T21:57:14.378621-03:00[America/Fortaleza]")
 public class Answer {
+
+  @JsonProperty("id")
+  private Integer id;
 
   @JsonProperty("answer")
   private String answer;
@@ -112,6 +115,25 @@ public class Answer {
   @JsonProperty("weight")
   private WeightEnum weight;
 
+  public Answer id(Integer id) {
+    this.id = id;
+    return this;
+  }
+
+  /**
+   * Get id
+   * @return id
+  */
+  
+  @Schema(name = "id", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  public Integer getId() {
+    return id;
+  }
+
+  public void setId(Integer id) {
+    this.id = id;
+  }
+
   public Answer answer(String answer) {
     this.answer = answer;
     return this;
@@ -178,20 +200,22 @@ public class Answer {
       return false;
     }
     Answer answer = (Answer) o;
-    return Objects.equals(this.answer, answer.answer) &&
+    return Objects.equals(this.id, answer.id) &&
+        Objects.equals(this.answer, answer.answer) &&
         Objects.equals(this.severity, answer.severity) &&
         Objects.equals(this.weight, answer.weight);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(answer, severity, weight);
+    return Objects.hash(id, answer, severity, weight);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Answer {\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    answer: ").append(toIndentedString(answer)).append("\n");
     sb.append("    severity: ").append(toIndentedString(severity)).append("\n");
     sb.append("    weight: ").append(toIndentedString(weight)).append("\n");

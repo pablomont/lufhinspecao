@@ -4,7 +4,7 @@ import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.uepb.lufh.avalia.entrypoint.contract.model.Question;
+import com.uepb.lufh.avalia.entrypoint.contract.model.AnsweredQuestion;
 import java.util.ArrayList;
 import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -18,27 +18,20 @@ import java.util.*;
 import javax.annotation.Generated;
 
 /**
- * It represents a grouping of questions that must be answered when analyzing a product.
+ * Questionnaire
  */
 
-@Schema(name = "Questionnaire", description = "It represents a grouping of questions that must be answered when analyzing a product.")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-04-01T00:41:45.587364-03:00[America/Fortaleza]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-07-11T21:57:14.378621-03:00[America/Fortaleza]")
 public class Questionnaire {
 
   @JsonProperty("id")
-  private Long id;
+  private Integer id;
 
-  @JsonProperty("questions")
+  @JsonProperty("answeredQuestions")
   @Valid
-  private List<Question> questions = null;
+  private List<AnsweredQuestion> answeredQuestions = null;
 
-  @JsonProperty("evaluator")
-  private String evaluator;
-
-  @JsonProperty("creator")
-  private String creator;
-
-  public Questionnaire id(Long id) {
+  public Questionnaire id(Integer id) {
     this.id = id;
     return this;
   }
@@ -49,77 +42,39 @@ public class Questionnaire {
   */
   
   @Schema(name = "id", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  public Long getId() {
+  public Integer getId() {
     return id;
   }
 
-  public void setId(Long id) {
+  public void setId(Integer id) {
     this.id = id;
   }
 
-  public Questionnaire questions(List<Question> questions) {
-    this.questions = questions;
+  public Questionnaire answeredQuestions(List<AnsweredQuestion> answeredQuestions) {
+    this.answeredQuestions = answeredQuestions;
     return this;
   }
 
-  public Questionnaire addQuestionsItem(Question questionsItem) {
-    if (this.questions == null) {
-      this.questions = new ArrayList<>();
+  public Questionnaire addAnsweredQuestionsItem(AnsweredQuestion answeredQuestionsItem) {
+    if (this.answeredQuestions == null) {
+      this.answeredQuestions = new ArrayList<>();
     }
-    this.questions.add(questionsItem);
+    this.answeredQuestions.add(answeredQuestionsItem);
     return this;
   }
 
   /**
-   * Get questions
-   * @return questions
+   * Get answeredQuestions
+   * @return answeredQuestions
   */
   @Valid 
-  @Schema(name = "questions", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  public List<Question> getQuestions() {
-    return questions;
+  @Schema(name = "answeredQuestions", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  public List<AnsweredQuestion> getAnsweredQuestions() {
+    return answeredQuestions;
   }
 
-  public void setQuestions(List<Question> questions) {
-    this.questions = questions;
-  }
-
-  public Questionnaire evaluator(String evaluator) {
-    this.evaluator = evaluator;
-    return this;
-  }
-
-  /**
-   * Get evaluator
-   * @return evaluator
-  */
-  
-  @Schema(name = "evaluator", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  public String getEvaluator() {
-    return evaluator;
-  }
-
-  public void setEvaluator(String evaluator) {
-    this.evaluator = evaluator;
-  }
-
-  public Questionnaire creator(String creator) {
-    this.creator = creator;
-    return this;
-  }
-
-  /**
-   * Get creator
-   * @return creator
-  */
-  
-  @Schema(name = "creator", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  public String getCreator() {
-    return creator;
-  }
-
-  public void setCreator(String creator) {
-    this.creator = creator;
+  public void setAnsweredQuestions(List<AnsweredQuestion> answeredQuestions) {
+    this.answeredQuestions = answeredQuestions;
   }
 
   @Override
@@ -132,14 +87,12 @@ public class Questionnaire {
     }
     Questionnaire questionnaire = (Questionnaire) o;
     return Objects.equals(this.id, questionnaire.id) &&
-        Objects.equals(this.questions, questionnaire.questions) &&
-        Objects.equals(this.evaluator, questionnaire.evaluator) &&
-        Objects.equals(this.creator, questionnaire.creator);
+        Objects.equals(this.answeredQuestions, questionnaire.answeredQuestions);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, questions, evaluator, creator);
+    return Objects.hash(id, answeredQuestions);
   }
 
   @Override
@@ -147,9 +100,7 @@ public class Questionnaire {
     StringBuilder sb = new StringBuilder();
     sb.append("class Questionnaire {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    questions: ").append(toIndentedString(questions)).append("\n");
-    sb.append("    evaluator: ").append(toIndentedString(evaluator)).append("\n");
-    sb.append("    creator: ").append(toIndentedString(creator)).append("\n");
+    sb.append("    answeredQuestions: ").append(toIndentedString(answeredQuestions)).append("\n");
     sb.append("}");
     return sb.toString();
   }

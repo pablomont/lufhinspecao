@@ -5,7 +5,6 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.uepb.lufh.avalia.entrypoint.contract.model.Answer;
 import com.uepb.lufh.avalia.entrypoint.contract.model.ModelClass;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
@@ -21,7 +20,7 @@ import javax.annotation.Generated;
  * QuestionOutput
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-07-10T12:53:00.057977-03:00[America/Fortaleza]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-07-11T21:57:14.378621-03:00[America/Fortaleza]")
 public class QuestionOutput {
 
   @JsonProperty("id")
@@ -75,9 +74,6 @@ public class QuestionOutput {
 
   @JsonProperty("detailedQuestion")
   private String detailedQuestion;
-
-  @JsonProperty("answer")
-  private Answer answer;
 
   public QuestionOutput id(Long id) {
     this.id = id;
@@ -174,25 +170,6 @@ public class QuestionOutput {
     this.detailedQuestion = detailedQuestion;
   }
 
-  public QuestionOutput answer(Answer answer) {
-    this.answer = answer;
-    return this;
-  }
-
-  /**
-   * Get answer
-   * @return answer
-  */
-  @Valid 
-  @Schema(name = "answer", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  public Answer getAnswer() {
-    return answer;
-  }
-
-  public void setAnswer(Answer answer) {
-    this.answer = answer;
-  }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -206,13 +183,12 @@ public class QuestionOutput {
         Objects.equals(this.propertyClass, questionOutput.propertyClass) &&
         Objects.equals(this.productType, questionOutput.productType) &&
         Objects.equals(this.baseQuestion, questionOutput.baseQuestion) &&
-        Objects.equals(this.detailedQuestion, questionOutput.detailedQuestion) &&
-        Objects.equals(this.answer, questionOutput.answer);
+        Objects.equals(this.detailedQuestion, questionOutput.detailedQuestion);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, propertyClass, productType, baseQuestion, detailedQuestion, answer);
+    return Objects.hash(id, propertyClass, productType, baseQuestion, detailedQuestion);
   }
 
   @Override
@@ -224,7 +200,6 @@ public class QuestionOutput {
     sb.append("    productType: ").append(toIndentedString(productType)).append("\n");
     sb.append("    baseQuestion: ").append(toIndentedString(baseQuestion)).append("\n");
     sb.append("    detailedQuestion: ").append(toIndentedString(detailedQuestion)).append("\n");
-    sb.append("    answer: ").append(toIndentedString(answer)).append("\n");
     sb.append("}");
     return sb.toString();
   }

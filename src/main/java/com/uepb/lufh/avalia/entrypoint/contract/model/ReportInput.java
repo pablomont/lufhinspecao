@@ -22,7 +22,7 @@ import javax.annotation.Generated;
  */
 
 @Schema(name = "ReportInput", description = "Represents the result of the evaluation")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-07-10T12:53:00.057977-03:00[America/Fortaleza]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-07-11T21:57:14.378621-03:00[America/Fortaleza]")
 public class ReportInput {
 
   @JsonProperty("requestEvaluationId")
@@ -31,9 +31,9 @@ public class ReportInput {
   @JsonProperty("questionnaireId")
   private Integer questionnaireId;
 
-  @JsonProperty("answer")
+  @JsonProperty("answers")
   @Valid
-  private List<Answer> answer = null;
+  private List<Answer> answers = null;
 
   public ReportInput requestEvaluationId(Integer requestEvaluationId) {
     this.requestEvaluationId = requestEvaluationId;
@@ -73,31 +73,31 @@ public class ReportInput {
     this.questionnaireId = questionnaireId;
   }
 
-  public ReportInput answer(List<Answer> answer) {
-    this.answer = answer;
+  public ReportInput answers(List<Answer> answers) {
+    this.answers = answers;
     return this;
   }
 
-  public ReportInput addAnswerItem(Answer answerItem) {
-    if (this.answer == null) {
-      this.answer = new ArrayList<>();
+  public ReportInput addAnswersItem(Answer answersItem) {
+    if (this.answers == null) {
+      this.answers = new ArrayList<>();
     }
-    this.answer.add(answerItem);
+    this.answers.add(answersItem);
     return this;
   }
 
   /**
-   * Get answer
-   * @return answer
+   * Get answers
+   * @return answers
   */
   @Valid 
-  @Schema(name = "answer", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  public List<Answer> getAnswer() {
-    return answer;
+  @Schema(name = "answers", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  public List<Answer> getAnswers() {
+    return answers;
   }
 
-  public void setAnswer(List<Answer> answer) {
-    this.answer = answer;
+  public void setAnswers(List<Answer> answers) {
+    this.answers = answers;
   }
 
   @Override
@@ -111,12 +111,12 @@ public class ReportInput {
     ReportInput reportInput = (ReportInput) o;
     return Objects.equals(this.requestEvaluationId, reportInput.requestEvaluationId) &&
         Objects.equals(this.questionnaireId, reportInput.questionnaireId) &&
-        Objects.equals(this.answer, reportInput.answer);
+        Objects.equals(this.answers, reportInput.answers);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(requestEvaluationId, questionnaireId, answer);
+    return Objects.hash(requestEvaluationId, questionnaireId, answers);
   }
 
   @Override
@@ -125,7 +125,7 @@ public class ReportInput {
     sb.append("class ReportInput {\n");
     sb.append("    requestEvaluationId: ").append(toIndentedString(requestEvaluationId)).append("\n");
     sb.append("    questionnaireId: ").append(toIndentedString(questionnaireId)).append("\n");
-    sb.append("    answer: ").append(toIndentedString(answer)).append("\n");
+    sb.append("    answers: ").append(toIndentedString(answers)).append("\n");
     sb.append("}");
     return sb.toString();
   }

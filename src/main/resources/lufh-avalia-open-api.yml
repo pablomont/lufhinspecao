@@ -1151,8 +1151,6 @@ components:
         detailedQuestion:
           type: string
           example: Is only (and all) information, essential to decision making, displayed on the screen?
-        answer:
-          $ref: '#/components/schemas/Answer'
       xml:
         name: Question
     Class:
@@ -1213,6 +1211,8 @@ components:
     Answer:
       type: object
       properties:
+        id:
+          type: integer
         answer:
           type: string
         severity:
@@ -1345,24 +1345,37 @@ components:
           type: integer
         questionnaireId:
           type: integer
-        answer:
+        answers:
           type: array
           items:
             $ref: '#/components/schemas/Answer'
       description: Represents the result of the evaluation
     ReportOutput:
       properties:
-        id:
-          type: integer
         requestEvaluationId:
           type: integer
-        questionnaireId:
+        questionnaire:
+          type: object
+          $ref: '#/components/schemas/Questionnaire'
+      description: Represents the result of the evaluation
+    Questionnaire:
+      properties:
+        id:
           type: integer
-        answer:
+        answeredQuestions:
           type: array
           items:
-            $ref: '#/components/schemas/Answer'
-      description: Represents the result of the evaluation
+            $ref: '#/components/schemas/AnsweredQuestion'
+    AnsweredQuestion:
+      properties:
+        question:
+          type: object
+          $ref: '#/components/schemas/QuestionOutput'
+        answer:
+          type: object
+          $ref: '#/components/schemas/Answer'
+
+
     Error:
       type: object
       properties:
