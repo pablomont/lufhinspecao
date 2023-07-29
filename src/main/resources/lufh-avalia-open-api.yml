@@ -1261,8 +1261,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/QuestionOutput'
-        evaluator:
-          type: string
         creator:
           type: string
         title:
@@ -1274,8 +1272,6 @@ components:
           type: array
           items:
             type: string
-        evaluator:
-          type: string
         creator:
           type: string
         title:

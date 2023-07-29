@@ -27,7 +27,6 @@ public class QuestionnaireController implements QuestionnairesApi {
         var questionnaireDomain = QuestionnaireDomain.builder()
             .title(questionnaireInput.getTitle())
             .creator(questionnaireInput.getCreator())
-            .evaluator(questionnaireInput.getEvaluator())
             .build();
 
         return ResponseEntity.ok(createOutput(createQuestionnaireUseCase.execute(questionnaireDomain, questionnaireInput.getQuestionIds())));
@@ -36,7 +35,6 @@ public class QuestionnaireController implements QuestionnairesApi {
     private QuestionnaireOutput createOutput(final QuestionnaireDomain questionnaireDomain) {
         var questionnaireOutput = new QuestionnaireOutput();
         questionnaireOutput.setCreator(questionnaireDomain.getCreator());
-        questionnaireOutput.setEvaluator(questionnaireDomain.getEvaluator());
         questionnaireOutput.setId(questionnaireDomain.getQuestionnaireId());
         questionnaireOutput.setQuestions(createQuestionOutputList(questionnaireDomain.getQuestions()));
         questionnaireOutput.setTitle(questionnaireDomain.getTitle());

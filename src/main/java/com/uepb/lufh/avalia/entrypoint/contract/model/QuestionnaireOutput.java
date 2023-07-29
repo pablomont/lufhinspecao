@@ -22,7 +22,7 @@ import javax.annotation.Generated;
  */
 
 @Schema(name = "QuestionnaireOutput", description = "It represents a grouping of questions that must be answered when analyzing a product.")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-07-29T11:54:54.008836-03:00[America/Fortaleza]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-07-29T11:59:54.268524-03:00[America/Fortaleza]")
 public class QuestionnaireOutput {
 
   @JsonProperty("id")
@@ -31,9 +31,6 @@ public class QuestionnaireOutput {
   @JsonProperty("questions")
   @Valid
   private List<QuestionOutput> questions = null;
-
-  @JsonProperty("evaluator")
-  private String evaluator;
 
   @JsonProperty("creator")
   private String creator;
@@ -87,25 +84,6 @@ public class QuestionnaireOutput {
     this.questions = questions;
   }
 
-  public QuestionnaireOutput evaluator(String evaluator) {
-    this.evaluator = evaluator;
-    return this;
-  }
-
-  /**
-   * Get evaluator
-   * @return evaluator
-  */
-  
-  @Schema(name = "evaluator", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  public String getEvaluator() {
-    return evaluator;
-  }
-
-  public void setEvaluator(String evaluator) {
-    this.evaluator = evaluator;
-  }
-
   public QuestionnaireOutput creator(String creator) {
     this.creator = creator;
     return this;
@@ -155,14 +133,13 @@ public class QuestionnaireOutput {
     QuestionnaireOutput questionnaireOutput = (QuestionnaireOutput) o;
     return Objects.equals(this.id, questionnaireOutput.id) &&
         Objects.equals(this.questions, questionnaireOutput.questions) &&
-        Objects.equals(this.evaluator, questionnaireOutput.evaluator) &&
         Objects.equals(this.creator, questionnaireOutput.creator) &&
         Objects.equals(this.title, questionnaireOutput.title);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, questions, evaluator, creator, title);
+    return Objects.hash(id, questions, creator, title);
   }
 
   @Override
@@ -171,7 +148,6 @@ public class QuestionnaireOutput {
     sb.append("class QuestionnaireOutput {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    questions: ").append(toIndentedString(questions)).append("\n");
-    sb.append("    evaluator: ").append(toIndentedString(evaluator)).append("\n");
     sb.append("    creator: ").append(toIndentedString(creator)).append("\n");
     sb.append("    title: ").append(toIndentedString(title)).append("\n");
     sb.append("}");

@@ -7,7 +7,6 @@ import com.uepb.lufh.avalia.core.domain.ReportDomain;
 import com.uepb.lufh.avalia.core.domain.RequestEvaluationDomain;
 import com.uepb.lufh.avalia.core.usecase.report.CreateReportUseCase;
 import com.uepb.lufh.avalia.entrypoint.contract.api.ReportsApi;
-import com.uepb.lufh.avalia.entrypoint.contract.model.Answer;
 import com.uepb.lufh.avalia.entrypoint.contract.model.AnswerInput;
 import com.uepb.lufh.avalia.entrypoint.contract.model.AnswerOutput;
 import com.uepb.lufh.avalia.entrypoint.contract.model.AnsweredQuestion;

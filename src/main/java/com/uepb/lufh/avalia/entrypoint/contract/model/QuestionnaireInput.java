@@ -21,15 +21,12 @@ import javax.annotation.Generated;
  */
 
 @Schema(name = "QuestionnaireInput", description = "It represents a grouping of questions that must be answered when analyzing a product.")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-07-29T11:54:54.008836-03:00[America/Fortaleza]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-07-29T11:59:54.268524-03:00[America/Fortaleza]")
 public class QuestionnaireInput {
 
   @JsonProperty("questionIds")
   @Valid
   private List<String> questionIds = null;
-
-  @JsonProperty("evaluator")
-  private String evaluator;
 
   @JsonProperty("creator")
   private String creator;
@@ -62,25 +59,6 @@ public class QuestionnaireInput {
 
   public void setQuestionIds(List<String> questionIds) {
     this.questionIds = questionIds;
-  }
-
-  public QuestionnaireInput evaluator(String evaluator) {
-    this.evaluator = evaluator;
-    return this;
-  }
-
-  /**
-   * Get evaluator
-   * @return evaluator
-  */
-  
-  @Schema(name = "evaluator", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  public String getEvaluator() {
-    return evaluator;
-  }
-
-  public void setEvaluator(String evaluator) {
-    this.evaluator = evaluator;
   }
 
   public QuestionnaireInput creator(String creator) {
@@ -131,14 +109,13 @@ public class QuestionnaireInput {
     }
     QuestionnaireInput questionnaireInput = (QuestionnaireInput) o;
     return Objects.equals(this.questionIds, questionnaireInput.questionIds) &&
-        Objects.equals(this.evaluator, questionnaireInput.evaluator) &&
         Objects.equals(this.creator, questionnaireInput.creator) &&
         Objects.equals(this.title, questionnaireInput.title);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(questionIds, evaluator, creator, title);
+    return Objects.hash(questionIds, creator, title);
   }
 
   @Override
@@ -146,7 +123,6 @@ public class QuestionnaireInput {
     StringBuilder sb = new StringBuilder();
     sb.append("class QuestionnaireInput {\n");
     sb.append("    questionIds: ").append(toIndentedString(questionIds)).append("\n");
-    sb.append("    evaluator: ").append(toIndentedString(evaluator)).append("\n");
     sb.append("    creator: ").append(toIndentedString(creator)).append("\n");
     sb.append("    title: ").append(toIndentedString(title)).append("\n");
     sb.append("}");

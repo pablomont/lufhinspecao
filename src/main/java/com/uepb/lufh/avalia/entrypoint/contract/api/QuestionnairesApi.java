@@ -33,7 +33,7 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-07-29T11:54:54.008836-03:00[America/Fortaleza]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-07-29T11:59:54.268524-03:00[America/Fortaleza]")
 @Validated
 @Tag(name = "questionnaires", description = "Disponibiliza operações sobre os questionários utilizado para avaliar o produto.")
 @RequestMapping("${openapi.lufhInspeo.base-path:/lufh-avalia}")
@@ -73,7 +73,7 @@ public interface QuestionnairesApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"creator\" : \"creator\", \"questions\" : [ { \"baseQuestion\" : \"Is it designed minimal?\", \"id\" : 0, \"detailedQuestion\" : \"Is only (and all) information, essential to decision making, displayed on the screen?\", \"class\" : { \"name\" : \"Aesthetic and minimalist design\" }, \"productType\" : \"Software\" }, { \"baseQuestion\" : \"Is it designed minimal?\", \"id\" : 0, \"detailedQuestion\" : \"Is only (and all) information, essential to decision making, displayed on the screen?\", \"class\" : { \"name\" : \"Aesthetic and minimalist design\" }, \"productType\" : \"Software\" } ], \"id\" : 0, \"title\" : \"title\", \"evaluator\" : \"evaluator\" }";
+                    String exampleString = "{ \"creator\" : \"creator\", \"questions\" : [ { \"baseQuestion\" : \"Is it designed minimal?\", \"id\" : 0, \"detailedQuestion\" : \"Is only (and all) information, essential to decision making, displayed on the screen?\", \"class\" : { \"name\" : \"Aesthetic and minimalist design\" }, \"productType\" : \"Software\" }, { \"baseQuestion\" : \"Is it designed minimal?\", \"id\" : 0, \"detailedQuestion\" : \"Is only (and all) information, essential to decision making, displayed on the screen?\", \"class\" : { \"name\" : \"Aesthetic and minimalist design\" }, \"productType\" : \"Software\" } ], \"id\" : 0, \"title\" : \"title\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -144,12 +144,12 @@ public interface QuestionnairesApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"creator\" : \"creator\", \"questionIds\" : [ \"questionIds\", \"questionIds\" ], \"title\" : \"title\", \"evaluator\" : \"evaluator\" }";
+                    String exampleString = "{ \"creator\" : \"creator\", \"questionIds\" : [ \"questionIds\", \"questionIds\" ], \"title\" : \"title\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/xml"))) {
-                    String exampleString = "<QuestionnaireInput> <questionIds>aeiou</questionIds> <evaluator>aeiou</evaluator> <creator>aeiou</creator> <title>aeiou</title> </QuestionnaireInput>";
+                    String exampleString = "<QuestionnaireInput> <questionIds>aeiou</questionIds> <creator>aeiou</creator> <title>aeiou</title> </QuestionnaireInput>";
                     ApiUtil.setExampleResponse(request, "application/xml", exampleString);
                     break;
                 }
@@ -191,7 +191,7 @@ public interface QuestionnairesApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "[ { \"creator\" : \"creator\", \"questionIds\" : [ \"questionIds\", \"questionIds\" ], \"title\" : \"title\", \"evaluator\" : \"evaluator\" }, { \"creator\" : \"creator\", \"questionIds\" : [ \"questionIds\", \"questionIds\" ], \"title\" : \"title\", \"evaluator\" : \"evaluator\" } ]";
+                    String exampleString = "[ { \"creator\" : \"creator\", \"questionIds\" : [ \"questionIds\", \"questionIds\" ], \"title\" : \"title\" }, { \"creator\" : \"creator\", \"questionIds\" : [ \"questionIds\", \"questionIds\" ], \"title\" : \"title\" } ]";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
