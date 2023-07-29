@@ -102,6 +102,12 @@ paths:
               $ref: '#/components/schemas/QuestionInput'
         required: true
       responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuestionOutput'
         "500":
           description: Internal server error
   /questions/{question_id}:
@@ -1176,9 +1182,6 @@ components:
         - description
       type: object
       properties:
-        id:
-          type: integer
-          format: int64
         class:
           $ref: '#/components/schemas/Class'
         productType:

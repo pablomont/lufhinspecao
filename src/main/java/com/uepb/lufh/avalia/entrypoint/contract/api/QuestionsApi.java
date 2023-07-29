@@ -33,7 +33,7 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-07-29T11:59:54.268524-03:00[America/Fortaleza]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-07-29T12:42:02.340173-03:00[America/Fortaleza]")
 @Validated
 @Tag(name = "questions", description = "Disponibiliza operações sobre as questões.")
 @RequestMapping("${openapi.lufhInspeo.base-path:/lufh-avalia}")
@@ -47,24 +47,38 @@ public interface QuestionsApi {
      * POST /questions : Add a new question
      *
      * @param questionInput Question object that needs to be added to the form (required)
-     * @return Internal server error (status code 500)
+     * @return successful operation (status code 200)
+     *         or Internal server error (status code 500)
      */
     @Operation(
         operationId = "createQuestion",
         summary = "Add a new question",
         tags = { "questions" },
         responses = {
+            @ApiResponse(responseCode = "200", description = "successful operation", content = {
+                @Content(mediaType = "application/json", schema = @Schema(implementation = QuestionOutput.class))
+            }),
             @ApiResponse(responseCode = "500", description = "Internal server error")
         }
     )
     @RequestMapping(
         method = RequestMethod.POST,
         value = "/questions",
+        produces = { "application/json" },
         consumes = { "application/json" }
     )
-    default ResponseEntity<Void> createQuestion(
+    default ResponseEntity<QuestionOutput> createQuestion(
         @Parameter(name = "QuestionInput", description = "Question object that needs to be added to the form", required = true) @Valid @RequestBody QuestionInput questionInput
     ) throws Exception {
+        getRequest().ifPresent(request -> {
+            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
+                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
+                    String exampleString = "{ \"baseQuestion\" : \"Is it designed minimal?\", \"id\" : 0, \"detailedQuestion\" : \"Is only (and all) information, essential to decision making, displayed on the screen?\", \"class\" : { \"name\" : \"Aesthetic and minimalist design\" }, \"productType\" : \"Software\" }";
+                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
+                    break;
+                }
+            }
+        });
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }
