@@ -7,8 +7,6 @@ import java.util.Optional;
 
 public interface QuestionGateway {
     Optional<List<QuestionDomain>> findQuestionListByQuestionIds(List<Long> questionIds);
-    Optional<QuestionDomain> findQuestionById(Long id);
-
     Optional<QuestionDomain> save(QuestionDomain questionDomain);
 
 }

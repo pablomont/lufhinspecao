@@ -26,11 +26,6 @@ public class QuestionGatewayImpl implements QuestionGateway {
     }
 
     @Override
-    public Optional<QuestionDomain> findQuestionById(final Long id) {
-        return Optional.of(questionRepository.getById(id)).map(QuestionEntity::toDomain);
-    }
-
-    @Override
     public Optional<QuestionDomain> save(final QuestionDomain questionDomain) {
         return Optional.of(questionRepository.save(new QuestionEntity(questionDomain)).toDomain());
     }
