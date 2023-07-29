@@ -21,7 +21,7 @@ import javax.annotation.Generated;
  */
 
 @Schema(name = "QuestionnaireInput", description = "It represents a grouping of questions that must be answered when analyzing a product.")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-07-29T11:36:33.155005-03:00[America/Fortaleza]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-07-29T11:54:54.008836-03:00[America/Fortaleza]")
 public class QuestionnaireInput {
 
   @JsonProperty("questionIds")

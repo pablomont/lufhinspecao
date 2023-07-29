@@ -12,6 +12,8 @@ import java.util.List;
 public class ReportDomain {
 
     private Long reportId;
+
+    private String evaluator;
     private RequestEvaluationDomain requestEvaluationDomain;
     private QuestionnaireDomain questionnaireDomain;
     private final List<AnswerDomain> answers;

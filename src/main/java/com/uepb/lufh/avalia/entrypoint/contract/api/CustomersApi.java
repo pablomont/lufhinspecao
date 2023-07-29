@@ -34,7 +34,7 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-07-29T11:36:33.155005-03:00[America/Fortaleza]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-07-29T11:54:54.008836-03:00[America/Fortaleza]")
 @Validated
 @Tag(name = "customers", description = "Disponibiliza operações sobre os clientes que solicitaram uma avaliação de um determinado produto.")
 @RequestMapping("${openapi.lufhInspeo.base-path:/lufh-avalia}")

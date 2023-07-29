@@ -1362,6 +1362,8 @@ components:
       description: Represents a customer who has requested a product review
     ReportInput:
       properties:
+        evaluator:
+          type: string
         requestEvaluationId:
           type: integer
         questionnaireId:
@@ -1373,6 +1375,8 @@ components:
       description: Represents the result of the evaluation
     ReportOutput:
       properties:
+        evaluator:
+          type: string
         id:
           type: integer
         requestEvaluationId:

@@ -22,8 +22,11 @@ import javax.annotation.Generated;
  */
 
 @Schema(name = "ReportInput", description = "Represents the result of the evaluation")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-07-29T11:36:33.155005-03:00[America/Fortaleza]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-07-29T11:54:54.008836-03:00[America/Fortaleza]")
 public class ReportInput {
+
+  @JsonProperty("evaluator")
+  private String evaluator;
 
   @JsonProperty("requestEvaluationId")
   private Integer requestEvaluationId;
@@ -34,6 +37,25 @@ public class ReportInput {
   @JsonProperty("answers")
   @Valid
   private List<AnswerInput> answers = null;
+
+  public ReportInput evaluator(String evaluator) {
+    this.evaluator = evaluator;
+    return this;
+  }
+
+  /**
+   * Get evaluator
+   * @return evaluator
+  */
+  
+  @Schema(name = "evaluator", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  public String getEvaluator() {
+    return evaluator;
+  }
+
+  public void setEvaluator(String evaluator) {
+    this.evaluator = evaluator;
+  }
 
   public ReportInput requestEvaluationId(Integer requestEvaluationId) {
     this.requestEvaluationId = requestEvaluationId;
@@ -109,20 +131,22 @@ public class ReportInput {
       return false;
     }
     ReportInput reportInput = (ReportInput) o;
-    return Objects.equals(this.requestEvaluationId, reportInput.requestEvaluationId) &&
+    return Objects.equals(this.evaluator, reportInput.evaluator) &&
+        Objects.equals(this.requestEvaluationId, reportInput.requestEvaluationId) &&
         Objects.equals(this.questionnaireId, reportInput.questionnaireId) &&
         Objects.equals(this.answers, reportInput.answers);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(requestEvaluationId, questionnaireId, answers);
+    return Objects.hash(evaluator, requestEvaluationId, questionnaireId, answers);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ReportInput {\n");
+    sb.append("    evaluator: ").append(toIndentedString(evaluator)).append("\n");
     sb.append("    requestEvaluationId: ").append(toIndentedString(requestEvaluationId)).append("\n");
     sb.append("    questionnaireId: ").append(toIndentedString(questionnaireId)).append("\n");
     sb.append("    answers: ").append(toIndentedString(answers)).append("\n");

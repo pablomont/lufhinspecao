@@ -35,6 +35,9 @@ public class ReportEntity {
     @Column(name = "report_id")
     private Long reportId;
 
+    @Column(name = "evaluator")
+    private String evaluator;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "request_evaluation_id")
     private RequestEvaluationEntity requestEvaluationEntity;
@@ -54,6 +57,7 @@ public class ReportEntity {
 
     public ReportEntity(ReportDomain reportDomain, QuestionDomain questionDomain, AnswerDomain answerDomain){
         this.reportId = reportDomain.getReportId();
+        this.evaluator = reportDomain.getEvaluator();
         this.questionnaireEntity = new QuestionnaireEntity(reportDomain.getQuestionnaireDomain());
         this.requestEvaluationEntity = new RequestEvaluationEntity(reportDomain.getRequestEvaluationDomain());
         this.questionEntity = new QuestionEntity(questionDomain);

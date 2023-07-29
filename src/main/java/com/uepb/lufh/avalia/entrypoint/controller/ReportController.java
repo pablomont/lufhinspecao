@@ -33,6 +33,7 @@ public class ReportController implements ReportsApi {
     @Override
     public ResponseEntity<ReportOutput> createReport(final ReportInput reportInput) {
         var reportDomain = ReportDomain.builder()
+            .evaluator(reportInput.getEvaluator())
             .answers(buildAnswerDomainList(reportInput.getAnswers()))
             .questionnaireDomain(QuestionnaireDomain.builder().questionnaireId(reportInput.getQuestionnaireId().longValue()).build())
             .requestEvaluationDomain(RequestEvaluationDomain.builder().id(reportInput.getRequestEvaluationId().toString()).build())
@@ -53,6 +54,7 @@ public class ReportController implements ReportsApi {
         questionnaire.setAnsweredQuestions(answeredQuestions);
 
         var reportOutput = new ReportOutput();
+        reportOutput.setEvaluator(reportDomain.getEvaluator());
         reportOutput.setQuestionnaire(questionnaire);
         reportOutput.setRequestEvaluationId(Integer.valueOf(reportDomain.getRequestEvaluationDomain().getId()));
         reportOutput.setId(reportDomain.getReportId().intValue());

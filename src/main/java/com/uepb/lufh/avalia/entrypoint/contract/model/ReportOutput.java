@@ -20,8 +20,11 @@ import javax.annotation.Generated;
  */
 
 @Schema(name = "ReportOutput", description = "Represents the result of the evaluation")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-07-29T11:36:33.155005-03:00[America/Fortaleza]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-07-29T11:54:54.008836-03:00[America/Fortaleza]")
 public class ReportOutput {
+
+  @JsonProperty("evaluator")
+  private String evaluator;
 
   @JsonProperty("id")
   private Integer id;
@@ -31,6 +34,25 @@ public class ReportOutput {
 
   @JsonProperty("questionnaire")
   private Questionnaire questionnaire;
+
+  public ReportOutput evaluator(String evaluator) {
+    this.evaluator = evaluator;
+    return this;
+  }
+
+  /**
+   * Get evaluator
+   * @return evaluator
+  */
+  
+  @Schema(name = "evaluator", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  public String getEvaluator() {
+    return evaluator;
+  }
+
+  public void setEvaluator(String evaluator) {
+    this.evaluator = evaluator;
+  }
 
   public ReportOutput id(Integer id) {
     this.id = id;
@@ -98,20 +120,22 @@ public class ReportOutput {
       return false;
     }
     ReportOutput reportOutput = (ReportOutput) o;
-    return Objects.equals(this.id, reportOutput.id) &&
+    return Objects.equals(this.evaluator, reportOutput.evaluator) &&
+        Objects.equals(this.id, reportOutput.id) &&
         Objects.equals(this.requestEvaluationId, reportOutput.requestEvaluationId) &&
         Objects.equals(this.questionnaire, reportOutput.questionnaire);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, requestEvaluationId, questionnaire);
+    return Objects.hash(evaluator, id, requestEvaluationId, questionnaire);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ReportOutput {\n");
+    sb.append("    evaluator: ").append(toIndentedString(evaluator)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    requestEvaluationId: ").append(toIndentedString(requestEvaluationId)).append("\n");
     sb.append("    questionnaire: ").append(toIndentedString(questionnaire)).append("\n");
