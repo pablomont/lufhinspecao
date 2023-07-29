@@ -1208,11 +1208,32 @@ components:
             - Standard
         bibliography:
           type: string
-    Answer:
+    AnswerOutput:
       type: object
       properties:
         id:
           type: integer
+        answer:
+          type: string
+        severity:
+          type: string
+          enum:
+            - 0 Not a usability problem at all
+            - 1 Cosmetic problem only. Need not be fixed unless extra time is available
+            - 2 Minor usability problem. Fixing this should be given low priority
+            - 3 Major usability problem. Important to fix. Should be given high priority
+            - 4 Usability catastrophe. Imperative to fix this before product can be released
+        weight:
+          type: string
+          enum:
+            - 0 Necessary for every System
+            - 1 Necessary for Systems without more than one Dialog
+            - 2 Necessary for Simple Systems without data have to be entered or with strict guidance throughout the usage process
+            - 3 Necessary for Complex Systems with data have to be entered on several dialogs
+      description: Represents the answer data for the questions
+    AnswerInput:
+      type: object
+      properties:
         answer:
           type: string
         severity:
@@ -1348,7 +1369,7 @@ components:
         answers:
           type: array
           items:
-            $ref: '#/components/schemas/Answer'
+            $ref: '#/components/schemas/AnswerInput'
       description: Represents the result of the evaluation
     ReportOutput:
       properties:
@@ -1375,7 +1396,7 @@ components:
           $ref: '#/components/schemas/QuestionOutput'
         answer:
           type: object
-          $ref: '#/components/schemas/Answer'
+          $ref: '#/components/schemas/AnswerOutput'
 
 
     Error:

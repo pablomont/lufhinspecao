@@ -4,7 +4,7 @@ import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.uepb.lufh.avalia.entrypoint.contract.model.Answer;
+import com.uepb.lufh.avalia.entrypoint.contract.model.AnswerOutput;
 import com.uepb.lufh.avalia.entrypoint.contract.model.QuestionOutput;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
@@ -20,14 +20,14 @@ import javax.annotation.Generated;
  * AnsweredQuestion
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-07-11T22:27:20.267225-03:00[America/Fortaleza]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-07-29T11:36:33.155005-03:00[America/Fortaleza]")
 public class AnsweredQuestion {
 
   @JsonProperty("question")
   private QuestionOutput question;
 
   @JsonProperty("answer")
-  private Answer answer;
+  private AnswerOutput answer;
 
   public AnsweredQuestion question(QuestionOutput question) {
     this.question = question;
@@ -48,7 +48,7 @@ public class AnsweredQuestion {
     this.question = question;
   }
 
-  public AnsweredQuestion answer(Answer answer) {
+  public AnsweredQuestion answer(AnswerOutput answer) {
     this.answer = answer;
     return this;
   }
@@ -59,11 +59,11 @@ public class AnsweredQuestion {
   */
   @Valid 
   @Schema(name = "answer", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  public Answer getAnswer() {
+  public AnswerOutput getAnswer() {
     return answer;
   }
 
-  public void setAnswer(Answer answer) {
+  public void setAnswer(AnswerOutput answer) {
     this.answer = answer;
   }
 

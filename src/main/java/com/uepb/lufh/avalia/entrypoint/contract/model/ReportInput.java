@@ -4,7 +4,7 @@ import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.uepb.lufh.avalia.entrypoint.contract.model.Answer;
+import com.uepb.lufh.avalia.entrypoint.contract.model.AnswerInput;
 import java.util.ArrayList;
 import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -22,7 +22,7 @@ import javax.annotation.Generated;
  */
 
 @Schema(name = "ReportInput", description = "Represents the result of the evaluation")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-07-11T22:27:20.267225-03:00[America/Fortaleza]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-07-29T11:36:33.155005-03:00[America/Fortaleza]")
 public class ReportInput {
 
   @JsonProperty("requestEvaluationId")
@@ -33,7 +33,7 @@ public class ReportInput {
 
   @JsonProperty("answers")
   @Valid
-  private List<Answer> answers = null;
+  private List<AnswerInput> answers = null;
 
   public ReportInput requestEvaluationId(Integer requestEvaluationId) {
     this.requestEvaluationId = requestEvaluationId;
@@ -73,12 +73,12 @@ public class ReportInput {
     this.questionnaireId = questionnaireId;
   }
 
-  public ReportInput answers(List<Answer> answers) {
+  public ReportInput answers(List<AnswerInput> answers) {
     this.answers = answers;
     return this;
   }
 
-  public ReportInput addAnswersItem(Answer answersItem) {
+  public ReportInput addAnswersItem(AnswerInput answersItem) {
     if (this.answers == null) {
       this.answers = new ArrayList<>();
     }
@@ -92,11 +92,11 @@ public class ReportInput {
   */
   @Valid 
   @Schema(name = "answers", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  public List<Answer> getAnswers() {
+  public List<AnswerInput> getAnswers() {
     return answers;
   }
 
-  public void setAnswers(List<Answer> answers) {
+  public void setAnswers(List<AnswerInput> answers) {
     this.answers = answers;
   }
 

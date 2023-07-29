@@ -8,6 +8,8 @@ import com.uepb.lufh.avalia.core.domain.RequestEvaluationDomain;
 import com.uepb.lufh.avalia.core.usecase.report.CreateReportUseCase;
 import com.uepb.lufh.avalia.entrypoint.contract.api.ReportsApi;
 import com.uepb.lufh.avalia.entrypoint.contract.model.Answer;
+import com.uepb.lufh.avalia.entrypoint.contract.model.AnswerInput;
+import com.uepb.lufh.avalia.entrypoint.contract.model.AnswerOutput;
 import com.uepb.lufh.avalia.entrypoint.contract.model.AnsweredQuestion;
 import com.uepb.lufh.avalia.entrypoint.contract.model.ModelClass;
 import com.uepb.lufh.avalia.entrypoint.contract.model.QuestionOutput;
@@ -42,7 +44,7 @@ public class ReportController implements ReportsApi {
 
     private ReportOutput createOutput(final ReportDomain reportDomain) {
 
-        var answers = reportDomain.getAnswers().stream().map(this::buildAnswers).collect(Collectors.toList());
+        var answers = reportDomain.getAnswers().stream().map(this::buildOutputAnswers).collect(Collectors.toList());
         var questionOutputs = reportDomain.getQuestionnaireDomain().getQuestions().stream().map(this::buildQuestions).collect(Collectors.toList());
 
         var answeredQuestions = buildAnsweredQuestions(answers, questionOutputs);
@@ -58,7 +60,7 @@ public class ReportController implements ReportsApi {
         return reportOutput;
     }
 
-    private List<AnsweredQuestion> buildAnsweredQuestions(final List<Answer> answers, final List<QuestionOutput> questionOutputs) {
+    private List<AnsweredQuestion> buildAnsweredQuestions(final List<AnswerOutput> answers, final List<QuestionOutput> questionOutputs) {
         List<AnsweredQuestion> answeredQuestionList = new ArrayList<>(questionOutputs.size());
 
         for (int i = 0; i < questionOutputs.size(); i++) {
@@ -85,18 +87,18 @@ public class ReportController implements ReportsApi {
         return question;
     }
 
-    private Answer buildAnswers(final AnswerDomain answerDomain) {
+    private AnswerOutput buildOutputAnswers(final AnswerDomain answerDomain) {
 
-        var answer = new Answer();
+        var answer = new AnswerOutput();
         answer.setAnswer(answerDomain.getAnswer());
-        answer.setSeverity(Answer.SeverityEnum.fromValue(answerDomain.getSeverity()));
-        answer.setWeight(Answer.WeightEnum.fromValue(answerDomain.getWeight()));
+        answer.setSeverity(AnswerOutput.SeverityEnum.fromValue(answerDomain.getSeverity()));
+        answer.setWeight(AnswerOutput.WeightEnum.fromValue(answerDomain.getWeight()));
         answer.setId(answerDomain.getId().intValue());
 
         return answer;
     }
 
-    private List<AnswerDomain> buildAnswerDomainList(final List<Answer> answers) {
+    private List<AnswerDomain> buildAnswerDomainList(final List<AnswerInput> answers) {
 
         return answers.stream().map(answer -> AnswerDomain.builder()
             .answer(answer.getAnswer())
